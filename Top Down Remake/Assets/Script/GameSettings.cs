@@ -4,5 +4,8 @@ using UnityEngine;
 [Serializable]
 public class GameSettings
 {
-	public int a = 9;
+	public PlayerController PlayerController;
+	public float PlayerDiagonalSpeedLimiter = 0.7f;
+	public float PlayerRunSpeedHorizontal = 8f;
+	public float PlayerRunSpeedVertical = 8f;
 }

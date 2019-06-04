@@ -5,7 +5,6 @@ using Zenject;
 public class GameSettingInstaller : ScriptableObjectInstaller {
     
     [SerializeField] private GameSettings GameSettings;
-
     public override void InstallBindings()
     {
         Container.BindInstance(GameSettings);

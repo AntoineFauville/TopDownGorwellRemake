@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   GameSettings:
-    a: 9
+    PlayerController: {fileID: 4648361613835895633, guid: 86eb4d35b7c3209469e41aab994fec52,
+      type: 3}
+    PlayerDiagonalSpeedLimiter: 0.7
+    PlayerRunSpeedHorizontal: 8
+    PlayerRunSpeedVertical: 6
