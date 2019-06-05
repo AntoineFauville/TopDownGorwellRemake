@@ -7,5 +7,6 @@ public class GameInstaller : MonoInstaller {
     public override void InstallBindings()
     {
 		Container.BindInterfacesAndSelfTo<PlayerController>().FromComponentInNewPrefab(_gameSettings.PlayerController).AsSingle().NonLazy();
+        Container.Bind<ProjectileFactory>().AsSingle().NonLazy();
 	}
 }

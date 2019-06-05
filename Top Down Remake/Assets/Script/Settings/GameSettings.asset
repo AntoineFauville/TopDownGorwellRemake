@@ -18,3 +18,10 @@ MonoBehaviour:
     PlayerDiagonalSpeedLimiter: 0.7
     PlayerRunSpeedHorizontal: 8
     PlayerRunSpeedVertical: 6
+    ProjectilePrefab: {fileID: 7155763665149741019, guid: 580e5ebd825c2334bb95ae137767b4fe,
+      type: 3}
+    WarriorShooting: {fileID: 4878653924690250021, guid: 3e5302577fa15434fa64f0a35f0949f0,
+      type: 3}
+    ShootingSpeed: 0.1
+    ShootingCooldown: 0.5
+    DeathProjectorTime: 8
