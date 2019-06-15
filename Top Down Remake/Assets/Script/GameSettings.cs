@@ -14,4 +14,13 @@ public class GameSettings
     public float ShootingSpeed;
     public float ShootingCooldown;
     public float DeathProjectorTime = 8f;
+
+    public GameObject Enemy;
+    public GameObject Tile;
+
+    public GameObject Camera;
+
+    public Sprite WallTexture;
+    public Sprite WalkableTexture;
+    public Sprite DoorTexture;
 }

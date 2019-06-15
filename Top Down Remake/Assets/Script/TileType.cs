@@ -1,0 +1,6 @@
+﻿public enum TileType
+{
+    wall = 0,
+    walkable = 1,
+    door = 2
+}

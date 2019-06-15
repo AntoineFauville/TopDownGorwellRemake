@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 	private float moveLimiter;
 	private float runSpeedHorizontal;
 	private float runSpeedVectical;
+    
     void Start()
 	{
 		moveLimiter = _gameSettings.PlayerDiagonalSpeedLimiter;
