@@ -10,10 +10,13 @@ public class Tile : MonoBehaviour
     public SpriteRenderer SpriteRenderer;
     public BoxCollider2D BoxCollider2D;
 
-    public void Setup(TileType tileType,GameSettings gameSettings)
+    public Vector2 PositionInMap;
+
+    public void Setup(TileType tileType,GameSettings gameSettings, Vector2 positionInMap)
     {
         TileType = tileType;
         _gameSettings = gameSettings;
+        PositionInMap = positionInMap;
 
         SetupVisuals();
     }

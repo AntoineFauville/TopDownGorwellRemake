@@ -16,9 +16,11 @@ public class TileFactory
 
         obj.transform.SetParent(parent);
         obj.transform.localPosition = position;
+
+        Vector2 Pos = new Vector2(position.x, position.y);
         
         Tile tile = obj.GetComponent<Tile>();
-        tile.Setup(tileType, _gameSettings);
+        tile.Setup(tileType, _gameSettings, Pos);
 
         return tile;
     }

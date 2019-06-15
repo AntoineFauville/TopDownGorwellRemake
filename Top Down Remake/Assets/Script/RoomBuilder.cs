@@ -8,6 +8,10 @@ public class RoomBuilder : MonoBehaviour
     [Inject] private TileFactory _tileFactory;
 
     public RoomData RoomData;
+    private List<Vector2> _wallTiles = new List<Vector2>();
+    private List<Vector2> _doorTiles = new List<Vector2>();
+    private List<Vector2> _walckableTiles = new List<Vector2>();
+
     public int roomSizeX;
     public int roomSizeY;
     public int offset;
@@ -35,6 +39,7 @@ public class RoomBuilder : MonoBehaviour
             for (int y = 0; y < roomSizeY; y++)
             {
                 CreateTile(position);
+                
 
                 position.y += offset;
             }
@@ -43,7 +48,7 @@ public class RoomBuilder : MonoBehaviour
             position.x += offset;
         }
     }
-
+    
     void CreateTile(Vector3 position)
     {
         TileType tileTypeLocal;
@@ -79,6 +84,24 @@ public class RoomBuilder : MonoBehaviour
             }
         }
 
-        _tileFactory.CreateTile(tileTypeLocal, position, this.transform);
+        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform);
+
+        if (tileTypeLocal == TileType.wall)
+            _wallTiles.Add(tile.PositionInMap);
+        if (tileTypeLocal == TileType.door)
+            _doorTiles.Add(tile.PositionInMap);
+        if (tileTypeLocal == TileType.walkable)
+            _walckableTiles.Add(tile.PositionInMap);
+    }
+
+    void Update()
+    {
+        //save current map
+        if (Input.GetButtonDown("Jump"))
+        {
+            RoomData.WallTiles = _wallTiles;
+            RoomData.DoorTiles = _doorTiles;
+            RoomData.WalckableTiles = _walckableTiles;
+        }
     }
 }   

@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3792b06afd9b3734bba10a1352827aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomData: {fileID: 0}
+  RoomData: {fileID: 11400000, guid: 19f25a0194aabc54f8aeb38755f16d87, type: 2}
   roomSizeX: 28
   roomSizeY: 13
   offset: 1
