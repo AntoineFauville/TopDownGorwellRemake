@@ -9,6 +9,6 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        _enemyFactory.CreateEnemy();
+        //_enemyFactory.CreateEnemy();
     }
 }

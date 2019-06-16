@@ -219,11 +219,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3792b06afd9b3734bba10a1352827aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomData: {fileID: 11400000, guid: 19f25a0194aabc54f8aeb38755f16d87, type: 2}
+  WallTiles: []
+  DoorTiles: []
+  WalckableTiles: []
+  EnemyTiles: []
+  BossTiles: []
+  ObjInTheRoom: []
   roomSizeX: 28
   roomSizeY: 13
   offset: 1
   doorX: 0c0000000d0000000e000000
+  EditorMode: 0
+  LoadFromReadingMap: 1
+  CurrentLoadedReadingMap: {fileID: 11400000, guid: 19f25a0194aabc54f8aeb38755f16d87,
+    type: 2}
 --- !u!4 &2058132807
 Transform:
   m_ObjectHideFlags: 0

@@ -16,6 +16,9 @@ public class GameSettings
     public float DeathProjectorTime = 8f;
 
     public GameObject Enemy;
+    public float EnemySpawnOffsetX = 0.5f;
+    public float EnemySpawnOffsetY = 0.8f;
+
     public GameObject Tile;
 
     public GameObject Camera;

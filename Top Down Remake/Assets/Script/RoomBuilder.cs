@@ -6,11 +6,14 @@ using Zenject;
 public class RoomBuilder : MonoBehaviour
 {
     [Inject] private TileFactory _tileFactory;
+    
+    public List<Vector2> WallTiles = new List<Vector2>();
+    public List<Vector2> DoorTiles = new List<Vector2>();
+    public List<Vector2> WalckableTiles = new List<Vector2>();
+    public List<Vector2> EnemyTiles = new List<Vector2>();
+    public List<Vector2> BossTiles = new List<Vector2>();
 
-    public RoomData RoomData;
-    private List<Vector2> _wallTiles = new List<Vector2>();
-    private List<Vector2> _doorTiles = new List<Vector2>();
-    private List<Vector2> _walckableTiles = new List<Vector2>();
+    public List<GameObject> ObjInTheRoom = new List<GameObject>();
 
     public int roomSizeX;
     public int roomSizeY;
@@ -18,28 +21,40 @@ public class RoomBuilder : MonoBehaviour
 
     public int[] doorX;
 
-    int edgeX;
-    int edgeY;
+    private int _edgeX;
+    private int _edgeY;
+
+    public bool EditorMode;
+    
+    public bool LoadFromReadingMap;
+    public RoomData CurrentLoadedReadingMap;
 
     void Start()
     {
-        edgeX = ((roomSizeX) * offset) - offset;
-        edgeY = ((roomSizeY) * offset) - offset;
+        CreateRoom(CurrentLoadedReadingMap);
 
-        CreateRoom();
+        EditorMode = false;
     }
 
     // Update is called once per frame
-    void CreateRoom()
+    void CreateRoom(RoomData roomToCreate)
     {
+       
+
+        _edgeX = ((roomSizeX) * offset) - offset;
+        _edgeY = ((roomSizeY) * offset) - offset;
+
         Vector3 position = new Vector3(0,0,0);
 
         for (int x = 0; x < roomSizeX; x++)
         {
             for (int y = 0; y < roomSizeY; y++)
             {
-                CreateTile(position);
-                
+                //if we are not reading from a map, we don't load it and there for it creates the template
+                if (!LoadFromReadingMap)
+                    CreateTile(position);
+                else
+                    CreateFromRoomDataTile(position, roomToCreate);
 
                 position.y += offset;
             }
@@ -48,7 +63,30 @@ public class RoomBuilder : MonoBehaviour
             position.x += offset;
         }
     }
-    
+
+    void CreateFromRoomDataTile(Vector3 position, RoomData roomToCreate)
+    {
+        TileType tileTypeLocal;
+
+        Vector2 currentPosition = new Vector2(position.x, position.y);
+
+        //reads from roomdata
+        if (roomToCreate.WallTiles.Contains(currentPosition))
+            tileTypeLocal = TileType.wall;
+        else if (roomToCreate.DoorTiles.Contains(currentPosition))
+            tileTypeLocal = TileType.door;
+        else if (roomToCreate.EnemyTiles.Contains(currentPosition))
+            tileTypeLocal = TileType.enemySpawner;
+        else
+            tileTypeLocal = TileType.walkable;
+
+        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform, this);
+
+        ObjInTheRoom.Add(tile.gameObject);
+
+        AddInMap(tileTypeLocal, tile);
+    }
+
     void CreateTile(Vector3 position)
     {
         TileType tileTypeLocal;
@@ -56,8 +94,8 @@ public class RoomBuilder : MonoBehaviour
         //walls
         if (position.x == 0 ||
             position.y == 0 ||
-            position.x == edgeX ||
-            position.y == edgeY)
+            position.x == _edgeX ||
+            position.y == _edgeY)
         {
             tileTypeLocal = TileType.wall;
         }
@@ -84,14 +122,21 @@ public class RoomBuilder : MonoBehaviour
             }
         }
 
-        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform);
+        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform, this);
 
+        AddInMap(tileTypeLocal, tile);
+    }
+
+    void AddInMap(TileType tileTypeLocal, Tile tile)
+    {
         if (tileTypeLocal == TileType.wall)
-            _wallTiles.Add(tile.PositionInMap);
+            WallTiles.Add(tile.PositionInMap);
         if (tileTypeLocal == TileType.door)
-            _doorTiles.Add(tile.PositionInMap);
+            DoorTiles.Add(tile.PositionInMap);
         if (tileTypeLocal == TileType.walkable)
-            _walckableTiles.Add(tile.PositionInMap);
+            WalckableTiles.Add(tile.PositionInMap);
+        if (tileTypeLocal == TileType.enemySpawner)
+            EnemyTiles.Add(tile.PositionInMap);
     }
 
     void Update()
@@ -99,9 +144,29 @@ public class RoomBuilder : MonoBehaviour
         //save current map
         if (Input.GetButtonDown("Jump"))
         {
-            RoomData.WallTiles = _wallTiles;
-            RoomData.DoorTiles = _doorTiles;
-            RoomData.WalckableTiles = _walckableTiles;
+            CurrentLoadedReadingMap.WallTiles = WallTiles;
+            CurrentLoadedReadingMap.DoorTiles = DoorTiles;
+            CurrentLoadedReadingMap.WalckableTiles = WalckableTiles;
+            CurrentLoadedReadingMap.EnemyTiles = EnemyTiles;
+        }
+
+        //edit mode
+        if (Input.GetKeyDown("p"))
+        {
+            EditorMode = !EditorMode;
+            Debug.Log("Editor Mode now: " + EditorMode);
+        }
+
+        //recreate room
+        if (Input.GetKeyDown("o"))
+        {
+            for (int i = 0; i < ObjInTheRoom.Count; i++)
+            {
+                DestroyImmediate(ObjInTheRoom[i]);
+            }
+            ObjInTheRoom.Clear();
+
+            CreateRoom(CurrentLoadedReadingMap);
         }
     }
 }   
