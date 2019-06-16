@@ -26,16 +26,18 @@ public class Tile : MonoBehaviour
         SetupVisuals();
 
         //if it's a tile enemyspawner then it's just the same as a walkable. but spawns an enemy on top
-        if(tileType == TileType.enemySpawner)
-            SpawnEnemies();
+        SpawnEnemies(tileType);
     }
 
-    void SpawnEnemies()
+    void SpawnEnemies(TileType tileType)
     {
-        Vector3 position = new Vector3(PositionInMap.x,PositionInMap.y,0);
+        if (tileType == TileType.enemySpawner)
+        {
+            Vector3 position = new Vector3(PositionInMap.x, PositionInMap.y, 0);
 
-        Enemy enemy = _enemyFactory.CreateEnemy(position);
-        _roomBuilder.ObjInTheRoom.Add(enemy.gameObject);
+            Enemy enemy = _enemyFactory.CreateEnemy(position);
+            _roomBuilder.EnemiesInTheRoom.Add(enemy.gameObject);
+        }
     }
 
     public void SetupVisuals()
@@ -52,6 +54,12 @@ public class Tile : MonoBehaviour
             BoxCollider2D.isTrigger = false;
             gameObject.tag = "Wall";
         }
+        else if (TileType == TileType.roomSwitcher)
+        {
+            SpriteRenderer.sprite = _gameSettings.RoomSwitcherTexture;
+            BoxCollider2D.isTrigger = true; 
+            gameObject.tag = "RoomSwitch";
+        }
         else
         {
             SpriteRenderer.sprite = _gameSettings.WalkableTexture;
@@ -64,46 +72,31 @@ public class Tile : MonoBehaviour
         if (_roomBuilder.EditorMode)
         {
             if (Input.GetKey("w"))
-            {
-                TileType = TileType.wall;
-                SetupVisuals();
-                SpawnEnemies();
-
-                //remove if it was in any existing list && add in the correct new list
-                AdjustInList(TileType);
-            }
+                ChangeTile(TileType.wall);
 
             if (Input.GetKey("x"))
-            {
-                TileType = TileType.door;
-                SetupVisuals();
-                SpawnEnemies();
-
-                //remove if it was in any existing list && add in the correct new list
-                AdjustInList(TileType);
-            }
+                ChangeTile(TileType.door);
 
             if (Input.GetKey("c"))
-            {
-                TileType = TileType.walkable;
-                SetupVisuals();
-                SpawnEnemies();
-
-                //remove if it was in any existing list && add in the correct new list
-                AdjustInList(TileType);
-            }
+                ChangeTile(TileType.walkable);
 
             if (Input.GetKey("v"))
-            {
-                TileType = TileType.enemySpawner;
-                SetupVisuals();
-                SpawnEnemies();
+                ChangeTile(TileType.enemySpawner);
 
-                //remove if it was in any existing list && add in the correct new list
-                AdjustInList(TileType);
-            }
+            if (Input.GetKey("b"))
+                ChangeTile(TileType.roomSwitcher);
         }
         Debug.Log("TileType = " + TileType + " | PositionInMap = " + PositionInMap);
+    }
+
+    void ChangeTile(TileType tileType)
+    {
+        TileType = tileType;
+        SetupVisuals();
+        SpawnEnemies(TileType);
+
+        //remove if it was in any existing list && add in the correct new list
+        AdjustInList(TileType);
     }
 
     void AdjustInList(TileType tileType)
@@ -116,6 +109,8 @@ public class Tile : MonoBehaviour
             _roomBuilder.DoorTiles.Remove(PositionInMap);
         else if (_roomBuilder.EnemyTiles.Contains(PositionInMap))
             _roomBuilder.EnemyTiles.Remove(PositionInMap);
+        else if (_roomBuilder.RoomSwitcherTiles.Contains(PositionInMap))
+            _roomBuilder.RoomSwitcherTiles.Remove(PositionInMap);
 
         if (tileType == TileType.wall)
             _roomBuilder.WallTiles.Add(PositionInMap);
@@ -125,5 +120,7 @@ public class Tile : MonoBehaviour
             _roomBuilder.WalckableTiles.Add(PositionInMap);
         else if (tileType == TileType.enemySpawner)
             _roomBuilder.EnemyTiles.Add(PositionInMap);
+        else if (tileType == TileType.roomSwitcher)
+            _roomBuilder.RoomSwitcherTiles.Add(PositionInMap);
     }
 }

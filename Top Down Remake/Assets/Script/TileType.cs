@@ -3,5 +3,6 @@
     wall = 0,
     walkable = 1,
     door = 2,
-    enemySpawner = 3
+    enemySpawner = 3,
+    roomSwitcher = 4
 }

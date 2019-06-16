@@ -14,10 +14,21 @@ public class PlayerController : MonoBehaviour
 	private float moveLimiter;
 	private float runSpeedHorizontal;
 	private float runSpeedVectical;
-    
+
+    private GameManager _gameManager;
+
+    private Vector3 _initialPosition;
+
+    public void SetupGameManager(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
+
     void Start()
 	{
-		moveLimiter = _gameSettings.PlayerDiagonalSpeedLimiter;
+        _initialPosition = this.transform.position;
+
+        moveLimiter = _gameSettings.PlayerDiagonalSpeedLimiter;
 		runSpeedHorizontal = _gameSettings.PlayerRunSpeedHorizontal;
 		runSpeedVectical = _gameSettings.PlayerRunSpeedVertical;
 	}
@@ -40,4 +51,24 @@ public class PlayerController : MonoBehaviour
 
 		body.velocity = new Vector2(horizontal * runSpeedHorizontal, vertical * runSpeedVectical);
 	}
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "RoomSwitch")
+        {
+            StartCoroutine(waitToSwitch(0.001f));
+        }
+    }
+
+    void RePositionPlayer()
+    {
+        this.transform.position = _initialPosition;
+    }
+
+    IEnumerator waitToSwitch(float deathTime)
+    {
+        yield return new WaitForSeconds(deathTime);
+        RePositionPlayer();
+        _gameManager.SwitchRoom();
+    }
 }

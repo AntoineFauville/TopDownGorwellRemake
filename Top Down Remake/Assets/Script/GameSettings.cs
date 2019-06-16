@@ -26,4 +26,5 @@ public class GameSettings
     public Sprite WallTexture;
     public Sprite WalkableTexture;
     public Sprite DoorTexture;
+    public Sprite RoomSwitcherTexture;
 }

@@ -26,9 +26,13 @@ MonoBehaviour:
     ShootingCooldown: 0.5
     DeathProjectorTime: 8
     Enemy: {fileID: 6939255856227203175, guid: a9605b312c2af8d4fb4ea7155db84980, type: 3}
+    EnemySpawnOffsetX: 0.5
+    EnemySpawnOffsetY: 0.8
     Tile: {fileID: 4806719170303463066, guid: 8bc4e916d71fce7429cc8c7a6a0f9d58, type: 3}
     Camera: {fileID: 1255091717544087294, guid: 7751b7dabc2f8434babfadc21ae675d0,
       type: 3}
     WallTexture: {fileID: 21300014, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     WalkableTexture: {fileID: 21300018, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     DoorTexture: {fileID: 21300002, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
+    RoomSwitcherTexture: {fileID: 21300008, guid: 04170f682af0d99458f4fa3d94820458,
+      type: 3}

@@ -190,6 +190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13a04832d418dd4f892ca64d607a3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomDatas:
+  - {fileID: 11400000, guid: 19f25a0194aabc54f8aeb38755f16d87, type: 2}
+  - {fileID: 11400000, guid: 4da7f445287d7224e957d653a75a0a1d, type: 2}
+  RoomIndex: 0
+  RoomBuilder: {fileID: 2058132806}
 --- !u!1 &2058132805
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,16 +228,16 @@ MonoBehaviour:
   DoorTiles: []
   WalckableTiles: []
   EnemyTiles: []
-  BossTiles: []
+  RoomSwitcherTiles: []
   ObjInTheRoom: []
+  EnemiesInTheRoom: []
   roomSizeX: 28
   roomSizeY: 13
   offset: 1
   doorX: 0c0000000d0000000e000000
   EditorMode: 0
   LoadFromReadingMap: 1
-  CurrentLoadedReadingMap: {fileID: 11400000, guid: 19f25a0194aabc54f8aeb38755f16d87,
-    type: 2}
+  CurrentLoadedReadingMap: {fileID: 0}
 --- !u!4 &2058132807
 Transform:
   m_ObjectHideFlags: 0
