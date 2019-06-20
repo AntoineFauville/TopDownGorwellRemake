@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 466562934}
   - component: {fileID: 466562933}
   - component: {fileID: 466562936}
+  - component: {fileID: 466562937}
   m_Layer: 0
   m_Name: GameSettings
   m_TagString: Untagged
@@ -193,7 +194,23 @@ MonoBehaviour:
   roomDatas:
   - {fileID: 11400000, guid: 19f25a0194aabc54f8aeb38755f16d87, type: 2}
   - {fileID: 11400000, guid: 4da7f445287d7224e957d653a75a0a1d, type: 2}
+  - {fileID: 11400000, guid: dba4bc10772beab4eab925bfbe0bab2b, type: 2}
+  - {fileID: 11400000, guid: 40094779472f671459db64c2a24b0cdd, type: 2}
+  - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
   RoomIndex: 0
+  RoomBuilder: {fileID: 2058132806}
+--- !u!114 &466562937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466562932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d6d44f8a2916d4490d33fe894238b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   RoomBuilder: {fileID: 2058132806}
 --- !u!1 &2058132805
 GameObject:
@@ -238,6 +255,7 @@ MonoBehaviour:
   EditorMode: 0
   LoadFromReadingMap: 1
   CurrentLoadedReadingMap: {fileID: 0}
+  TileManager: {fileID: 466562937}
 --- !u!4 &2058132807
 Transform:
   m_ObjectHideFlags: 0

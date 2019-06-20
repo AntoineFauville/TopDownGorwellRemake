@@ -6,11 +6,10 @@ using Zenject;
 public class TileFactory
 {
     [Inject] private GameSettings _gameSettings;
-    [Inject] private EnemyFactory _enemyFactory;
 
     private GameObject obj;
 
-    public Tile CreateTile(TileType tileType, Vector3 position, Transform parent, RoomBuilder roomBuilder)
+    public Tile CreateTile(TileType tileType, Vector3 position, Transform parent, RoomBuilder roomBuilder, TileManager tileManager)
     {
         GameObject obj;
         obj = Object.Instantiate(_gameSettings.Tile);
@@ -23,7 +22,10 @@ public class TileFactory
         obj.name = Pos.ToString();
 
         Tile tile = obj.GetComponent<Tile>();
-        tile.Setup(tileType, _gameSettings, Pos, roomBuilder, _enemyFactory);
+        tile.Setup(tileType, Pos, roomBuilder, tileManager);
+
+        tileManager.SetupTileVisuals(tile);
+        tileManager.SpawnEnemiesOnTileLocation(tile, tile.TileType);
 
         return tile;
     }

@@ -7,7 +7,23 @@ using Zenject;
 public class RoomBuilder : MonoBehaviour
 {
     [Inject] private TileFactory _tileFactory;
-    
+
+    [Space(5)]
+    [Header("Map Data")]
+    public bool EmptyTemplate;
+    public bool AddingRandomOnEmptyTemplate;
+    public RoomData CurrentLoadedReadingMap;
+
+    [Space(5)]
+    [Header("Editor Mode")]
+    public bool EditorMode;
+
+    [Space(5)]
+    [Header("Manual References")]
+    public TileManager TileManager;
+
+    [Space(5)]
+    [Header("Debug Options - Don't Modify")]
     public List<Vector2> WallTiles = new List<Vector2>();
     public List<Vector2> DoorTiles = new List<Vector2>();
     public List<Vector2> WalckableTiles = new List<Vector2>();
@@ -21,15 +37,14 @@ public class RoomBuilder : MonoBehaviour
     public int roomSizeY;
     public int offset;
 
+    //when creating an empty room, it places on these tiles doors as debug.
     public int[] doorX;
 
-    private int _edgeX;
-    private int _edgeY;
+    //this represent the index that the edge tile needs to figure out if they are walls or not for eg
+    private int _RoomEdgeSizeX;
+    private int _RoomEdgeSizeY;
 
-    public bool EditorMode;
     
-    public bool LoadFromReadingMap;
-    public RoomData CurrentLoadedReadingMap;
 
     void Start()
     {
@@ -39,8 +54,8 @@ public class RoomBuilder : MonoBehaviour
     // Update is called once per frame
     public void CreateRoom(RoomData roomToCreate)
     {
-        _edgeX = ((roomSizeX) * offset) - offset;
-        _edgeY = ((roomSizeY) * offset) - offset;
+        _RoomEdgeSizeX = ((roomSizeX) * offset) - offset;
+        _RoomEdgeSizeY = ((roomSizeY) * offset) - offset;
 
         Vector3 position = new Vector3(0,0,0);
 
@@ -49,8 +64,13 @@ public class RoomBuilder : MonoBehaviour
             for (int y = 0; y < roomSizeY; y++)
             {
                 //if we are not reading from a map, we don't load it and there for it creates the template
-                if (!LoadFromReadingMap)
-                    CreateTile(position);
+                if (!EmptyTemplate)
+                {
+                    if (!AddingRandomOnEmptyTemplate)
+                        CreateTileFromAnEmptyTemplate(position);
+                    else
+                        CreateTileFromAnEmptyTemplateWithRandom(position);
+                }
                 else
                     CreateFromRoomDataTile(position, roomToCreate);
 
@@ -80,22 +100,22 @@ public class RoomBuilder : MonoBehaviour
         else
             tileTypeLocal = TileType.walkable;
 
-        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform, this);
+        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform, this, TileManager);
 
         ObjInTheRoom.Add(tile.gameObject);
 
         AddInMap(tileTypeLocal, tile);
     }
 
-    void CreateTile(Vector3 position)
+    void CreateTileFromAnEmptyTemplate(Vector3 position)
     {
         TileType tileTypeLocal;
 
         //walls
         if (position.x == 0 ||
             position.y == 0 ||
-            position.x == _edgeX ||
-            position.y == _edgeY)
+            position.x == _RoomEdgeSizeX ||
+            position.y == _RoomEdgeSizeY)
         {
             tileTypeLocal = TileType.wall;
         }
@@ -107,6 +127,7 @@ public class RoomBuilder : MonoBehaviour
         //    tileTypeLocal = TileType.wall;
         //}
         //walkable
+
         else
         {
             tileTypeLocal = TileType.walkable;
@@ -122,7 +143,45 @@ public class RoomBuilder : MonoBehaviour
             }
         }
 
-        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform, this);
+        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform, this, TileManager);
+
+        AddInMap(tileTypeLocal, tile);
+    }
+
+    void CreateTileFromAnEmptyTemplateWithRandom(Vector3 position)
+    {
+        TileType tileTypeLocal;
+
+        //walls
+        if (position.x == 0 ||
+            position.y == 0 ||
+            position.x == _RoomEdgeSizeX ||
+            position.y == _RoomEdgeSizeY)
+        {
+            tileTypeLocal = TileType.wall;
+        }
+        //randomTileInRoom
+        else if (position.x == Random.Range(0, roomSizeX) ||
+            position.y == Random.Range(0, roomSizeY))
+        {
+            tileTypeLocal = TileType.wall;
+        }
+        else
+        {
+            tileTypeLocal = TileType.walkable;
+        }
+
+        //Overwrite with Doors
+        for (int i = 0; i < doorX.Length; i++)
+        {
+            if (position.x == doorX[i] && position.y == 0 ||
+               (position.x == doorX[i] && position.y == (roomSizeY - 1)))
+            {
+                tileTypeLocal = TileType.door;
+            }
+        }
+
+        Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform, this, TileManager);
 
         AddInMap(tileTypeLocal, tile);
     }
@@ -170,7 +229,7 @@ public class RoomBuilder : MonoBehaviour
         if (Input.GetKeyDown("o"))
         {
             CreateNewRoom();
-            Debug.Log("Pressed 0 and now created a new room");
+            Debug.Log("Pressed 0 and recreated the last saved " + CurrentLoadedReadingMap);
         }
 
         //KillEnemies
@@ -178,6 +237,15 @@ public class RoomBuilder : MonoBehaviour
         {
             DeleteEnemies();
             Debug.Log("Deleted Enemies");
+        }
+
+        //ResetMapToDraw
+        if (Input.GetKeyDown("n"))
+        {
+            EmptyTemplate = false;
+            CreateRoom(CurrentLoadedReadingMap);
+            EmptyTemplate = true;
+            Debug.Log("Map Reset");
         }
     }
 
@@ -189,9 +257,20 @@ public class RoomBuilder : MonoBehaviour
         }
         ObjInTheRoom.Clear();
 
+        CleanMap();
+
         DeleteEnemies();
 
         CreateRoom(CurrentLoadedReadingMap);
+    }
+
+    void CleanMap()
+    {
+        WallTiles.Clear();
+        DoorTiles.Clear();
+        WalckableTiles.Clear();
+        EnemyTiles.Clear();
+        RoomSwitcherTiles.Clear();
     }
 
     void DeleteEnemies()
