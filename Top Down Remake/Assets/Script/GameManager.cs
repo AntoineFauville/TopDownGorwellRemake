@@ -5,34 +5,72 @@ using Zenject;
 
 public class GameManager : MonoBehaviour
 {
-    [Space(5)]
-    [Header("RoomList")]
-    public RoomData[] roomDatas;
-    public int RoomIndex = 0;
+    [Inject] private PlayerController _playerController;
+    [Inject] private BossController _bossManager;
+    [Inject] private GameSettings _gameSettings;
+
+    private int _roomIndex = 0;
 
     [Space(5)]
     [Header("Manual References")]
     public RoomBuilder RoomBuilder;
 
-    [Inject] private PlayerController _playerController;
+    [Space(5)]
+    [Header("Player Controls")]
+    public bool BlockPlayerControls;
+    private bool _waitForPossibleRoomSwitch;
 
     void Start()
     {
         _playerController.SetupGameManager(this);
 
-        RoomBuilder.CurrentLoadedReadingMap = roomDatas[RoomIndex];
+        //activate the boss life
+        _bossManager.TurnOnOffBossLife(true);
+
+        RoomBuilder.CurrentLoadedReadingMap = _gameSettings.roomDatas[_roomIndex];
         RoomBuilder.CreateNewRoom();
     }
 
     public void SwitchRoom()
     {
-        if (RoomIndex >= roomDatas.Length-1)
-            RoomIndex = roomDatas.Length-1;
-        else
-            RoomIndex++;
+        if (!_waitForPossibleRoomSwitch)
+        {
+            _waitForPossibleRoomSwitch = true;
+
+            RoomBossCheck();
+
+            if (_roomIndex >= _gameSettings.roomDatas.Length - 1)
+                _roomIndex = _gameSettings.roomDatas.Length - 1;
+            else
+                _roomIndex++;
 
 
-        RoomBuilder.CurrentLoadedReadingMap = roomDatas[RoomIndex];
-        RoomBuilder.CreateNewRoom();
+            RoomBuilder.CurrentLoadedReadingMap = _gameSettings.roomDatas[_roomIndex];
+            RoomBuilder.CreateNewRoom();
+        }
+
+        StartCoroutine(waitForPossibleRoomSwitch());
+    }
+
+    void RoomBossCheck()
+    {
+        if (_roomIndex == _gameSettings.BossRoomIndex)
+        {
+            //turn it off
+            _bossManager.TurnOnOffBossLife(false);
+        }
+    }
+    
+    public IEnumerator waitToSwitch(float deathTime)
+    {
+        yield return new WaitForSeconds(deathTime);
+        _playerController.RePositionPlayer();
+        SwitchRoom();
+    }
+
+    IEnumerator waitForPossibleRoomSwitch()
+    {
+        yield return new WaitForSeconds(1f);
+        _waitForPossibleRoomSwitch = false;
     }
 }

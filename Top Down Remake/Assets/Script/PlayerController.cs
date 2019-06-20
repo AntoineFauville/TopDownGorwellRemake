@@ -56,19 +56,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.tag == "RoomSwitch")
         {
-            StartCoroutine(waitToSwitch(0.001f));
+            StartCoroutine(_gameManager.waitToSwitch(0.01f));
         }
     }
 
-    void RePositionPlayer()
+    public void RePositionPlayer()
     {
         this.transform.position = _initialPosition;
-    }
-
-    IEnumerator waitToSwitch(float deathTime)
-    {
-        yield return new WaitForSeconds(deathTime);
-        RePositionPlayer();
-        _gameManager.SwitchRoom();
     }
 }

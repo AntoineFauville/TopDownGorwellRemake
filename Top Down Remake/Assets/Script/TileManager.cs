@@ -9,6 +9,7 @@ public class TileManager : MonoBehaviour
     [Inject] private EnemyFactory _enemyFactory;
 
     public RoomBuilder RoomBuilder;
+    public TrashController TrashController;
 
     public void SetupTileVisuals(Tile tile)
     {
@@ -79,7 +80,7 @@ public class TileManager : MonoBehaviour
             Vector3 position = new Vector3(tile.PositionInMap.x, tile.PositionInMap.y, 0);
 
             Enemy enemy = _enemyFactory.CreateEnemy(position);
-            RoomBuilder.EnemiesInTheRoom.Add(enemy.gameObject);
+            TrashController.EnemiesInTheRoom.Add(enemy.gameObject);
         }
     }
 }

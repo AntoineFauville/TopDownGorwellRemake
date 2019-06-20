@@ -10,7 +10,7 @@ public class RoomBuilder : MonoBehaviour
 
     [Space(5)]
     [Header("Map Data")]
-    public bool EmptyTemplate;
+    public bool FalseIfYouWantEmpty;
     public bool AddingRandomOnEmptyTemplate;
     public RoomData CurrentLoadedReadingMap;
 
@@ -21,6 +21,7 @@ public class RoomBuilder : MonoBehaviour
     [Space(5)]
     [Header("Manual References")]
     public TileManager TileManager;
+    public TrashController TrashController;
 
     [Space(5)]
     [Header("Debug Options - Don't Modify")]
@@ -29,10 +30,7 @@ public class RoomBuilder : MonoBehaviour
     public List<Vector2> WalckableTiles = new List<Vector2>();
     public List<Vector2> EnemyTiles = new List<Vector2>();
     public List<Vector2> RoomSwitcherTiles = new List<Vector2>();
-
-    public List<GameObject> ObjInTheRoom = new List<GameObject>();
-    public List<GameObject> EnemiesInTheRoom = new List<GameObject>();
-
+    
     public int roomSizeX;
     public int roomSizeY;
     public int offset;
@@ -43,8 +41,6 @@ public class RoomBuilder : MonoBehaviour
     //this represent the index that the edge tile needs to figure out if they are walls or not for eg
     private int _RoomEdgeSizeX;
     private int _RoomEdgeSizeY;
-
-    
 
     void Start()
     {
@@ -64,7 +60,7 @@ public class RoomBuilder : MonoBehaviour
             for (int y = 0; y < roomSizeY; y++)
             {
                 //if we are not reading from a map, we don't load it and there for it creates the template
-                if (!EmptyTemplate)
+                if (!FalseIfYouWantEmpty)
                 {
                     if (!AddingRandomOnEmptyTemplate)
                         CreateTileFromAnEmptyTemplate(position);
@@ -102,7 +98,7 @@ public class RoomBuilder : MonoBehaviour
 
         Tile tile = _tileFactory.CreateTile(tileTypeLocal, position, this.transform, this, TileManager);
 
-        ObjInTheRoom.Add(tile.gameObject);
+        TrashController.ObjInTheRoom.Add(tile.gameObject);
 
         AddInMap(tileTypeLocal, tile);
     }
@@ -199,67 +195,18 @@ public class RoomBuilder : MonoBehaviour
         if (tileTypeLocal == TileType.roomSwitcher)
             RoomSwitcherTiles.Add(tile.PositionInMap);
     }
-
-    void Update()
-    {
-        //save current map
-        if (Input.GetButtonDown("Jump"))
-        {
-            CurrentLoadedReadingMap.WallTiles = WallTiles;
-            CurrentLoadedReadingMap.DoorTiles = DoorTiles;
-            CurrentLoadedReadingMap.WalckableTiles = WalckableTiles;
-            CurrentLoadedReadingMap.EnemyTiles = EnemyTiles;
-            CurrentLoadedReadingMap.RoomSwitcherTiles = RoomSwitcherTiles;
-
-            Debug.Log("Saved " + CurrentLoadedReadingMap.name);
-
-            AssetDatabase.Refresh();
-            EditorUtility.SetDirty(CurrentLoadedReadingMap);
-            AssetDatabase.SaveAssets();
-        }
-
-        //edit mode
-        if (Input.GetKeyDown("p"))
-        {
-            EditorMode = !EditorMode;
-            Debug.Log("Editor Mode now: " + EditorMode);
-        }
-
-        //recreate room
-        if (Input.GetKeyDown("o"))
-        {
-            CreateNewRoom();
-            Debug.Log("Pressed 0 and recreated the last saved " + CurrentLoadedReadingMap);
-        }
-
-        //KillEnemies
-        if (Input.GetKeyDown("i"))
-        {
-            DeleteEnemies();
-            Debug.Log("Deleted Enemies");
-        }
-
-        //ResetMapToDraw
-        if (Input.GetKeyDown("n"))
-        {
-            EmptyTemplate = false;
-            CreateRoom(CurrentLoadedReadingMap);
-            EmptyTemplate = true;
-            Debug.Log("Map Reset");
-        }
-    }
-
+    
     public void CreateNewRoom()
     {
-        for (int i = 0; i < ObjInTheRoom.Count; i++)
+        for (int i = 0; i < TrashController.ObjInTheRoom.Count; i++)
         {
-            DestroyImmediate(ObjInTheRoom[i]);
+            DestroyImmediate(TrashController.ObjInTheRoom[i]);
         }
-        ObjInTheRoom.Clear();
+        TrashController.ObjInTheRoom.Clear();
 
         CleanMap();
 
-        DeleteEnemies();
+        DeleteEnemiesOnMap();
 
         CreateRoom(CurrentLoadedReadingMap);
     }
@@ -273,12 +220,12 @@ public class RoomBuilder : MonoBehaviour
         RoomSwitcherTiles.Clear();
     }
 
-    void DeleteEnemies()
+    public void DeleteEnemiesOnMap()
     {
-        for (int i = 0; i < EnemiesInTheRoom.Count; i++)
+        for (int i = 0; i < TrashController.EnemiesInTheRoom.Count; i++)
         {
-            DestroyImmediate(EnemiesInTheRoom[i]);
+            DestroyImmediate(TrashController.EnemiesInTheRoom[i]);
         }
-        EnemiesInTheRoom.Clear();
+        TrashController.EnemiesInTheRoom.Clear();
     }
 }   
