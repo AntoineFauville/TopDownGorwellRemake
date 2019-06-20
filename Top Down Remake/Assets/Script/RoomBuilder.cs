@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Zenject;
 
@@ -152,6 +153,10 @@ public class RoomBuilder : MonoBehaviour
             CurrentLoadedReadingMap.RoomSwitcherTiles = RoomSwitcherTiles;
 
             Debug.Log("Saved " + CurrentLoadedReadingMap.name);
+
+            AssetDatabase.Refresh();
+            EditorUtility.SetDirty(CurrentLoadedReadingMap);
+            AssetDatabase.SaveAssets();
         }
 
         //edit mode
