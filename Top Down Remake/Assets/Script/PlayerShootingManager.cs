@@ -48,12 +48,11 @@ public class PlayerShootingManager : MonoBehaviour
         STRight.transform.rotation = right.transform.rotation;
 
     }
+
     void FixedUpdate()
     {
-        _horizontalShootingAxe = Input.GetAxisRaw("Fire1"); 
-        _verticalShootingAxe = Input.GetAxisRaw("Fire2");
-
-        ShootingTemplate _shootingTemplateToUse;
+        _horizontalShootingAxe = Input.GetAxisRaw(_gameSettings.InputAxisShootHorizontal); 
+        _verticalShootingAxe = Input.GetAxisRaw(_gameSettings.InputAxisShootVertical);
 
         if (_horizontalShootingAxe < 0)
         {
@@ -72,6 +71,7 @@ public class PlayerShootingManager : MonoBehaviour
             CreateAndPush(STRight);
         }
     }
+
     void CreateAndPush(ShootingTemplate shootingTemplate)
     {
         if (!_canShootAgain)
@@ -79,7 +79,7 @@ public class PlayerShootingManager : MonoBehaviour
             //spawn projectile on each end of the shooting template
             for (int i = 0; i < shootingTemplate.ProjectileSpawnPoint.Length; i++)
             {
-                Projectile projectile = _projectileFactory.CreateProjectile(shootingTemplate.ProjectileSpawnPoint[i].transform, _gameSettings.ShootingSpeed);
+                Projectile projectile = _projectileFactory.CreateProjectile(shootingTemplate.ProjectileSpawnPoint[i].transform);
             }
             _canShootAgain = true;
             StartCoroutine(waitToShootAgain());
@@ -89,15 +89,15 @@ public class PlayerShootingManager : MonoBehaviour
     IEnumerator waitToShootAgain()
     {
         ImageCoolDownFeedback.fillAmount = 1;
-        yield return new WaitForSeconds(_gameSettings.ShootingCooldown/5);
+        yield return new WaitForSeconds(_gameSettings.ProjectileShootingCooldown/5);
         ImageCoolDownFeedback.fillAmount = 0.8f;
-        yield return new WaitForSeconds(_gameSettings.ShootingCooldown / 5);
+        yield return new WaitForSeconds(_gameSettings.ProjectileShootingCooldown / 5);
         ImageCoolDownFeedback.fillAmount = 0.6f;
-        yield return new WaitForSeconds(_gameSettings.ShootingCooldown / 5);
+        yield return new WaitForSeconds(_gameSettings.ProjectileShootingCooldown / 5);
         ImageCoolDownFeedback.fillAmount = 0.4f;
-        yield return new WaitForSeconds(_gameSettings.ShootingCooldown / 5);
+        yield return new WaitForSeconds(_gameSettings.ProjectileShootingCooldown / 5);
         ImageCoolDownFeedback.fillAmount = 0.2f;
-        yield return new WaitForSeconds(_gameSettings.ShootingCooldown / 5);
+        yield return new WaitForSeconds(_gameSettings.ProjectileShootingCooldown / 5);
         ImageCoolDownFeedback.fillAmount = 0;
         _canShootAgain = false;
     }

@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class Projectile: MonoBehaviour
 {
-    private float _moveSpeed;
     public Rigidbody2D rigidBody;
 
-    public void Setup(float moveSpeed, float deathTime)
+    private GameSettings _gameSettings;
+
+    public void Setup(GameSettings gameSettings)
     {
-        _moveSpeed = moveSpeed;
-        StartCoroutine(waitToDie(deathTime));
+        _gameSettings = gameSettings;
+        StartCoroutine(waitToDie(_gameSettings.DeathProjectorTime));
     }
 
     void FixedUpdate()
     {
-        this.transform.Translate(Vector3.right * _moveSpeed);
+        this.transform.Translate(Vector3.right * _gameSettings.ProjectileSpeed);
     }
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Wall")
+        if (collider.gameObject.tag == Tags.Wall.ToString())
         {
             StartCoroutine(waitToDie(0.001f));
         }

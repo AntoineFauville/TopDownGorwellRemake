@@ -13,32 +13,34 @@ public class Tile : MonoBehaviour
     public Vector2 PositionInMap;
 
     private RoomBuilder _roomBuilder;
+    private DebugSettings _debugSettings;
 
-    public void Setup(TileType tileType,Vector2 positionInMap, RoomBuilder roomBuilder, TileManager tileManager)
+    public void Setup(TileType tileType,Vector2 positionInMap, RoomBuilder roomBuilder, TileManager tileManager, DebugSettings debugSettings)
     {
         TileType = tileType;
         _roomBuilder = roomBuilder;
         PositionInMap = positionInMap;
         _tileManager = tileManager;
+        _debugSettings = debugSettings;
     }
 
     void OnMouseDown()
     {
         if (_roomBuilder.EditorMode)
         {
-            if (Input.GetKey("w"))
+            if (Input.GetKey(_debugSettings.WallKey))
                 _tileManager.ChangeTileType(this, TileType.wall);
 
-            if (Input.GetKey("x"))
+            if (Input.GetKey(_debugSettings.DoorKey))
                 _tileManager.ChangeTileType(this, TileType.door);
 
-            if (Input.GetKey("c"))
+            if (Input.GetKey(_debugSettings.WalkableKey))
                 _tileManager.ChangeTileType(this, TileType.walkable);
 
-            if (Input.GetKey("v"))
+            if (Input.GetKey(_debugSettings.EnemyKey))
                 _tileManager.ChangeTileType(this, TileType.enemySpawner);
 
-            if (Input.GetKey("b"))
+            if (Input.GetKey(_debugSettings.RoomSwitcherKey))
                 _tileManager.ChangeTileType(this, TileType.roomSwitcher);
         }
         Debug.Log("TileType = " + TileType + " | PositionInMap = " + PositionInMap);

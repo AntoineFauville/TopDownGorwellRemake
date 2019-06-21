@@ -37,16 +37,15 @@ public class GameManager : MonoBehaviour
         {
             _waitForPossibleRoomSwitch = true;
 
-            RoomBossCheck();
-
             if (_roomIndex >= _gameSettings.roomDatas.Length - 1)
                 _roomIndex = _gameSettings.roomDatas.Length - 1;
             else
                 _roomIndex++;
 
-
             RoomBuilder.CurrentLoadedReadingMap = _gameSettings.roomDatas[_roomIndex];
             RoomBuilder.CreateNewRoom();
+
+            RoomBossCheck();
         }
 
         StartCoroutine(waitForPossibleRoomSwitch());

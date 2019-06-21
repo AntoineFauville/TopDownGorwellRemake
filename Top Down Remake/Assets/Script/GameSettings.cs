@@ -10,13 +10,17 @@ public class GameSettings
 	public float PlayerDiagonalSpeedLimiter = 0.7f;
 	public float PlayerRunSpeedHorizontal = 8f;
 	public float PlayerRunSpeedVertical = 8f;
+    public string InputAxisHorizontalName = "Horizontal";
+    public string InputAxisVerticalName = "Vertical";
+    public string InputAxisShootHorizontal = "Fire1";
+    public string InputAxisShootVertical = "Fire2";
 
     [Space()]
     [Header("Projectiles")]
     public GameObject ProjectilePrefab;
     public ShootingTemplate WarriorShooting;
-    public float ShootingSpeed;
-    public float ShootingCooldown;
+    public float ProjectileSpeed;
+    public float ProjectileShootingCooldown;
     public float DeathProjectorTime = 8f;
 
     [Space()]

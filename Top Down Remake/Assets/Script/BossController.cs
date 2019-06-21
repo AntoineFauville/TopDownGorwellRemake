@@ -8,7 +8,7 @@ public class BossController : MonoBehaviour
     [Inject] private GameSettings _gameSettings;
     [Inject] private BossFillingLifeView _bossFillingLifeView;
 
-    private float time;
+    [SerializeField] private float time;
 
     public bool UpdateBossLife;
     

@@ -17,19 +17,19 @@ public class TileManager : MonoBehaviour
         {
             tile.SpriteRenderer.sprite = _gameSettings.WallTexture;
             tile.BoxCollider2D.isTrigger = false;
-            tile.gameObject.tag = "Wall";
+            tile.gameObject.tag = Tags.Wall.ToString();
         }
         else if (tile.TileType == TileType.door)
         {
             tile.SpriteRenderer.sprite = _gameSettings.DoorTexture;
             tile.BoxCollider2D.isTrigger = false;
-            tile.gameObject.tag = "Wall";
+            tile.gameObject.tag = Tags.Wall.ToString();
         }
         else if (tile.TileType == TileType.roomSwitcher)
         {
             tile.SpriteRenderer.sprite = _gameSettings.RoomSwitcherTexture;
             tile.BoxCollider2D.isTrigger = true;
-            tile.gameObject.tag = "RoomSwitch";
+            tile.gameObject.tag = Tags.RoomSwitch.ToString();
         }
         else
         {

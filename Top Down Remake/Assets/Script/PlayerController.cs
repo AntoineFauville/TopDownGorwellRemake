@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 		// Gives a value between -1 and 1
-		horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
-		vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+		horizontal = Input.GetAxisRaw(_gameSettings.InputAxisHorizontalName); // -1 is left
+		vertical = Input.GetAxisRaw(_gameSettings.InputAxisVerticalName); // -1 is down
 	}
 
 	void FixedUpdate()
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "RoomSwitch")
+        if (collider.gameObject.tag == Tags.RoomSwitch.ToString())
         {
             StartCoroutine(_gameManager.waitToSwitch(0.01f));
         }

@@ -115,15 +115,6 @@ public class RoomBuilder : MonoBehaviour
         {
             tileTypeLocal = TileType.wall;
         }
-        
-        ////randomTileInRoom
-        //else if (position.x == Random.Range(0,roomSizeX) ||
-        //    position.y == Random.Range(0, roomSizeY))
-        //{
-        //    tileTypeLocal = TileType.wall;
-        //}
-        //walkable
-
         else
         {
             tileTypeLocal = TileType.walkable;
