@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private EnemyType _enemyType;
+
     private GameManager _gameManager;
 
-    public void Setup(GameManager gameManager)
+    public void Setup(GameManager gameManager, EnemyType enemyType)
     {
         _gameManager = gameManager;
+        _enemyType = enemyType;
     }
 
     void OnCollisionEnter2D(Collision2D Collision)

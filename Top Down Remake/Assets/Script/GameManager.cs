@@ -70,11 +70,13 @@ public class GameManager : MonoBehaviour
 
     void RoomBossCheck()
     {
-        if (_roomIndex == _gameSettings.BossRoomIndex)
+        if (RoomBuilder.CurrentLoadedReadingMap.RoomType == RoomType.Boss)
         {
             //turn it off
             _bossManager.TurnOnOffBossLife(false);
         }
+        else
+            _bossManager.TurnOnOffBossLife(true);
     }
 
     void CheckToOpenDoors()
@@ -120,9 +122,7 @@ public class GameManager : MonoBehaviour
             _currentRoomEnemyAmount = 0;
 
         yield return new WaitForSeconds(0.05f);
-
-        Debug.Log(_gameSettings.roomDatas[_roomIndex].EnemyTiles.Count + " & " + _currentRoomEnemyAmount);
-
+        
         CheckToOpenDoors();
 
         StartCoroutine(SlowerUpdate());

@@ -7,13 +7,23 @@ public class EnemyFactory
 {
     [Inject] private GameSettings _gameSettings;
 
-    public Enemy CreateEnemy(Vector3 position, GameManager gameManager)
+    public Enemy CreateEnemy(Vector3 position, GameManager gameManager, EnemyType enemyType)
     {
-        GameObject obj = Object.Instantiate(_gameSettings.Enemy);
-        
+        GameObject obj;
+
+        if (enemyType == EnemyType.Boss)
+        {
+            obj = Object.Instantiate(_gameSettings.Enemy);
+            obj.AddComponent<Boss>();
+        }
+        else
+            obj = Object.Instantiate(_gameSettings.Enemy);
+
+        obj.tag = Tags.Enemy.ToString();
+
         Enemy enemy = obj.GetComponent<Enemy>();
 
-        enemy.Setup(gameManager);
+        enemy.Setup(gameManager, enemyType);
 
         enemy.name = "Enemy" + position;
 

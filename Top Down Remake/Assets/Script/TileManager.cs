@@ -85,7 +85,13 @@ public class TileManager : MonoBehaviour
         {
             Vector3 position = new Vector3(tile.PositionInMap.x, tile.PositionInMap.y, 0);
 
-            Enemy enemy = _enemyFactory.CreateEnemy(position, GameManager);
+            Enemy enemy;
+
+            if (RoomBuilder.CurrentLoadedReadingMap.RoomType == RoomType.Boss)
+                enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Boss);
+            else
+                enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Regular);
+
             TrashController.EnemiesInTheRoom.Add(enemy.gameObject);
         }
     }
