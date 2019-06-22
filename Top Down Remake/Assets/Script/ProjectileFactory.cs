@@ -13,6 +13,8 @@ public class ProjectileFactory
         obj.transform.position = parent.transform.position;
         obj.transform.rotation = parent.transform.rotation;
 
+        obj.tag = Tags.Projectile.ToString();
+
         Projectile projectile = obj.GetComponent<Projectile>();
         projectile.Setup(_gameSettings);
         return projectile;

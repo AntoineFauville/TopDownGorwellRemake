@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     [Inject] private GameSettings _gameSettings;
 
     private int _roomIndex = 0;
-
+    public bool RoomUnlockedState; // lock the room to make sure some checks are done only once, relock the room onces player switched
+    
     [Space(5)]
     [Header("Manual References")]
     public RoomBuilder RoomBuilder;
@@ -20,15 +21,34 @@ public class GameManager : MonoBehaviour
     public bool BlockPlayerControls;
     private bool _waitForPossibleRoomSwitch;
 
+    [Space(5)]
+    [Header("Enemy Controls")]
+    private int _currentRoomEnemyAmount;
+    public int EnemyAmountInCurrentRoomLeft;
+
     void Start()
     {
+        StartCoroutine(SlowerUpdate());
+
         _playerController.SetupGameManager(this);
 
         //activate the boss life
         _bossManager.TurnOnOffBossLife(true);
+        
+        SetupRoom();
+    }
+
+    public void SetupRoom()
+    {
+        _currentRoomEnemyAmount = 0;
+        EnemyAmountInCurrentRoomLeft = 0;
 
         RoomBuilder.CurrentLoadedReadingMap = _gameSettings.roomDatas[_roomIndex];
+        _currentRoomEnemyAmount = _gameSettings.roomDatas[_roomIndex].EnemyTiles.Count;
+        EnemyAmountInCurrentRoomLeft = _currentRoomEnemyAmount;
         RoomBuilder.CreateNewRoom();
+        RoomBossCheck();
+        RoomUnlockedState = false;
     }
 
     public void SwitchRoom()
@@ -42,10 +62,7 @@ public class GameManager : MonoBehaviour
             else
                 _roomIndex++;
 
-            RoomBuilder.CurrentLoadedReadingMap = _gameSettings.roomDatas[_roomIndex];
-            RoomBuilder.CreateNewRoom();
-
-            RoomBossCheck();
+            SetupRoom();
         }
 
         StartCoroutine(waitForPossibleRoomSwitch());
@@ -57,6 +74,24 @@ public class GameManager : MonoBehaviour
         {
             //turn it off
             _bossManager.TurnOnOffBossLife(false);
+        }
+    }
+
+    void CheckToOpenDoors()
+    {
+        if (!RoomUnlockedState && _currentRoomEnemyAmount - EnemyAmountInCurrentRoomLeft == _currentRoomEnemyAmount)
+        {
+            OpenDoors();
+            RoomUnlockedState = true;
+        }
+    }
+
+    void OpenDoors()
+    {
+        Debug.Log("Room" + _gameSettings.roomDatas[_roomIndex] + "is now open");
+        for (int i = 0; i < RoomBuilder.DoorTiles.Count; i++)
+        {
+            GameObject.Find(RoomBuilder.DoorTiles[i].ToString()).GetComponent<Door>().OpenDoorSwitchLocalVisuals();
         }
     }
     
@@ -71,5 +106,25 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _waitForPossibleRoomSwitch = false;
+    }
+
+    public IEnumerator SlowerUpdate()
+    {
+        if (EnemyAmountInCurrentRoomLeft < 0)
+            EnemyAmountInCurrentRoomLeft = 0;
+
+        if (EnemyAmountInCurrentRoomLeft > _currentRoomEnemyAmount)
+            EnemyAmountInCurrentRoomLeft = _currentRoomEnemyAmount;
+
+        if (_currentRoomEnemyAmount < 0)
+            _currentRoomEnemyAmount = 0;
+
+        yield return new WaitForSeconds(0.05f);
+
+        Debug.Log(_gameSettings.roomDatas[_roomIndex].EnemyTiles.Count + " & " + _currentRoomEnemyAmount);
+
+        CheckToOpenDoors();
+
+        StartCoroutine(SlowerUpdate());
     }
 }

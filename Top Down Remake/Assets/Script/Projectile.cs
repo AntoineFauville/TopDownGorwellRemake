@@ -21,7 +21,11 @@ public class Projectile: MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == Tags.Wall.ToString())
+        if (collider.gameObject.tag == Tags.Wall.ToString() 
+            || collider.gameObject.tag == Tags.Player.ToString()
+            || collider.gameObject.tag == Tags.Projectile.ToString()
+            || collider.gameObject.tag == Tags.RoomSwitch.ToString()
+            || collider.gameObject.tag == Tags.Enemy.ToString())
         {
             StartCoroutine(waitToDie(0.001f));
         }

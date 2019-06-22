@@ -9,6 +9,7 @@ public class DebugController : MonoBehaviour
     [Inject] private DebugSettings _debugSettings;
 
     public RoomBuilder RoomBuilder;
+    public GameManager GameManager;
 
     void Update()
     {
@@ -38,14 +39,14 @@ public class DebugController : MonoBehaviour
         //recreate room
         if (Input.GetKeyDown(_debugSettings.RecreateRoomKey))
         {
-            RoomBuilder.CreateNewRoom();
-            Debug.Log("Pressed 0 and recreated the last saved " + RoomBuilder.CurrentLoadedReadingMap);
+            StartCoroutine(waitForAllToDie());
+            Debug.Log("Pressed " + _debugSettings.RecreateRoomKey + " and recreated the last saved " + RoomBuilder.CurrentLoadedReadingMap);
         }
 
         //KillEnemies
         if (Input.GetKeyDown(_debugSettings.KillAllEnemiesKey))
         {
-            RoomBuilder.DeleteEnemiesOnMap();
+            RoomBuilder.DebugDeleteEnemiesOnMap();
             Debug.Log("Deleted Enemies");
         }
 
@@ -54,6 +55,7 @@ public class DebugController : MonoBehaviour
         {
             RoomBuilder.FalseIfYouWantEmpty = false;
             RoomBuilder.CreateRoom(RoomBuilder.CurrentLoadedReadingMap);
+            GameManager.SetupRoom();
             RoomBuilder.FalseIfYouWantEmpty = true;
             Debug.Log("Map Reset");
         }
@@ -68,5 +70,11 @@ public class DebugController : MonoBehaviour
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.DoorTiles.Count + " Doors"
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.RoomSwitcherTiles.Count + " RoomSwitchs");
         }
+    }
+
+    IEnumerator waitForAllToDie()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameManager.SetupRoom();
     }
 }

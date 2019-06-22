@@ -18,12 +18,16 @@ MonoBehaviour:
     PlayerDiagonalSpeedLimiter: 0.7
     PlayerRunSpeedHorizontal: 8
     PlayerRunSpeedVertical: 6
+    InputAxisHorizontalName: Horizontal
+    InputAxisVerticalName: Vertical
+    InputAxisShootHorizontal: Fire1
+    InputAxisShootVertical: Fire2
     ProjectilePrefab: {fileID: 7155763665149741019, guid: 580e5ebd825c2334bb95ae137767b4fe,
       type: 3}
     WarriorShooting: {fileID: 4878653924690250021, guid: 081d8d351b6e2fc498e25cba86646583,
       type: 3}
-    ShootingSpeed: 0.1
-    ShootingCooldown: 0.5
+    ProjectileSpeed: 0.5
+    ProjectileShootingCooldown: 0.2
     DeathProjectorTime: 8
     Enemy: {fileID: 6939255856227203175, guid: a9605b312c2af8d4fb4ea7155db84980, type: 3}
     EnemySpawnOffsetX: 0.5
@@ -48,3 +52,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: dba4bc10772beab4eab925bfbe0bab2b, type: 2}
     - {fileID: 11400000, guid: 40094779472f671459db64c2a24b0cdd, type: 2}
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
+  DebugSettings:
+    WalkableKey: w
+    WallKey: x
+    RoomSwitcherKey: c
+    DoorKey: v
+    EnemyKey: b
+    SaveMapInput: Jump
+    EditModeKey: p
+    RecreateRoomKey: o
+    KillAllEnemiesKey: i
+    ResetMapWhenEditingKey: u
+    GetInfoKey: n

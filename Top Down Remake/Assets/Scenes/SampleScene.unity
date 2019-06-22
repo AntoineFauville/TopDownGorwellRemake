@@ -193,7 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13a04832d418dd4f892ca64d607a3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomUnlockedState: 0
   RoomBuilder: {fileID: 2058132806}
+  BlockPlayerControls: 0
+  EnemyAmountInCurrentRoomLeft: 0
 --- !u!114 &466562937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomBuilder: {fileID: 2058132806}
+  GameManager: {fileID: 466562936}
   TrashController: {fileID: 466562939}
 --- !u!114 &466562938
 MonoBehaviour:
@@ -221,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomBuilder: {fileID: 2058132806}
+  GameManager: {fileID: 466562936}
 --- !u!114 &466562939
 MonoBehaviour:
   m_ObjectHideFlags: 0

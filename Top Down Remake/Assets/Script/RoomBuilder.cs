@@ -197,7 +197,7 @@ public class RoomBuilder : MonoBehaviour
 
         CleanMap();
 
-        DeleteEnemiesOnMap();
+        DebugDeleteEnemiesOnMap();
 
         CreateRoom(CurrentLoadedReadingMap);
     }
@@ -211,12 +211,20 @@ public class RoomBuilder : MonoBehaviour
         RoomSwitcherTiles.Clear();
     }
 
-    public void DeleteEnemiesOnMap()
+    public void DebugDeleteEnemiesOnMap()
     {
-        for (int i = 0; i < TrashController.EnemiesInTheRoom.Count; i++)
+        foreach (GameObject enemy in TrashController.EnemiesInTheRoom)
         {
-            DestroyImmediate(TrashController.EnemiesInTheRoom[i]);
+            enemy.GetComponent<Enemy>().AskToDieDebug();
         }
-        TrashController.EnemiesInTheRoom.Clear();
+    }
+
+    public void DeleteSpecificEnemy(GameObject enemyGameObject)
+    {
+        if (TrashController.EnemiesInTheRoom.Contains(enemyGameObject))
+        {
+            TrashController.EnemiesInTheRoom.Remove(enemyGameObject);
+            DestroyImmediate(GameObject.Find(enemyGameObject.name));
+        }
     }
 }   

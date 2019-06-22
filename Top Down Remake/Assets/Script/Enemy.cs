@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private PlayerController _playerController;
+    private GameManager _gameManager;
 
-    public void Setup(PlayerController playerController)
+    public void Setup(GameManager gameManager)
     {
-        _playerController = playerController;
+        _gameManager = gameManager;
     }
 
-    void Update()
+    void OnCollisionEnter2D(Collision2D Collision)
     {
-        //transform.LookAt(_playerController.transform);
+        if (Collision.gameObject.tag == Tags.Projectile.ToString())
+        {
+            StartCoroutine(waitToDie());
+        }
+    }
+
+    public void AskToDieDebug()
+    {
+        StartCoroutine(waitToDie());
+    }
+
+    void Die()
+    {
+        _gameManager.EnemyAmountInCurrentRoomLeft--;
+        _gameManager.RoomBuilder.DeleteSpecificEnemy(this.gameObject);
+    }
+
+    IEnumerator waitToDie()
+    {
+        yield return new WaitForSeconds(0.0001f);
+        Die();
     }
 }

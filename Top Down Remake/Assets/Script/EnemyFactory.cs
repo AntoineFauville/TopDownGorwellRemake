@@ -7,13 +7,15 @@ public class EnemyFactory
 {
     [Inject] private GameSettings _gameSettings;
 
-    public Enemy CreateEnemy(Vector3 position)
+    public Enemy CreateEnemy(Vector3 position, GameManager gameManager)
     {
         GameObject obj = Object.Instantiate(_gameSettings.Enemy);
         
         Enemy enemy = obj.GetComponent<Enemy>();
 
-        enemy.Setup(_gameSettings.PlayerController);
+        enemy.Setup(gameManager);
+
+        enemy.name = "Enemy" + position;
 
         enemy.transform.position = new Vector3(position.x + _gameSettings.EnemySpawnOffsetX, position.y + _gameSettings.EnemySpawnOffsetY);
 

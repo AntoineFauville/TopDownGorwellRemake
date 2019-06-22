@@ -9,6 +9,7 @@ public class TileManager : MonoBehaviour
     [Inject] private EnemyFactory _enemyFactory;
 
     public RoomBuilder RoomBuilder;
+    public GameManager GameManager;
     public TrashController TrashController;
 
     public void SetupTileVisuals(Tile tile)
@@ -24,6 +25,11 @@ public class TileManager : MonoBehaviour
             tile.SpriteRenderer.sprite = _gameSettings.DoorTexture;
             tile.BoxCollider2D.isTrigger = false;
             tile.gameObject.tag = Tags.Wall.ToString();
+            if (tile.gameObject.GetComponent<Door>() == null)
+            {
+                tile.gameObject.AddComponent<Door>();
+                tile.GetComponent<Door>().Setup(_gameSettings);
+            }
         }
         else if (tile.TileType == TileType.roomSwitcher)
         {
@@ -79,7 +85,7 @@ public class TileManager : MonoBehaviour
         {
             Vector3 position = new Vector3(tile.PositionInMap.x, tile.PositionInMap.y, 0);
 
-            Enemy enemy = _enemyFactory.CreateEnemy(position);
+            Enemy enemy = _enemyFactory.CreateEnemy(position, GameManager);
             TrashController.EnemiesInTheRoom.Add(enemy.gameObject);
         }
     }

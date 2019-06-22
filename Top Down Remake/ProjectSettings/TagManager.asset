@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - RoomSwitch
+  - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
