@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         HealthSystem = this.gameObject.AddComponent<HealthSystem>();
     }
 
-    void OnCollisionEnter2D(Collision2D Collision)
+    void OnCollisionStay2D(Collision2D Collision)
     {
         // projectile damages
         if (Collision.gameObject.tag == Tags.Projectile.ToString())
