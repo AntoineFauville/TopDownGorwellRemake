@@ -6,6 +6,7 @@ using Zenject;
 public class PlayerController : MonoBehaviour
 {
 	[Inject] private GameSettings _gameSettings;
+    [Inject] private PlayerView _playerView;
 
 	public Rigidbody2D body;
 
@@ -16,12 +17,17 @@ public class PlayerController : MonoBehaviour
 	private float runSpeedVectical;
 
     private GameManager _gameManager;
+    private HealthSystem _healthSystem;
 
     private Vector3 _initialPosition;
 
     public void SetupGameManager(GameManager gameManager)
     {
         _gameManager = gameManager;
+
+        _healthSystem = this.gameObject.AddComponent<HealthSystem>();
+
+        _healthSystem.Setup(_gameSettings.PlayerMaxHealth, _gameSettings);
     }
 
     void Start()
@@ -50,7 +56,10 @@ public class PlayerController : MonoBehaviour
 		}
 
 		body.velocity = new Vector2(horizontal * runSpeedHorizontal, vertical * runSpeedVectical);
-	}
+
+        UpdateView();
+
+    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -63,5 +72,10 @@ public class PlayerController : MonoBehaviour
     public void RePositionPlayer()
     {
         this.transform.position = _initialPosition;
+    }
+
+    void UpdateView()
+    {
+        _playerView.PlayerLifeView.fillAmount = _healthSystem.GetCurrentHealth() / _gameSettings.PlayerMaxHealth;
     }
 }

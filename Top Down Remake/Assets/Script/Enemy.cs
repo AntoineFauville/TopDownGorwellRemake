@@ -7,18 +7,56 @@ public class Enemy : MonoBehaviour
     private EnemyType _enemyType;
 
     private GameManager _gameManager;
+    private GameSettings _gameSettings;
+    private BossController _bossController;
 
-    public void Setup(GameManager gameManager, EnemyType enemyType)
+    public HealthSystem HealthSystem;
+
+    public void Setup(GameManager gameManager, EnemyType enemyType, GameSettings gameSettings, BossController bossController)
     {
         _gameManager = gameManager;
         _enemyType = enemyType;
+        _gameSettings = gameSettings;
+        _bossController = bossController;
+        
+        HealthSystem = this.gameObject.AddComponent<HealthSystem>();
     }
 
     void OnCollisionEnter2D(Collision2D Collision)
     {
+        // projectile damages
         if (Collision.gameObject.tag == Tags.Projectile.ToString())
         {
-            StartCoroutine(waitToDie());
+            TakeDamage(_gameSettings.ProjectileDamage); 
+        }
+        //example to show that we can do different type of damages
+        // playercollision damages
+        if (Collision.gameObject.tag == Tags.Player.ToString())
+        {
+            TakeDamage(_gameSettings.PlayerToEnemyCollisionDamage);
+        }
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        if (!HealthSystem.CanTakeDamageAgain)
+        {
+            HealthSystem.ModifyHealth(damageAmount);
+
+            if (HealthSystem.GetCurrentHealth() == 0)
+            {
+                StartCoroutine(waitToDie());
+            }
+
+            if (_enemyType == EnemyType.Boss)
+            {
+                _bossController.ModifyLifeView(damageAmount);
+                _bossController.UpdateView();
+            }
+        }
+        else
+        {
+            Debug.Log("I'm InvincibleForNowMortal");
         }
     }
 

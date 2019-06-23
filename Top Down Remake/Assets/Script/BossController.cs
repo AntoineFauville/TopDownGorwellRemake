@@ -8,19 +8,22 @@ public class BossController : MonoBehaviour
     [Inject] private GameSettings _gameSettings;
     [Inject] private BossFillingLifeView _bossFillingLifeView;
 
-    [SerializeField] private float time;
+    private float _life;
+    private float _maxLife;
 
     public bool UpdateBossLife;
     
     void Start()
     {
-        time = 0;
+        _life = 0;
+        _maxLife = _gameSettings.BossMaxLife;
         StartCoroutine(timerForBoss());
+        UpdateView();
     }
 
-    void UpdateView()
+    public void UpdateView()
     {
-        _bossFillingLifeView.BossLife.fillAmount = time;
+        _bossFillingLifeView.BossLife.fillAmount = _life / _maxLife;
     }
 
     public void TurnOnOffBossLife(bool state)
@@ -28,22 +31,32 @@ public class BossController : MonoBehaviour
         UpdateBossLife = state;
     }
 
+    public float GetLife()
+    {
+        return _life;
+    }
+
+    public void ModifyLifeView(int amount)
+    {
+        _life += amount;
+    }
+
     IEnumerator timerForBoss()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(_gameSettings.bossLifeFillingSpeed);
 
         if (UpdateBossLife)
         {
-            time += _gameSettings.bossLifeFillingSpeed;
+            _life += 1f;
 
             UpdateView();
         }
 
-        if (time >= 1)
-            time = 1;
+        if (_life >= _maxLife)
+            _life = _maxLife;
 
-        if (time <= 0)
-            time = 0;
+        if (_life <= 0)
+            _life = 0;
 
         StartCoroutine(timerForBoss());
     }
