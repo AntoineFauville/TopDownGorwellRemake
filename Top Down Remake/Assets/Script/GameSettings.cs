@@ -57,7 +57,10 @@ public class GameSettings
     [Space()]
     [Header("Dungeon")]
     public int BossRoomIndex = 4;
+    public int AmountOfRoomBeforeBoss = 4;
+    public int AmountOfCycleDungeonHave = 3;
     public RoomData[] roomDatas;
+    public RoomData[] bossRoomDatas;
 
     [Space()]
     [Header("Gameplay")]

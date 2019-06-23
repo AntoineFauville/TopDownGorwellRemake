@@ -59,6 +59,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4da7f445287d7224e957d653a75a0a1d, type: 2}
     - {fileID: 11400000, guid: dba4bc10772beab4eab925bfbe0bab2b, type: 2}
     - {fileID: 11400000, guid: 40094779472f671459db64c2a24b0cdd, type: 2}
+    bossRoomDatas:
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2

@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.tag == Tags.RoomSwitch.ToString())
         {
-            StartCoroutine(_gameManager.waitToSwitch(0.01f));
+            StartCoroutine(_gameManager.WaitToSwitch(0.01f));
         }
     }
 

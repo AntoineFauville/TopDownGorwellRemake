@@ -26,8 +26,14 @@ public class GameManager : MonoBehaviour
     private int _currentRoomEnemyAmount;
     public int EnemyAmountInCurrentRoomLeft;
 
+    [Space(5)]
+    [Header("Random Generation")]
+    [SerializeField] private List<RoomData> _dungeon = new List<RoomData>();
+
     void Start()
     {
+        GenerateDungeonLayout();
+
         StartCoroutine(SlowerUpdate());
 
         _playerController.SetupGameManager(this);
@@ -43,8 +49,8 @@ public class GameManager : MonoBehaviour
         _currentRoomEnemyAmount = 0;
         EnemyAmountInCurrentRoomLeft = 0;
 
-        RoomBuilder.CurrentLoadedReadingMap = _gameSettings.roomDatas[_roomIndex];
-        _currentRoomEnemyAmount = _gameSettings.roomDatas[_roomIndex].EnemyTiles.Count;
+        RoomBuilder.CurrentLoadedReadingMap = _dungeon[_roomIndex];
+        _currentRoomEnemyAmount = _dungeon[_roomIndex].EnemyTiles.Count;
         EnemyAmountInCurrentRoomLeft = _currentRoomEnemyAmount;
         RoomBuilder.CreateNewRoom();
         RoomBossCheck();
@@ -57,15 +63,15 @@ public class GameManager : MonoBehaviour
         {
             _waitForPossibleRoomSwitch = true;
 
-            if (_roomIndex >= _gameSettings.roomDatas.Length - 1)
-                _roomIndex = _gameSettings.roomDatas.Length - 1;
+            if (_roomIndex >= _dungeon.Count - 1)
+                _roomIndex = _dungeon.Count - 1;
             else
                 _roomIndex++;
 
             SetupRoom();
         }
 
-        StartCoroutine(waitForPossibleRoomSwitch());
+        StartCoroutine(WaitForPossibleRoomSwitch());
     }
 
     void RoomBossCheck()
@@ -90,21 +96,35 @@ public class GameManager : MonoBehaviour
 
     void OpenDoors()
     {
-        Debug.Log("Room" + _gameSettings.roomDatas[_roomIndex] + "is now open");
+        Debug.Log("Room" + _dungeon[_roomIndex] + "is now open");
         for (int i = 0; i < RoomBuilder.DoorTiles.Count; i++)
         {
             GameObject.Find(RoomBuilder.DoorTiles[i].ToString()).GetComponent<Door>().OpenDoorSwitchLocalVisuals();
         }
     }
-    
-    public IEnumerator waitToSwitch(float deathTime)
+
+    void GenerateDungeonLayout()
+    {
+        for (int y = 0; y < _gameSettings.AmountOfCycleDungeonHave; y++)
+        {
+            // add all the room before the boss
+            for (int i = 0; i < _gameSettings.AmountOfRoomBeforeBoss; i++)
+            {
+                _dungeon.Add(_gameSettings.roomDatas[Random.Range(0,_gameSettings.roomDatas.Length)]);
+            }
+            //add the boss room
+            _dungeon.Add(_gameSettings.bossRoomDatas[Random.Range(0, _gameSettings.bossRoomDatas.Length)]);
+        }
+    }
+
+    public IEnumerator WaitToSwitch(float deathTime)
     {
         yield return new WaitForSeconds(deathTime);
         _playerController.RePositionPlayer();
         SwitchRoom();
     }
 
-    IEnumerator waitForPossibleRoomSwitch()
+    IEnumerator WaitForPossibleRoomSwitch()
     {
         yield return new WaitForSeconds(1f);
         _waitForPossibleRoomSwitch = false;
