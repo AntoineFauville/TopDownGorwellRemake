@@ -246,7 +246,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!1 &5492747738545455257
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerLifeView: {fileID: 7730600686740355129}
+  Panel: {fileID: 7833444865248714396}
 --- !u!1 &7833444865248714396
 GameObject:
   m_ObjectHideFlags: 0

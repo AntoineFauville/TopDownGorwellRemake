@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BossLife: {fileID: 5366924524782975650}
+  Panel: {fileID: 6804363048854872508}
 --- !u!1 &1084223809339086589
 GameObject:
   m_ObjectHideFlags: 0

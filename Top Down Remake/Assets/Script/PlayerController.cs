@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using Zenject;
 
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
         _healthSystem = this.gameObject.AddComponent<HealthSystem>();
 
         _healthSystem.Setup(_gameSettings.PlayerMaxHealth, _gameSettings);
-        Debug.Log("Player health is now = " + _healthSystem.GetCurrentHealth());
+        //Debug.Log("Player health is now = " + _healthSystem.GetCurrentHealth());
     }
 
     void Update()
@@ -109,6 +110,12 @@ public class PlayerController : MonoBehaviour
 
     void UpdateView()
     {
-        _playerView.PlayerLifeView.fillAmount = (float)_healthSystem.GetCurrentHealth() / (float)_gameSettings.PlayerMaxHealth;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            _playerView.IsEnable(true);
+            _playerView.PlayerLifeView.fillAmount = (float)_healthSystem.GetCurrentHealth() / (float)_gameSettings.PlayerMaxHealth;
+        }
+        else
+            _playerView.IsEnable(false);
     }
 }

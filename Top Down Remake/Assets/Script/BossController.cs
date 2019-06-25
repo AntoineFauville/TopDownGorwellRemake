@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -23,7 +24,13 @@ public class BossController : MonoBehaviour
 
     public void UpdateView()
     {
-        _bossFillingLifeView.BossLife.fillAmount = _life / _maxLife;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            _bossFillingLifeView.IsEnable(true);
+            _bossFillingLifeView.BossLife.fillAmount = _life / _maxLife;
+        }
+        else
+            _bossFillingLifeView.IsEnable(false);
     }
 
     public void TurnOnOffBossLife(bool state)
