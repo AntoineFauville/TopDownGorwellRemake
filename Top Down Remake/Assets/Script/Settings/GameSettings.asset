@@ -47,13 +47,19 @@ MonoBehaviour:
       type: 3}
     Camera: {fileID: 1255091717544087294, guid: 7751b7dabc2f8434babfadc21ae675d0,
       type: 3}
+    CameraSmoothSpeedInFreeMode: 10
     BossManager: {fileID: 8166025960004632729, guid: 224ebbe1678bd444dbd6a82d89f3a1b9,
       type: 3}
     BossFillingLifeView: {fileID: 930909892756468876, guid: abefebf0527120d4c805718383906cb9,
       type: 3}
     BossToPlayerCollisionDamage: -2
     BossMaxLife: 10
+    RoomSizeX: 28
+    RoomSizeY: 13
+    Offset: 1
     BossRoomIndex: 4
+    AmountOfRoomBeforeBoss: 4
+    AmountOfCycleDungeonHave: 3
     roomDatas:
     - {fileID: 11400000, guid: 19f25a0194aabc54f8aeb38755f16d87, type: 2}
     - {fileID: 11400000, guid: 4da7f445287d7224e957d653a75a0a1d, type: 2}

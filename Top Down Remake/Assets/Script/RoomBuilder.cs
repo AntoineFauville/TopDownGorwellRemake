@@ -7,6 +7,7 @@ using Zenject;
 public class RoomBuilder : MonoBehaviour
 {
     [Inject] private TileFactory _tileFactory;
+    [Inject] private GameSettings _gameSettings;
 
     [Space(5)]
     [Header("Map Data")]
@@ -31,9 +32,9 @@ public class RoomBuilder : MonoBehaviour
     public List<Vector2> EnemyTiles = new List<Vector2>();
     public List<Vector2> RoomSwitcherTiles = new List<Vector2>();
     
-    public int roomSizeX;
-    public int roomSizeY;
-    public int offset;
+    private int _roomSizeX;
+    private int _roomSizeY;
+    private int _roomOffset;
 
     //when creating an empty room, it places on these tiles doors as debug.
     public int[] doorX;
@@ -42,22 +43,26 @@ public class RoomBuilder : MonoBehaviour
     private int _RoomEdgeSizeX;
     private int _RoomEdgeSizeY;
 
-    void Start()
+    void Awake()
     {
         EditorMode = false;
+
+        _roomSizeX = _gameSettings.RoomSizeX;
+        _roomSizeY = _gameSettings.RoomSizeY;
+        _roomOffset = _gameSettings.Offset;
     }
 
     // Update is called once per frame
     public void CreateRoom(RoomData roomToCreate)
     {
-        _RoomEdgeSizeX = ((roomSizeX) * offset) - offset;
-        _RoomEdgeSizeY = ((roomSizeY) * offset) - offset;
+        _RoomEdgeSizeX = ((_roomSizeX) * _roomOffset) - _roomOffset;
+        _RoomEdgeSizeY = ((_roomSizeY) * _roomOffset) - _roomOffset;
 
         Vector3 position = new Vector3(0,0,0);
 
-        for (int x = 0; x < roomSizeX; x++)
+        for (int x = 0; x < _roomSizeX; x++)
         {
-            for (int y = 0; y < roomSizeY; y++)
+            for (int y = 0; y < _roomSizeY; y++)
             {
                 //if we are not reading from a map, we don't load it and there for it creates the template
                 if (!FalseIfYouWantEmpty)
@@ -70,11 +75,11 @@ public class RoomBuilder : MonoBehaviour
                 else
                     CreateFromRoomDataTile(position, roomToCreate);
 
-                position.y += offset;
+                position.y += _roomOffset;
             }
             position.y = 0;
 
-            position.x += offset;
+            position.x += _roomOffset;
         }
     }
 
@@ -124,7 +129,7 @@ public class RoomBuilder : MonoBehaviour
         for (int i = 0; i < doorX.Length; i++)
         {
             if (position.x == doorX[i] && position.y == 0 ||
-               (position.x == doorX[i] && position.y == (roomSizeY - 1)))
+               (position.x == doorX[i] && position.y == (_roomSizeY - 1)))
             {
                 tileTypeLocal = TileType.door;
             }
@@ -148,8 +153,8 @@ public class RoomBuilder : MonoBehaviour
             tileTypeLocal = TileType.wall;
         }
         //randomTileInRoom
-        else if (position.x == Random.Range(0, roomSizeX) ||
-            position.y == Random.Range(0, roomSizeY))
+        else if (position.x == Random.Range(0, _roomSizeX) ||
+            position.y == Random.Range(0, _roomSizeY))
         {
             tileTypeLocal = TileType.wall;
         }
@@ -162,7 +167,7 @@ public class RoomBuilder : MonoBehaviour
         for (int i = 0; i < doorX.Length; i++)
         {
             if (position.x == doorX[i] && position.y == 0 ||
-               (position.x == doorX[i] && position.y == (roomSizeY - 1)))
+               (position.x == doorX[i] && position.y == (_roomSizeY - 1)))
             {
                 tileTypeLocal = TileType.door;
             }

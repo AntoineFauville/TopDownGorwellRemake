@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
             {
                 //Game Over Player
                 Debug.Log("Can't go lower, guess i'll die");
+                SceneManager.LoadScene(0);
             }
         }
         else

@@ -46,6 +46,7 @@ public class GameSettings
     [Space()]
     [Header("Camera")]
     public GameObject Camera;
+    public int CameraSmoothSpeedInFreeMode = 2;
 
     [Space()]
     [Header("Boss Life")]
@@ -56,6 +57,9 @@ public class GameSettings
 
     [Space()]
     [Header("Dungeon")]
+    public int RoomSizeX = 28;
+    public int RoomSizeY = 13;
+    public int Offset = 1;
     public int BossRoomIndex = 4;
     public int AmountOfRoomBeforeBoss = 4;
     public int AmountOfCycleDungeonHave = 3;
