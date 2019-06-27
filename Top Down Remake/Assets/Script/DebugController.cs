@@ -7,6 +7,7 @@ using Zenject;
 public class DebugController : MonoBehaviour
 {
     [Inject] private DebugSettings _debugSettings;
+    [Inject] private SceneController _sceneController;
 
     public RoomBuilder RoomBuilder;
     public GameManager GameManager;
@@ -40,25 +41,46 @@ public class DebugController : MonoBehaviour
         //recreate room
         if (Input.GetKeyDown(_debugSettings.RecreateRoomKey))
         {
-            StartCoroutine(waitForAllToDie());
-            Debug.Log("Pressed " + _debugSettings.RecreateRoomKey + " and recreated the last saved " + RoomBuilder.CurrentLoadedReadingMap);
+            if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
+            {
+                Debug.Log("recreate room isn't a featured made for the village");
+            }
+            else if(_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
+            {
+                StartCoroutine(waitForAllToDie());
+                Debug.Log("Pressed " + _debugSettings.RecreateRoomKey + " and recreated the last saved " + RoomBuilder.CurrentLoadedReadingMap);
+            }
         }
 
         //KillEnemies
         if (Input.GetKeyDown(_debugSettings.KillAllEnemiesKey))
         {
-            RoomBuilder.DebugDeleteEnemiesOnMap();
-            Debug.Log("Deleted Enemies");
+            if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
+            {
+                Debug.Log("Looks like enemies spawning is not supported yet on the village map");
+            }
+            else if(_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
+            {
+                RoomBuilder.DebugDeleteEnemiesOnMap();
+                Debug.Log("Deleted Enemies");
+            }
         }
 
         //ResetMapToDraw
         if (Input.GetKeyDown(_debugSettings.ResetMapWhenEditingKey))
         {
-            RoomBuilder.FalseIfYouWantEmpty = false;
-            RoomBuilder.CreateRoom(RoomBuilder.CurrentLoadedReadingMap);
-            GameManager.SetupRoom();
-            RoomBuilder.FalseIfYouWantEmpty = true;
-            Debug.Log("Map Reset");
+            if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
+            {
+                Debug.Log("Resetting the map isn't allowed in the village map");
+            }
+            else if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
+            {
+                RoomBuilder.FalseIfYouWantEmpty = false;
+                RoomBuilder.CreateRoom(RoomBuilder.CurrentLoadedReadingMap);
+                GameManager.SetupRoom();
+                RoomBuilder.FalseIfYouWantEmpty = true;
+                Debug.Log("Map Reset");
+            }
         }
 
         //PressToGetInfo

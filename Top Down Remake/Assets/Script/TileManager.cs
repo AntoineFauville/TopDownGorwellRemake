@@ -95,18 +95,25 @@ public class TileManager : MonoBehaviour
 
     public void SpawnEnemiesOnTileLocation(Tile tile, TileType tileType)
     {
-        if (tileType == TileType.enemySpawner)
+        if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
         {
-            Vector3 position = new Vector3(tile.PositionInMap.x, tile.PositionInMap.y, 0);
+            Debug.Log("Looks like enemies spawning is not supported yet on the village map");
+        }
+        else
+        {
+            if (tileType == TileType.enemySpawner)
+            {
+                Vector3 position = new Vector3(tile.PositionInMap.x, tile.PositionInMap.y, 0);
 
-            Enemy enemy;
+                Enemy enemy;
 
-            if (RoomBuilder.CurrentLoadedReadingMap.RoomType == RoomType.Boss)
-                enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Boss);
-            else
-                enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Regular);
+                if (RoomBuilder.CurrentLoadedReadingMap.RoomType == RoomType.Boss)
+                    enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Boss);
+                else
+                    enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Regular);
 
-            TrashController.EnemiesInTheRoom.Add(enemy.gameObject);
+                TrashController.EnemiesInTheRoom.Add(enemy.gameObject);
+            }
         }
     }
 }
