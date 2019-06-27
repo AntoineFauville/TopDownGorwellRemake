@@ -8,6 +8,7 @@ TagManager:
   - RoomSwitch
   - Enemy
   - Projectile
+  - DungeonEnter
   layers:
   - Default
   - TransparentFX

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
     [Inject] private GameSettings _gameSettings;
     [Inject] private BossFillingLifeView _bossFillingLifeView;
+    [Inject] private SceneController _sceneController;
 
     private float _life;
     private float _maxLife;
@@ -24,7 +24,7 @@ public class BossController : MonoBehaviour
 
     public void UpdateView()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
         {
             _bossFillingLifeView.IsEnable(true);
             _bossFillingLifeView.BossLife.fillAmount = _life / _maxLife;

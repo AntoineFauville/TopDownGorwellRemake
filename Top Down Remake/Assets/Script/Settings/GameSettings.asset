@@ -45,6 +45,8 @@ MonoBehaviour:
     DoorTexture: {fileID: 21300002, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     RoomSwitcherTexture: {fileID: 21300008, guid: 04170f682af0d99458f4fa3d94820458,
       type: 3}
+    DungeonEnterTexture: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458,
+      type: 3}
     Camera: {fileID: 1255091717544087294, guid: 7751b7dabc2f8434babfadc21ae675d0,
       type: 3}
     CameraSmoothSpeedInFreeMode: 10
@@ -69,12 +71,17 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2
+    VillageSizeX: 50
+    VillageSizeY: 50
+    SceneController: {fileID: 2679521885632859452, guid: 2d64b4f6415f6784bba86ce00d2d68fa,
+      type: 3}
   DebugSettings:
     WalkableKey: w
     WallKey: x
     RoomSwitcherKey: c
     DoorKey: v
     EnemyKey: b
+    DungeonEnterKey: m
     SaveMapInput: Jump
     EditModeKey: p
     RecreateRoomKey: o

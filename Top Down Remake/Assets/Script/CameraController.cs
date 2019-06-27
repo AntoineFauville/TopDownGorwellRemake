@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 public class CameraController : MonoBehaviour
 {
     [Inject] private PlayerController _playerController;
     [Inject] private GameSettings _gameSettings;
-    
+    [Inject] private SceneController _sceneController;
+
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (_sceneController.GetActiveSceneIndex() == 0)
         {
             Vector3 newPosition = new Vector3(_playerController.gameObject.transform.position.x, _playerController.gameObject.transform.position.y, -10);
 

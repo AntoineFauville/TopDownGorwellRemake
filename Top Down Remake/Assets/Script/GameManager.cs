@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [Inject] private PlayerController _playerController;
     [Inject] private BossController _bossManager;
     [Inject] private GameSettings _gameSettings;
+    [Inject] private SceneController _sceneController;
 
     private int _roomIndex = 0;
     public bool RoomUnlockedState; // lock the room to make sure some checks are done only once, relock the room onces player switched
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GenerateDungeonLayout();
+        GenerateLayout();
 
         StartCoroutine(SlowerUpdate());
 
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void GenerateDungeonLayout()
+    void GenerateLayout()
     {
         for (int y = 0; y < _gameSettings.AmountOfCycleDungeonHave; y++)
         {

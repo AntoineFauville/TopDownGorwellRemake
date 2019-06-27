@@ -21,6 +21,7 @@ public class DebugController : MonoBehaviour
             RoomBuilder.CurrentLoadedReadingMap.WalckableTiles = RoomBuilder.WalckableTiles;
             RoomBuilder.CurrentLoadedReadingMap.EnemyTiles = RoomBuilder.EnemyTiles;
             RoomBuilder.CurrentLoadedReadingMap.RoomSwitcherTiles = RoomBuilder.RoomSwitcherTiles;
+            RoomBuilder.CurrentLoadedReadingMap.DungeonEnterTiles = RoomBuilder.DungeonEnterTiles;
 
             Debug.Log("Saved " + RoomBuilder.CurrentLoadedReadingMap.name);
 
@@ -68,7 +69,8 @@ public class DebugController : MonoBehaviour
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.WalckableTiles.Count + " Walckable"
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.EnemyTiles.Count + " Enemies"
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.DoorTiles.Count + " Doors"
-                 + " / " + RoomBuilder.CurrentLoadedReadingMap.RoomSwitcherTiles.Count + " RoomSwitchs");
+                 + " / " + RoomBuilder.CurrentLoadedReadingMap.RoomSwitcherTiles.Count + " RoomSwitchs"
+                 + " / " + RoomBuilder.CurrentLoadedReadingMap.DungeonEnterTiles.Count + " DungeonEnter");
         }
     }
 

@@ -4,5 +4,6 @@
     walkable = 1,
     door = 2,
     enemySpawner = 3,
-    roomSwitcher = 4
+    roomSwitcher = 4,
+    dungeonEnter = 5
 }

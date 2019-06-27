@@ -8,6 +8,7 @@ public class RoomBuilder : MonoBehaviour
 {
     [Inject] private TileFactory _tileFactory;
     [Inject] private GameSettings _gameSettings;
+    [Inject] private SceneController _sceneController;
 
     [Space(5)]
     [Header("Map Data")]
@@ -31,7 +32,8 @@ public class RoomBuilder : MonoBehaviour
     public List<Vector2> WalckableTiles = new List<Vector2>();
     public List<Vector2> EnemyTiles = new List<Vector2>();
     public List<Vector2> RoomSwitcherTiles = new List<Vector2>();
-    
+    public List<Vector2> DungeonEnterTiles = new List<Vector2>();
+
     private int _roomSizeX;
     private int _roomSizeY;
     private int _roomOffset;
@@ -47,8 +49,22 @@ public class RoomBuilder : MonoBehaviour
     {
         EditorMode = false;
 
-        _roomSizeX = _gameSettings.RoomSizeX;
-        _roomSizeY = _gameSettings.RoomSizeY;
+        RoomSetupForAGivenScene();
+    }
+
+    void RoomSetupForAGivenScene()
+    {
+        if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
+        {
+            _roomSizeX = _gameSettings.RoomSizeX;
+            _roomSizeY = _gameSettings.RoomSizeY;
+        }
+        else if(_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
+        {
+            _roomSizeX = _gameSettings.VillageSizeX;
+            _roomSizeY = _gameSettings.VillageSizeY;
+        }
+
         _roomOffset = _gameSettings.Offset;
     }
 
@@ -98,6 +114,8 @@ public class RoomBuilder : MonoBehaviour
             tileTypeLocal = TileType.enemySpawner;
         else if (roomToCreate.RoomSwitcherTiles.Contains(currentPosition))
             tileTypeLocal = TileType.roomSwitcher;
+        else if (roomToCreate.DungeonEnterTiles.Contains(currentPosition))
+            tileTypeLocal = TileType.dungeonEnter;
         else
             tileTypeLocal = TileType.walkable;
 
@@ -190,6 +208,8 @@ public class RoomBuilder : MonoBehaviour
             EnemyTiles.Add(tile.PositionInMap);
         if (tileTypeLocal == TileType.roomSwitcher)
             RoomSwitcherTiles.Add(tile.PositionInMap);
+        if (tileTypeLocal == TileType.dungeonEnter)
+            DungeonEnterTiles.Add(tile.PositionInMap);
     }
     
     public void CreateNewRoom()
@@ -214,6 +234,7 @@ public class RoomBuilder : MonoBehaviour
         WalckableTiles.Clear();
         EnemyTiles.Clear();
         RoomSwitcherTiles.Clear();
+        DungeonEnterTiles.Clear();
     }
 
     public void DebugDeleteEnemiesOnMap()

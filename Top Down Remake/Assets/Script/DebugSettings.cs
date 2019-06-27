@@ -9,6 +9,7 @@ public class DebugSettings
     public string RoomSwitcherKey = "c";
     public string DoorKey = "v";
     public string EnemyKey = "b";
+    public string DungeonEnterKey = "m";
 
     public string SaveMapInput = "Jump";
     public string EditModeKey = "p";

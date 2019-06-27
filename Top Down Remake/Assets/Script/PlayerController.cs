@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [Inject] private GameSettings _gameSettings;
     [Inject] private PlayerView _playerView;
+    [Inject] private SceneController _sceneController;
 
     public Rigidbody2D body;
 
@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private float runSpeedVectical;
 
     private GameManager _gameManager;
+    private GameVillageManager _gameVillageManager;
     private HealthSystem _healthSystem;
 
     private Vector3 _initialPosition;
@@ -25,6 +26,11 @@ public class PlayerController : MonoBehaviour
     public void SetupGameManager(GameManager gameManager)
     {
         _gameManager = gameManager;
+    }
+
+    public void SetupGameVillageManager(GameVillageManager gameVillageManager)
+    {
+        _gameVillageManager = gameVillageManager;
     }
 
     void Start()
@@ -70,6 +76,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(_gameManager.WaitToSwitch(0.01f));
         }
+
+        if (collider.gameObject.tag == Tags.DungeonEnter.ToString())
+        {
+            StartCoroutine(_gameVillageManager.WaitToSwitch(0.01f));
+        }
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -95,7 +106,7 @@ public class PlayerController : MonoBehaviour
             {
                 //Game Over Player
                 Debug.Log("Can't go lower, guess i'll die");
-                SceneManager.LoadScene(0);
+                _sceneController.LoadScene(0);
             }
         }
         else
@@ -111,12 +122,12 @@ public class PlayerController : MonoBehaviour
 
     void UpdateView()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
         {
             _playerView.IsEnable(true);
             _playerView.PlayerLifeView.fillAmount = (float)_healthSystem.GetCurrentHealth() / (float)_gameSettings.PlayerMaxHealth;
         }
-        else
+        else if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
             _playerView.IsEnable(false);
     }
 }

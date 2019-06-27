@@ -197,6 +197,7 @@ MonoBehaviour:
   RoomBuilder: {fileID: 2058132806}
   BlockPlayerControls: 0
   EnemyAmountInCurrentRoomLeft: 0
+  _dungeon: []
 --- !u!114 &466562937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,9 +281,6 @@ MonoBehaviour:
   WalckableTiles: []
   EnemyTiles: []
   RoomSwitcherTiles: []
-  roomSizeX: 28
-  roomSizeY: 13
-  offset: 1
   doorX: 0c0000000d0000000e000000
 --- !u!4 &2058132807
 Transform:

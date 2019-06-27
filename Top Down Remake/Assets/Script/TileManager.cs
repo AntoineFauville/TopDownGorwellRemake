@@ -7,10 +7,14 @@ public class TileManager : MonoBehaviour
 {
     [Inject] private GameSettings _gameSettings;
     [Inject] private EnemyFactory _enemyFactory;
+    [Inject] private SceneController _sceneController;
 
     public RoomBuilder RoomBuilder;
-    public GameManager GameManager;
     public TrashController TrashController;
+
+    [Space()]
+    [Header("Leave Empty if village")]
+    public GameManager GameManager;
 
     public void SetupTileVisuals(Tile tile)
     {
@@ -36,6 +40,12 @@ public class TileManager : MonoBehaviour
             tile.SpriteRenderer.sprite = _gameSettings.RoomSwitcherTexture;
             tile.BoxCollider2D.isTrigger = true;
             tile.gameObject.tag = Tags.RoomSwitch.ToString();
+        }
+        else if (tile.TileType == TileType.dungeonEnter)
+        {
+            tile.SpriteRenderer.sprite = _gameSettings.DungeonEnterTexture;
+            tile.BoxCollider2D.isTrigger = true;
+            tile.gameObject.tag = Tags.DungeonEnter.ToString();
         }
         else
         {
@@ -66,6 +76,8 @@ public class TileManager : MonoBehaviour
             RoomBuilder.EnemyTiles.Remove(tile.PositionInMap);
         else if (RoomBuilder.RoomSwitcherTiles.Contains(tile.PositionInMap))
             RoomBuilder.RoomSwitcherTiles.Remove(tile.PositionInMap);
+        else if (RoomBuilder.DungeonEnterTiles.Contains(tile.PositionInMap))
+            RoomBuilder.DungeonEnterTiles.Remove(tile.PositionInMap);
 
         if (tileType == TileType.wall)
             RoomBuilder.WallTiles.Add(tile.PositionInMap);
@@ -77,6 +89,8 @@ public class TileManager : MonoBehaviour
             RoomBuilder.EnemyTiles.Add(tile.PositionInMap);
         else if (tileType == TileType.roomSwitcher)
             RoomBuilder.RoomSwitcherTiles.Add(tile.PositionInMap);
+        else if (tileType == TileType.dungeonEnter)
+            RoomBuilder.DungeonEnterTiles.Add(tile.PositionInMap);
     }
 
     public void SpawnEnemiesOnTileLocation(Tile tile, TileType tileType)

@@ -112,6 +112,123 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &525375057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 525375062}
+  - component: {fileID: 525375061}
+  - component: {fileID: 525375060}
+  - component: {fileID: 525375059}
+  - component: {fileID: 525375058}
+  - component: {fileID: 525375063}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &525375058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525375057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3792b06afd9b3734bba10a1352827aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FalseIfYouWantEmpty: 1
+  AddingRandomOnEmptyTemplate: 0
+  CurrentLoadedReadingMap: {fileID: 0}
+  EditorMode: 0
+  TileManager: {fileID: 525375061}
+  TrashController: {fileID: 525375059}
+  WallTiles: []
+  DoorTiles: []
+  WalckableTiles: []
+  EnemyTiles: []
+  RoomSwitcherTiles: []
+  DungeonEnterTiles: []
+  doorX: 
+--- !u!114 &525375059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525375057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671661f786158c849885f3c8543c3ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjInTheRoom: []
+  EnemiesInTheRoom: []
+--- !u!114 &525375060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525375057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5cce4a303fe2f4eadd5aef46ab315e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomBuilder: {fileID: 525375058}
+  VillageRoomData: {fileID: 11400000, guid: 287a4191d6fb99c44ab2e5466384181e, type: 2}
+--- !u!114 &525375061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525375057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d6d44f8a2916d4490d33fe894238b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomBuilder: {fileID: 525375058}
+  TrashController: {fileID: 525375059}
+  GameManager: {fileID: 0}
+--- !u!4 &525375062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525375057}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &525375063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525375057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155600565c7494543bfd833a652e687e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomBuilder: {fileID: 525375058}
+  GameManager: {fileID: 0}
 --- !u!1 &811817906
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,6 +42,7 @@ public class GameSettings
     public Sprite WalkableTexture;
     public Sprite DoorTexture;
     public Sprite RoomSwitcherTexture;
+    public Sprite DungeonEnterTexture;
 
     [Space()]
     [Header("Camera")]
@@ -70,4 +71,13 @@ public class GameSettings
     [Header("Gameplay")]
     public float InvincibilityFrameTime = 0.5f;
     public float bossLifeFillingSpeed = 0.01f;
+
+    [Space()]
+    [Header("Other Settings")]
+    public int VillageSizeX = 100;
+    public int VillageSizeY = 100;
+
+    [Space()]
+    [Header("Other Settings")]
+    public SceneController SceneController;
 }
