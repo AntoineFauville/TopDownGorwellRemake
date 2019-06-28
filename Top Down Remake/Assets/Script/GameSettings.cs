@@ -80,4 +80,5 @@ public class GameSettings
     [Space()]
     [Header("Other Settings")]
     public SceneController SceneController;
+    public LoadingScreen LoadingScreen;
 }

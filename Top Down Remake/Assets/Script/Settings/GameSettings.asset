@@ -18,8 +18,8 @@ MonoBehaviour:
     PlayerView: {fileID: 1449065724550125131, guid: 9454d9f3c2a50aa4eac68927c24663ac,
       type: 3}
     PlayerDiagonalSpeedLimiter: 0.7
-    PlayerRunSpeedHorizontal: 8
-    PlayerRunSpeedVertical: 6
+    PlayerRunSpeedHorizontal: 10
+    PlayerRunSpeedVertical: 8
     InputAxisHorizontalName: Horizontal
     InputAxisVerticalName: Vertical
     InputAxisShootHorizontal: Fire1
@@ -75,6 +75,8 @@ MonoBehaviour:
     VillageSizeY: 50
     SceneController: {fileID: 2679521885632859452, guid: 2d64b4f6415f6784bba86ce00d2d68fa,
       type: 3}
+    LoadingScreen: {fileID: 8440863296492808010, guid: 110203f3e16b47a48846df75fe112c6e,
+      type: 3}
   DebugSettings:
     WalkableKey: w
     WallKey: x
@@ -88,3 +90,4 @@ MonoBehaviour:
     KillAllEnemiesKey: i
     ResetMapWhenEditingKey: u
     GetInfoKey: n
+    LoadOtherMap: h

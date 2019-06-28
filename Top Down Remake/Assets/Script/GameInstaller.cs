@@ -10,10 +10,11 @@ public class GameInstaller : MonoInstaller {
         Container.BindInterfacesAndSelfTo<CameraController>().FromComponentInNewPrefab(_gameSettings.Camera).AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<BossController>().FromComponentInNewPrefab(_gameSettings.BossManager).AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<SceneController>().FromComponentInNewPrefab(_gameSettings.SceneController).AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<BossFillingLifeView>().FromComponentInNewPrefab(_gameSettings.BossFillingLifeView).AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<BossFillingLifeView>().FromComponentInNewPrefab(_gameSettings.BossFillingLifeView).AsSingle().NonLazy(); 
         Container.BindInterfacesAndSelfTo<PlayerView>().FromComponentInNewPrefab(_gameSettings.PlayerView).AsSingle().NonLazy();
         Container.Bind<ProjectileFactory>().AsSingle().NonLazy();
         Container.Bind<EnemyFactory>().AsSingle().NonLazy();
         Container.Bind<TileFactory>().AsSingle().NonLazy();
+        Container.Bind<LoadingScreenFactory>().AsSingle().NonLazy();
     }
 }

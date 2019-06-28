@@ -17,4 +17,6 @@ public class DebugSettings
     public string KillAllEnemiesKey = "i";
     public string ResetMapWhenEditingKey = "u";
     public string GetInfoKey = "n";
+
+    public string LoadOtherMap = "h";
 }

@@ -94,6 +94,18 @@ public class DebugController : MonoBehaviour
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.RoomSwitcherTiles.Count + " RoomSwitchs"
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.DungeonEnterTiles.Count + " DungeonEnter");
         }
+
+        if (Input.GetKeyDown(_debugSettings.LoadOtherMap))
+        {
+            if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
+            {
+                _sceneController.LoadScene((int)SceneIndex.Dungeon);
+            }
+            else if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
+            {
+                _sceneController.LoadScene((int)SceneIndex.Village);
+            }
+        }
     }
 
     IEnumerator waitForAllToDie()

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class SceneController : MonoBehaviour
 {
+    [Inject] private LoadingScreenFactory _loadingScreenFactory;
+
     public string GetActiveSceneName()
     {
         string sceneName;
@@ -25,6 +28,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadScene(int sceneIndex)
     {
+        _loadingScreenFactory.CreateLoadingScreen();
         SceneManager.LoadScene(sceneIndex);
     }
 }

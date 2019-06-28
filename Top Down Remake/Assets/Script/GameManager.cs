@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             _waitForPossibleRoomSwitch = true;
 
             if (_roomIndex >= _dungeon.Count - 1)
-                _roomIndex = _dungeon.Count - 1;
+                StartCoroutine(WaitToGetBackToVillage());
             else
                 _roomIndex++;
 
@@ -129,6 +129,12 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _waitForPossibleRoomSwitch = false;
+    }
+
+    IEnumerator WaitToGetBackToVillage()
+    {
+        yield return new WaitForSeconds(0.00001f);
+        _sceneController.LoadScene((int)SceneIndex.Village);
     }
 
     public IEnumerator SlowerUpdate()
