@@ -97,7 +97,7 @@ public class TileManager : MonoBehaviour
     {
         if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
         {
-            Debug.Log("Looks like enemies spawning is not supported yet on the village map");
+            //Debug.Log("Looks like enemies spawning is not supported yet on the village map");
         }
         else
         {

@@ -71,6 +71,7 @@ public class GameSettings
     [Header("Gameplay")]
     public float InvincibilityFrameTime = 0.5f;
     public float bossLifeFillingSpeed = 0.01f;
+    public TimerController TimerController;
 
     [Space()]
     [Header("Other Settings")]

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Inject] private BossController _bossManager;
     [Inject] private GameSettings _gameSettings;
     [Inject] private SceneController _sceneController;
+    [Inject] private TimerController _timerController;
 
     private int _roomIndex = 0;
     public bool RoomUnlockedState; // lock the room to make sure some checks are done only once, relock the room onces player switched
@@ -90,6 +91,11 @@ public class GameManager : MonoBehaviour
     {
         if (!RoomUnlockedState && _currentRoomEnemyAmount - EnemyAmountInCurrentRoomLeft == _currentRoomEnemyAmount)
         {
+            if (_roomIndex >= _dungeon.Count - 1)
+            {
+                _timerController.Finish();
+            }
+
             OpenDoors();
             RoomUnlockedState = true;
         }

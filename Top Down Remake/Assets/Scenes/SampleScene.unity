@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomBuilder: {fileID: 2058132806}
-  GameManager: {fileID: 466562936}
   TrashController: {fileID: 466562939}
+  GameManager: {fileID: 466562936}
 --- !u!114 &466562938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +281,7 @@ MonoBehaviour:
   WalckableTiles: []
   EnemyTiles: []
   RoomSwitcherTiles: []
+  DungeonEnterTiles: []
   doorX: 0c0000000d0000000e000000
 --- !u!4 &2058132807
 Transform:

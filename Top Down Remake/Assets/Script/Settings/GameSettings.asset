@@ -30,7 +30,7 @@ MonoBehaviour:
       type: 3}
     WarriorShooting: {fileID: 4878653924690250021, guid: 081d8d351b6e2fc498e25cba86646583,
       type: 3}
-    ProjectileSpeed: 0.5
+    ProjectileSpeed: 0.3
     ProjectileShootingCooldown: 0.2
     DeathProjectorTime: 8
     ProjectileDamage: -1
@@ -71,6 +71,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2
+    TimerController: {fileID: 8302258663015120375, guid: 4fd260a36fc6d02409f78e337ddd98ae,
+      type: 3}
     VillageSizeX: 50
     VillageSizeY: 50
     SceneController: {fileID: 2679521885632859452, guid: 2d64b4f6415f6784bba86ce00d2d68fa,
