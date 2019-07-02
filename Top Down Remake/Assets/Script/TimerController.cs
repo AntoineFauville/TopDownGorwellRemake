@@ -2,25 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class TimerController : MonoBehaviour
 {
-    public Text TimerText;
+    [Inject] private SceneController _sceneController;
 
-    private float startTime;
+    public Text TimerText;
+    
     private bool finished;
 
     void Update()
     {
-        if (finished)
+        if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
+        {
+            TimerText.gameObject.SetActive(false);
             return;
+        }
+        else if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
+        {
+            TimerText.gameObject.SetActive(true);
 
-        float t = Time.time - startTime;
+            if (finished)
+                return;
 
-        string minutes = ((int)t / 60).ToString();
-        string seconds = (t % 60).ToString("f0");
+            string minutes = ((int)Time.timeSinceLevelLoad / 60).ToString();
+            string seconds = (Time.timeSinceLevelLoad % 60).ToString("f0");
 
-        TimerText.text = minutes + ":" + seconds;
+            TimerText.text = minutes + ":" + seconds;
+        }
     }
 
     public void Finish()
