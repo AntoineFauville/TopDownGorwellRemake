@@ -82,4 +82,12 @@ public class GameSettings
     [Header("Other Settings")]
     public SceneController SceneController;
     public LoadingScreen LoadingScreen;
+    public TimerVillagerView TimerVillagerView;
+
+    [Space()]
+    [Header("Saving System")]
+    public SavingController SavingController;
+    public string BestTime = "bestTime";
+    public string PreviousTime = "previousTime";
+
 }
