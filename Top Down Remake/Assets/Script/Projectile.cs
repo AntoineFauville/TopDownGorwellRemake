@@ -25,7 +25,7 @@ public class Projectile: MonoBehaviour
             || collider.gameObject.tag == Tags.RoomSwitch.ToString()
             || collider.gameObject.tag == Tags.Enemy.ToString())
         {
-            StartCoroutine(waitToDie(0.1f));
+            StartCoroutine(waitToDie(0.05f));
         }
     }
 

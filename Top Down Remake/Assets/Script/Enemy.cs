@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator waitToDie()
     {
-        yield return new WaitForSeconds(0.0001f);
+        yield return new WaitForSeconds(0.001f);
         Die();
     }
 }

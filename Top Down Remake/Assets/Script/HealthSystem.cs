@@ -50,7 +50,13 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator InvincibilityFrame()
     {
+        if(this.GetComponent<SpriteRenderer>() != null)
+            this.GetComponent<SpriteRenderer>().color = Color.blue;
+
         yield return new WaitForSeconds(_gameSettings.InvincibilityFrameTime);
+
+        if (this.GetComponent<SpriteRenderer>() != null)
+            this.GetComponent<SpriteRenderer>().color = Color.white;
 
         CanTakeDamageAgain = false;
     }
