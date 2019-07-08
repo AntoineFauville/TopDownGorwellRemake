@@ -15,6 +15,8 @@ public class TimerController : MonoBehaviour
     
     private bool finished;
 
+    public int Timer;
+
     void Update()
     {
         if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
@@ -56,6 +58,9 @@ public class TimerController : MonoBehaviour
                 return;
             }
 
+            //set the timer that will be read by the chest system to get the bonus gold etc
+            Timer = (int)Time.timeSinceLevelLoad;
+
             string minutes = ((int)Time.timeSinceLevelLoad / 60).ToString();
             string seconds = (Time.timeSinceLevelLoad % 60).ToString("f0");
 
@@ -86,6 +91,7 @@ public class TimerController : MonoBehaviour
         seconds = (_savingController.GetPlayerPrefInt(_gameSettings.PreviousTime) % 60).ToString("f0");
 
         _timerVillagerView.PreviousTime.text = minutes + ":" + seconds;
+        
     }
 
     void SaveTimer(int newTimer)

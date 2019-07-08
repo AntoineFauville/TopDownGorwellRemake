@@ -43,6 +43,7 @@ public class GameSettings
     public Sprite DoorTexture;
     public Sprite RoomSwitcherTexture;
     public Sprite DungeonEnterTexture;
+    public Sprite ChestTileTexture;
 
     [Space()]
     [Header("Camera")]
@@ -66,6 +67,11 @@ public class GameSettings
     public int AmountOfCycleDungeonHave = 3;
     public RoomData[] roomDatas;
     public RoomData[] bossRoomDatas;
+    public RoomData RewardRoom;
+
+    [Space()]
+    [Header("ChestSystem")]
+    public ChestController ChestController;
 
     [Space()]
     [Header("Gameplay")]

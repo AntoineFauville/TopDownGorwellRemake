@@ -23,6 +23,7 @@ public class DebugController : MonoBehaviour
             RoomBuilder.CurrentLoadedReadingMap.EnemyTiles = RoomBuilder.EnemyTiles;
             RoomBuilder.CurrentLoadedReadingMap.RoomSwitcherTiles = RoomBuilder.RoomSwitcherTiles;
             RoomBuilder.CurrentLoadedReadingMap.DungeonEnterTiles = RoomBuilder.DungeonEnterTiles;
+            RoomBuilder.CurrentLoadedReadingMap.ChestTiles = RoomBuilder.ChestTiles;
 
             Debug.Log("Saved " + RoomBuilder.CurrentLoadedReadingMap.name);
 

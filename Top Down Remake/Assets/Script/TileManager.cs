@@ -11,6 +11,7 @@ public class TileManager : MonoBehaviour
 
     public RoomBuilder RoomBuilder;
     public TrashController TrashController;
+    public ChestController ChestController;
 
     [Space()]
     [Header("Leave Empty if village")]
@@ -47,6 +48,17 @@ public class TileManager : MonoBehaviour
             tile.BoxCollider2D.isTrigger = true;
             tile.gameObject.tag = Tags.DungeonEnter.ToString();
         }
+        else if (tile.TileType == TileType.chest)
+        {
+            tile.SpriteRenderer.sprite = _gameSettings.ChestTileTexture;
+            tile.BoxCollider2D.isTrigger = true;
+            tile.gameObject.tag = Tags.Chest.ToString();
+            if (tile.gameObject.GetComponent<Chest>() == null)
+            {
+                tile.gameObject.AddComponent<Chest>();
+                tile.GetComponent<Chest>().Setup(_gameSettings, ChestController);
+            }
+        }
         else
         {
             tile.SpriteRenderer.sprite = _gameSettings.WalkableTexture;
@@ -78,6 +90,8 @@ public class TileManager : MonoBehaviour
             RoomBuilder.RoomSwitcherTiles.Remove(tile.PositionInMap);
         else if (RoomBuilder.DungeonEnterTiles.Contains(tile.PositionInMap))
             RoomBuilder.DungeonEnterTiles.Remove(tile.PositionInMap);
+        else if (RoomBuilder.ChestTiles.Contains(tile.PositionInMap))
+            RoomBuilder.ChestTiles.Remove(tile.PositionInMap);
 
         if (tileType == TileType.wall)
             RoomBuilder.WallTiles.Add(tile.PositionInMap);
@@ -91,6 +105,8 @@ public class TileManager : MonoBehaviour
             RoomBuilder.RoomSwitcherTiles.Add(tile.PositionInMap);
         else if (tileType == TileType.dungeonEnter)
             RoomBuilder.DungeonEnterTiles.Add(tile.PositionInMap);
+        else if (tileType == TileType.chest)
+            RoomBuilder.ChestTiles.Add(tile.PositionInMap);
     }
 
     public void SpawnEnemiesOnTileLocation(Tile tile, TileType tileType)
@@ -116,4 +132,6 @@ public class TileManager : MonoBehaviour
             }
         }
     }
+
+
 }

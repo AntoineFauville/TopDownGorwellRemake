@@ -5,5 +5,6 @@
     Player = 2,
     Enemy = 3,
     Projectile = 4,
-    DungeonEnter = 5
+    DungeonEnter = 5,
+    Chest = 6
 }

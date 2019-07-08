@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 466562937}
   - component: {fileID: 466562938}
   - component: {fileID: 466562939}
+  - component: {fileID: 466562940}
   m_Layer: 0
   m_Name: GameSettings
   m_TagString: Untagged
@@ -212,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomBuilder: {fileID: 2058132806}
   TrashController: {fileID: 466562939}
+  ChestController: {fileID: 466562940}
   GameManager: {fileID: 466562936}
 --- !u!114 &466562938
 MonoBehaviour:
@@ -241,6 +243,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjInTheRoom: []
   EnemiesInTheRoom: []
+--- !u!114 &466562940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466562932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0095fba8fffb47440ade3f9a61ca7843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2058132805
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +296,7 @@ MonoBehaviour:
   EnemyTiles: []
   RoomSwitcherTiles: []
   DungeonEnterTiles: []
+  ChestTiles: []
   doorX: 0c0000000d0000000e000000
 --- !u!4 &2058132807
 Transform:

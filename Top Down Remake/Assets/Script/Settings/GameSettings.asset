@@ -47,6 +47,7 @@ MonoBehaviour:
       type: 3}
     DungeonEnterTexture: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458,
       type: 3}
+    ChestTileTexture: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     Camera: {fileID: 1255091717544087294, guid: 7751b7dabc2f8434babfadc21ae675d0,
       type: 3}
     CameraSmoothSpeedInFreeMode: 10
@@ -69,6 +70,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 40094779472f671459db64c2a24b0cdd, type: 2}
     bossRoomDatas:
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
+    RewardRoom: {fileID: 11400000, guid: 59834fede62b3be45892b6a167a802b6, type: 2}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2
     TimerController: {fileID: 8302258663015120375, guid: 4fd260a36fc6d02409f78e337ddd98ae,

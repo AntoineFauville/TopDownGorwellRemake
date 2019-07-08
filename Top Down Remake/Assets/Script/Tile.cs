@@ -45,6 +45,9 @@ public class Tile : MonoBehaviour
 
             if (Input.GetKey(_debugSettings.DungeonEnterKey))
                 _tileManager.ChangeTileType(this, TileType.dungeonEnter);
+
+            if (Input.GetKey(_debugSettings.ChestKey))
+                _tileManager.ChangeTileType(this, TileType.chest);
         }
         Debug.Log("TileType = " + TileType + " | PositionInMap = " + PositionInMap);
     }

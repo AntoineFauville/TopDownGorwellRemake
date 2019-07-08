@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Projectile
   - DungeonEnter
+  - Chest
   layers:
   - Default
   - TransparentFX

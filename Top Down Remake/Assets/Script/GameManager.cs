@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     void RoomBossCheck()
     {
-        if (RoomBuilder.CurrentLoadedReadingMap.RoomType == RoomType.Boss)
+        if (RoomBuilder.CurrentLoadedReadingMap.RoomType == RoomType.Boss || RoomBuilder.CurrentLoadedReadingMap.RoomType == RoomType.RewardRoom)
         {
             //turn it off
             _bossManager.TurnOnOffBossLife(false);
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     {
         if (!RoomUnlockedState && _currentRoomEnemyAmount - EnemyAmountInCurrentRoomLeft == _currentRoomEnemyAmount)
         {
-            if (_roomIndex >= _dungeon.Count - 1)
+            if (_roomIndex >= _dungeon.Count - 2)
             {
                 _timerController.Finish();
             }
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
             GameObject.Find(RoomBuilder.DoorTiles[i].ToString()).GetComponent<Door>().OpenDoorSwitchLocalVisuals();
         }
     }
-
+    
     void GenerateLayout()
     {
         for (int y = 0; y < _gameSettings.AmountOfCycleDungeonHave; y++)
@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour
             //add the boss room
             _dungeon.Add(_gameSettings.bossRoomDatas[Random.Range(0, _gameSettings.bossRoomDatas.Length)]);
         }
+        _dungeon.Add(_gameSettings.RewardRoom);
     }
 
     public IEnumerator WaitToSwitch(float deathTime)
