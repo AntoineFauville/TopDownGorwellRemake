@@ -19,5 +19,6 @@ public class GameInstaller : MonoInstaller {
         Container.Bind<EnemyFactory>().AsSingle().NonLazy();
         Container.Bind<TileFactory>().AsSingle().NonLazy();
         Container.Bind<LoadingScreenFactory>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<NavMeshController>().FromComponentInNewPrefab(_gameSettings.NavMeshController).AsSingle().NonLazy();
     }
 }

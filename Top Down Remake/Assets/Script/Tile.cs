@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Tile : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Tile : MonoBehaviour
 
     public SpriteRenderer SpriteRenderer;
     public BoxCollider BoxCollider;
+    public NavMeshObstacle NavMeshObstacle;
 
     public Vector2 PositionInMap;
 

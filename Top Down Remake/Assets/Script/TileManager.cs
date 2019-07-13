@@ -24,12 +24,14 @@ public class TileManager : MonoBehaviour
             tile.SpriteRenderer.sprite = _gameSettings.WallTexture;
             tile.BoxCollider.isTrigger = false;
             tile.gameObject.tag = Tags.Wall.ToString();
+            tile.NavMeshObstacle.carving = true;
         }
         else if (tile.TileType == TileType.door)
         {
             tile.SpriteRenderer.sprite = _gameSettings.DoorTexture;
             tile.BoxCollider.isTrigger = false;
             tile.gameObject.tag = Tags.Wall.ToString();
+            tile.NavMeshObstacle.carving = true;
             if (tile.gameObject.GetComponent<Door>() == null)
             {
                 tile.gameObject.AddComponent<Door>();
@@ -41,18 +43,21 @@ public class TileManager : MonoBehaviour
             tile.SpriteRenderer.sprite = _gameSettings.RoomSwitcherTexture;
             tile.BoxCollider.isTrigger = true;
             tile.gameObject.tag = Tags.RoomSwitch.ToString();
+            tile.NavMeshObstacle.carving = true;
         }
         else if (tile.TileType == TileType.dungeonEnter)
         {
             tile.SpriteRenderer.sprite = _gameSettings.DungeonEnterTexture;
             tile.BoxCollider.isTrigger = true;
             tile.gameObject.tag = Tags.DungeonEnter.ToString();
+            tile.NavMeshObstacle.carving = true;
         }
         else if (tile.TileType == TileType.chest)
         {
             tile.SpriteRenderer.sprite = _gameSettings.ChestTileTexture;
             tile.BoxCollider.isTrigger = true;
             tile.gameObject.tag = Tags.Chest.ToString();
+            tile.NavMeshObstacle.carving = true;
             if (tile.gameObject.GetComponent<Chest>() == null)
             {
                 tile.gameObject.AddComponent<Chest>();
@@ -63,6 +68,7 @@ public class TileManager : MonoBehaviour
         {
             tile.SpriteRenderer.sprite = _gameSettings.WalkableTexture;
             tile.BoxCollider.isTrigger = true;
+            tile.NavMeshObstacle.carving = false;
         }
     }
 

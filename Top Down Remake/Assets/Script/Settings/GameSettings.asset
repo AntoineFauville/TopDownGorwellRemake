@@ -84,6 +84,8 @@ MonoBehaviour:
       type: 3}
     TimerVillagerView: {fileID: 7930132453981637313, guid: 2436956f483f858488e3a2b8907e6c02,
       type: 3}
+    NavMeshController: {fileID: 4322037940926355527, guid: 16257841e28cee74d8fb4226d01f5eda,
+      type: 3}
     SavingController: {fileID: 5285230008326240877, guid: 31325128dc4c9434a879914272a11f27,
       type: 3}
     BestTime: bestTime

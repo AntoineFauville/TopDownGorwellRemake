@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Enemy : MonoBehaviour
     private BossController _bossController;
 
     public HealthSystem HealthSystem;
+    public NavMeshAgent NavMeshAgent;
 
     public void Setup(GameManager gameManager, EnemyType enemyType, GameSettings gameSettings, BossController bossController)
     {
@@ -20,6 +22,8 @@ public class Enemy : MonoBehaviour
         _bossController = bossController;
         
         HealthSystem = this.gameObject.AddComponent<HealthSystem>();
+
+        NavMeshAgent.enabled = true;
     }
 
     void OnCollisionStay(Collision Collision)

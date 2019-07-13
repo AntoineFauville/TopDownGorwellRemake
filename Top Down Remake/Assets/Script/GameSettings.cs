@@ -89,6 +89,7 @@ public class GameSettings
     public SceneController SceneController;
     public LoadingScreen LoadingScreen;
     public TimerVillagerView TimerVillagerView;
+    public NavMeshController NavMeshController;
 
     [Space()]
     [Header("Saving System")]
