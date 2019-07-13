@@ -19,11 +19,17 @@ public class Projectile: MonoBehaviour
         this.transform.Translate(Vector3.right * _gameSettings.ProjectileSpeed);
     }
 
-    void OnCollisionEnter(Collision collider)
+    void OnCollisionEnter(Collision collision)
     {
-        if (collider.gameObject.tag == Tags.Wall.ToString() 
-            || collider.gameObject.tag == Tags.RoomSwitch.ToString()
-            || collider.gameObject.tag == Tags.Enemy.ToString())
+        if (collision.gameObject.tag == Tags.Wall.ToString() || collision.gameObject.tag == Tags.Enemy.ToString())
+        {
+            StartCoroutine(waitToDie(0.05f));
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == Tags.RoomSwitch.ToString())
         {
             StartCoroutine(waitToDie(0.05f));
         }

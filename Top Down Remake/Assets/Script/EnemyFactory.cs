@@ -24,7 +24,8 @@ public class EnemyFactory
 
         Enemy enemy = obj.GetComponent<Enemy>();
         enemy.name = "Enemy" + position;
-        enemy.transform.position = new Vector3(position.x + _gameSettings.EnemySpawnOffsetX, position.y + _gameSettings.EnemySpawnOffsetY);
+        enemy.transform.position = new Vector3(position.x + _gameSettings.EnemySpawnOffsetX,0, position.y + _gameSettings.EnemySpawnOffsetY);
+        enemy.transform.rotation = Quaternion.Euler(90,0,0);
 
         enemy.Setup(gameManager, enemyType, _gameSettings, _bossController);
 

@@ -35,8 +35,8 @@ MonoBehaviour:
     DeathProjectorTime: 8
     ProjectileDamage: -1
     Enemy: {fileID: 6939255856227203175, guid: a9605b312c2af8d4fb4ea7155db84980, type: 3}
-    EnemySpawnOffsetX: 0.5
-    EnemySpawnOffsetY: 0.8
+    EnemySpawnOffsetX: 1
+    EnemySpawnOffsetY: 0
     EnemyToPlayerCollisionDamage: -1
     EnemyMaxHealth: 1
     Tile: {fileID: 4806719170303463066, guid: 8bc4e916d71fce7429cc8c7a6a0f9d58, type: 3}
@@ -71,6 +71,7 @@ MonoBehaviour:
     bossRoomDatas:
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
     RewardRoom: {fileID: 11400000, guid: 59834fede62b3be45892b6a167a802b6, type: 2}
+    ChestController: {fileID: 0}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2
     TimerController: {fileID: 8302258663015120375, guid: 4fd260a36fc6d02409f78e337ddd98ae,
@@ -94,6 +95,7 @@ MonoBehaviour:
     DoorKey: v
     EnemyKey: b
     DungeonEnterKey: m
+    ChestKey: l
     SaveMapInput: Jump
     EditModeKey: p
     RecreateRoomKey: o
