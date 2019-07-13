@@ -6,12 +6,12 @@ public class Door : MonoBehaviour
 {
     private GameSettings _gameSettings;
     private SpriteRenderer _spriteRenderer;
-    private BoxCollider2D _boxCollider2D;
+    private BoxCollider _boxCollider;
 
     void Start()
     {
         _spriteRenderer = this.GetComponent<SpriteRenderer>();
-        _boxCollider2D = this.GetComponent<BoxCollider2D>();
+        _boxCollider = this.GetComponent<BoxCollider>();
     }
 
     public void Setup(GameSettings gameSettings)
@@ -22,6 +22,6 @@ public class Door : MonoBehaviour
     public void OpenDoorSwitchLocalVisuals()
     {
         _spriteRenderer.sprite = _gameSettings.WalkableTexture;
-        _boxCollider2D.isTrigger = true;
+        _boxCollider.isTrigger = true;
     }
 }

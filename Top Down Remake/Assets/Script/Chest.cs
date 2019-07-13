@@ -6,7 +6,7 @@ public class Chest : MonoBehaviour
 {
     private GameSettings _gameSettings;
     private SpriteRenderer _spriteRenderer;
-    private BoxCollider2D _boxCollider2D;
+    private BoxCollider _boxCollider;
     private ChestController _chestController;
 
     private bool thisChestHasBeenOpenned;
@@ -14,7 +14,7 @@ public class Chest : MonoBehaviour
     void Start()
     {
         _spriteRenderer = this.GetComponent<SpriteRenderer>();
-        _boxCollider2D = this.GetComponent<BoxCollider2D>();
+        _boxCollider = this.GetComponent<BoxCollider>();
     }
 
     public void Setup(GameSettings gameSettings, ChestController chestController)
@@ -27,10 +27,10 @@ public class Chest : MonoBehaviour
     public void OpenChestSwitchLocalVisuals()
     {
         _spriteRenderer.sprite = _gameSettings.WalkableTexture;
-        _boxCollider2D.isTrigger = true;
+        _boxCollider.isTrigger = true;
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Player" && !thisChestHasBeenOpenned)
         {

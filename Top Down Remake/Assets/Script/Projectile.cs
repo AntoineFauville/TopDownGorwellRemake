@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile: MonoBehaviour
 {
-    public Rigidbody2D rigidBody;
+    public Rigidbody rigidBody;
 
     private GameSettings _gameSettings;
 
@@ -19,7 +19,7 @@ public class Projectile: MonoBehaviour
         this.transform.Translate(Vector3.right * _gameSettings.ProjectileSpeed);
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnCollisionEnter(Collision collider)
     {
         if (collider.gameObject.tag == Tags.Wall.ToString() 
             || collider.gameObject.tag == Tags.RoomSwitch.ToString()

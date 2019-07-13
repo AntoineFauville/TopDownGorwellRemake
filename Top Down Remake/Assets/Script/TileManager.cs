@@ -22,13 +22,13 @@ public class TileManager : MonoBehaviour
         if (tile.TileType == TileType.wall)
         {
             tile.SpriteRenderer.sprite = _gameSettings.WallTexture;
-            tile.BoxCollider2D.isTrigger = false;
+            tile.BoxCollider.isTrigger = false;
             tile.gameObject.tag = Tags.Wall.ToString();
         }
         else if (tile.TileType == TileType.door)
         {
             tile.SpriteRenderer.sprite = _gameSettings.DoorTexture;
-            tile.BoxCollider2D.isTrigger = false;
+            tile.BoxCollider.isTrigger = false;
             tile.gameObject.tag = Tags.Wall.ToString();
             if (tile.gameObject.GetComponent<Door>() == null)
             {
@@ -39,19 +39,19 @@ public class TileManager : MonoBehaviour
         else if (tile.TileType == TileType.roomSwitcher)
         {
             tile.SpriteRenderer.sprite = _gameSettings.RoomSwitcherTexture;
-            tile.BoxCollider2D.isTrigger = true;
+            tile.BoxCollider.isTrigger = true;
             tile.gameObject.tag = Tags.RoomSwitch.ToString();
         }
         else if (tile.TileType == TileType.dungeonEnter)
         {
             tile.SpriteRenderer.sprite = _gameSettings.DungeonEnterTexture;
-            tile.BoxCollider2D.isTrigger = true;
+            tile.BoxCollider.isTrigger = true;
             tile.gameObject.tag = Tags.DungeonEnter.ToString();
         }
         else if (tile.TileType == TileType.chest)
         {
             tile.SpriteRenderer.sprite = _gameSettings.ChestTileTexture;
-            tile.BoxCollider2D.isTrigger = true;
+            tile.BoxCollider.isTrigger = true;
             tile.gameObject.tag = Tags.Chest.ToString();
             if (tile.gameObject.GetComponent<Chest>() == null)
             {
@@ -62,7 +62,7 @@ public class TileManager : MonoBehaviour
         else
         {
             tile.SpriteRenderer.sprite = _gameSettings.WalkableTexture;
-            tile.BoxCollider2D.isTrigger = true;
+            tile.BoxCollider.isTrigger = true;
         }
     }
 

@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     {
         if (_sceneController.GetActiveSceneIndex() == 0)
         {
-            Vector3 newPosition = new Vector3(_playerController.gameObject.transform.position.x, _playerController.gameObject.transform.position.y, -10);
+            Vector3 newPosition = new Vector3(_playerController.gameObject.transform.position.x, 10, _playerController.gameObject.transform.position.z);
 
             transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * _gameSettings.CameraSmoothSpeedInFreeMode);
             transform.rotation = Quaternion.Slerp(transform.rotation, _playerController.gameObject.transform.rotation, Time.deltaTime * _gameSettings.CameraSmoothSpeedInFreeMode);

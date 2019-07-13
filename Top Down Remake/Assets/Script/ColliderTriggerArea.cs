@@ -6,7 +6,7 @@ public class ColliderTriggerArea : MonoBehaviour
 {
     public bool IsTriggeredByPlayer;
 
-    void OnTriggerStay2D(Collider2D collider)
+    void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.tag == Tags.Player.ToString())
         {
@@ -14,7 +14,7 @@ public class ColliderTriggerArea : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D collider)
+    void OnTriggerExit(Collider collider)
     {
         if (collider.gameObject.tag == Tags.Player.ToString())
         {

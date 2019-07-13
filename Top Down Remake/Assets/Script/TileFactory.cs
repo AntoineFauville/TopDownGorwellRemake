@@ -17,6 +17,7 @@ public class TileFactory
         
         obj.transform.SetParent(parent);
         obj.transform.localPosition = position;
+        obj.transform.rotation = new Quaternion();
 
         Vector2 Pos = new Vector2(position.x, position.y);
 

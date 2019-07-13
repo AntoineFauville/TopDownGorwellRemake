@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [Inject] private PlayerView _playerView;
     [Inject] private SceneController _sceneController;
 
-    public Rigidbody2D body;
+    public Rigidbody Rigidbody;
 
     private float horizontal;
     private float vertical;
@@ -65,12 +65,12 @@ public class PlayerController : MonoBehaviour
             vertical *= moveLimiter;
         }
 
-        body.velocity = new Vector2(horizontal * runSpeedHorizontal, vertical * runSpeedVectical);
+        Rigidbody.velocity = new Vector3(horizontal * runSpeedHorizontal,0, vertical * runSpeedVectical);
 
         UpdateView();
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == Tags.RoomSwitch.ToString())
         {
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == Tags.Enemy.ToString())
         {

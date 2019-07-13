@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     private TileManager _tileManager;
 
     public SpriteRenderer SpriteRenderer;
-    public BoxCollider2D BoxCollider2D;
+    public BoxCollider BoxCollider;
 
     public Vector2 PositionInMap;
 
