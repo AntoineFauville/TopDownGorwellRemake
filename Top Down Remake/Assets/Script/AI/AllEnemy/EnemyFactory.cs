@@ -7,6 +7,7 @@ public class EnemyFactory
 {
     [Inject] private GameSettings _gameSettings;
     [Inject] private BossController _bossController;
+    [Inject] private PlayerController _playerController;
 
     public Enemy CreateEnemy(Vector3 position, GameManager gameManager, EnemyType enemyType)
     {
@@ -27,7 +28,7 @@ public class EnemyFactory
         enemy.transform.position = new Vector3(position.x + _gameSettings.EnemySpawnOffsetX,0, position.y + _gameSettings.EnemySpawnOffsetY);
         enemy.transform.rotation = Quaternion.Euler(0,0,0);
 
-        enemy.Setup(gameManager, enemyType, _gameSettings, _bossController);
+        enemy.Setup(_playerController, gameManager, enemyType, _gameSettings, _bossController);
 
         //specify that this is a boss for the life health and inject the boss controller life to the boss
         if(enemyType == EnemyType.Boss)

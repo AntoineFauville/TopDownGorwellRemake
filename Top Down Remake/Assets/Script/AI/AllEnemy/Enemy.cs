@@ -11,16 +11,18 @@ public class Enemy : MonoBehaviour
     private GameSettings _gameSettings;
     private BossController _bossController;
 
+    public PlayerController PlayerController;
     public HealthSystem HealthSystem;
     public NavMeshAgent NavMeshAgent;
 
-    public void Setup(GameManager gameManager, EnemyType enemyType, GameSettings gameSettings, BossController bossController)
+    public void Setup(PlayerController playerController, GameManager gameManager, EnemyType enemyType, GameSettings gameSettings, BossController bossController)
     {
+        PlayerController = playerController;
         _gameManager = gameManager;
         _enemyType = enemyType;
         _gameSettings = gameSettings;
         _bossController = bossController;
-        
+
         HealthSystem = this.gameObject.AddComponent<HealthSystem>();
 
         NavMeshAgent.enabled = true;
