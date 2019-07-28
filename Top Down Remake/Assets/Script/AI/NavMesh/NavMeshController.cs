@@ -6,9 +6,16 @@ using UnityEngine.AI;
 public class NavMeshController : MonoBehaviour
 {
     public NavMeshSurface _navMeshSurface;
-    
-    void Update()
+
+    void Start()
     {
+        StartCoroutine(SlowUpdate());
+    }
+
+    IEnumerator SlowUpdate()
+    {
+        _navMeshSurface.BuildNavMesh();
+        yield return new WaitForSeconds(1);
         _navMeshSurface.BuildNavMesh();
     }
 }
