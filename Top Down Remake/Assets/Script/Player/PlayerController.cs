@@ -137,5 +137,6 @@ public class PlayerController : MonoBehaviour
     {
         _playerView.PlayerSkin.sprite = skin;
         _playerShootingManager.ShootingTemplate = shootingTemplate;
+        _playerShootingManager.SetupShootingTemplates();
     }
 }

@@ -30,8 +30,18 @@ public class PlayerShootingManager : MonoBehaviour
         SetupShootingTemplates();
     }
 
-    void SetupShootingTemplates()
+    public void SetupShootingTemplates()
     {
+        //delete existing one if they are some
+        if (STTop == null)
+            DestroyImmediate(STTop);
+        if (STDown == null)
+            DestroyImmediate(STDown);
+        if (STLeft == null)
+            DestroyImmediate(STLeft);
+        if (STRight == null)
+            DestroyImmediate(STRight);
+
         //create the shooting template
         STTop = Object.Instantiate(ShootingTemplate, top.transform);
         //rotate the shooting template to allign it in the right direction
