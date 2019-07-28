@@ -17,18 +17,22 @@ public class PaternManager : MonoBehaviour
 
     public Patern AgentState;
 
+    public Vector3 _destination = new Vector3(24,0,3);
+
     private void Start()
     {
-        _playerController = _enemy.PlayerController;
+        _playerController = _enemy.PlayerController;        
     }
 
     private void Update()
     {
-        switch (AgentState) {
+        switch (AgentState)
+        {
             case Patern.StandingStill:
                 _needToMove = false;
                 break;
             case Patern.MoveToRandomLocation:
+                _agentDestination = _destination;
                 _needToMove = true;
                 break;
             case Patern.MoveToPlayer:

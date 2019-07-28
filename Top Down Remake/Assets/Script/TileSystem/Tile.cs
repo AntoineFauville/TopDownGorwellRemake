@@ -10,7 +10,7 @@ public class Tile : MonoBehaviour
 
     public SpriteRenderer SpriteRenderer;
     public BoxCollider BoxCollider;
-    public NavMeshObstacle NavMeshObstacle;
+    public NavMeshModifier NavMeshModifier;
 
     public Vector2 PositionInMap;
 
