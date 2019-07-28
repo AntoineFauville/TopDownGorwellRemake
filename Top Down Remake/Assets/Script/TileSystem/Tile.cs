@@ -50,6 +50,9 @@ public class Tile : MonoBehaviour
 
             if (Input.GetKey(_debugSettings.ChestKey))
                 _tileManager.ChangeTileType(this, TileType.chest);
+
+            if (Input.GetKey(_debugSettings.ArchetypeSwitcherKey))
+                _tileManager.ChangeTileType(this, TileType.switchArchetype);
         }
         Debug.Log("TileType = " + TileType + " | PositionInMap = " + PositionInMap);
     }

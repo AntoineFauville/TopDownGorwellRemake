@@ -24,6 +24,7 @@ public class DebugController : MonoBehaviour
             RoomBuilder.CurrentLoadedReadingMap.RoomSwitcherTiles = RoomBuilder.RoomSwitcherTiles;
             RoomBuilder.CurrentLoadedReadingMap.DungeonEnterTiles = RoomBuilder.DungeonEnterTiles;
             RoomBuilder.CurrentLoadedReadingMap.ChestTiles = RoomBuilder.ChestTiles;
+            RoomBuilder.CurrentLoadedReadingMap.ArchetypeSwitcherTiles = RoomBuilder.ArchetypeSwitcherTiles;
 
             Debug.Log("Saved " + RoomBuilder.CurrentLoadedReadingMap.name);
 
@@ -93,7 +94,8 @@ public class DebugController : MonoBehaviour
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.EnemyTiles.Count + " Enemies"
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.DoorTiles.Count + " Doors"
                  + " / " + RoomBuilder.CurrentLoadedReadingMap.RoomSwitcherTiles.Count + " RoomSwitchs"
-                 + " / " + RoomBuilder.CurrentLoadedReadingMap.DungeonEnterTiles.Count + " DungeonEnter");
+                 + " / " + RoomBuilder.CurrentLoadedReadingMap.DungeonEnterTiles.Count + " DungeonEnter"
+                 + " / " + RoomBuilder.CurrentLoadedReadingMap.ArchetypeSwitcherTiles.Count + " ArchetypeSwitcher");
         }
 
         if (Input.GetKeyDown(_debugSettings.LoadOtherMap))

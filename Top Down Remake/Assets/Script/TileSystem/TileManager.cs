@@ -64,6 +64,17 @@ public class TileManager : MonoBehaviour
                 tile.GetComponent<Chest>().Setup(_gameSettings, ChestController);
             }
         }
+        else if (tile.TileType == TileType.switchArchetype)
+        {
+            tile.SpriteRenderer.sprite = _gameSettings.ArchetypeSwitcherTexture;
+            tile.BoxCollider.isTrigger = true;
+            tile.NavMeshModifier.overrideArea = false;
+            if (tile.gameObject.GetComponent<SwitchPlayerArchetype>() == null)
+            {
+                tile.gameObject.AddComponent<SwitchPlayerArchetype>();
+                tile.GetComponent<SwitchPlayerArchetype>().Setup();
+            }
+        }
         else
         {
             tile.SpriteRenderer.sprite = _gameSettings.WalkableTexture;
@@ -98,6 +109,8 @@ public class TileManager : MonoBehaviour
             RoomBuilder.DungeonEnterTiles.Remove(tile.PositionInMap);
         else if (RoomBuilder.ChestTiles.Contains(tile.PositionInMap))
             RoomBuilder.ChestTiles.Remove(tile.PositionInMap);
+        else if (RoomBuilder.ArchetypeSwitcherTiles.Contains(tile.PositionInMap))
+            RoomBuilder.ArchetypeSwitcherTiles.Remove(tile.PositionInMap);
 
         if (tileType == TileType.wall)
             RoomBuilder.WallTiles.Add(tile.PositionInMap);
@@ -113,6 +126,8 @@ public class TileManager : MonoBehaviour
             RoomBuilder.DungeonEnterTiles.Add(tile.PositionInMap);
         else if (tileType == TileType.chest)
             RoomBuilder.ChestTiles.Add(tile.PositionInMap);
+        else if (tileType == TileType.switchArchetype)
+            RoomBuilder.ArchetypeSwitcherTiles.Add(tile.PositionInMap);
     }
 
     public void SpawnEnemiesOnTileLocation(Tile tile, TileType tileType)

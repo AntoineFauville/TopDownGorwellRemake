@@ -1,14 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerView : MonoBehaviour
 {
-    public Image PlayerLifeView;
-
-    public GameObject Panel;
-
-    public void IsEnable(bool status)
-    {
-        Panel.SetActive(status);
-    }
+    public SpriteRenderer PlayerSkin;
 }

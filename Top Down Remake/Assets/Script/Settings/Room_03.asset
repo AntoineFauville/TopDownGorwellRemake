@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b666ac094be78e4eb70aada433a8120, type: 3}
   m_Name: Room_03
   m_EditorClassIdentifier: 
+  RoomType: 0
   WallTiles:
   - {x: 0, y: 0}
   - {x: 0, y: 1}
@@ -43,16 +44,32 @@ MonoBehaviour:
   - {x: 8, y: 0}
   - {x: 8, y: 12}
   - {x: 9, y: 0}
+  - {x: 9, y: 1}
   - {x: 9, y: 12}
   - {x: 10, y: 0}
+  - {x: 10, y: 1}
   - {x: 10, y: 12}
   - {x: 11, y: 0}
+  - {x: 11, y: 8}
+  - {x: 11, y: 11}
   - {x: 11, y: 12}
+  - {x: 12, y: 0}
+  - {x: 12, y: 8}
+  - {x: 13, y: 0}
+  - {x: 13, y: 8}
+  - {x: 14, y: 0}
+  - {x: 14, y: 8}
   - {x: 15, y: 0}
+  - {x: 15, y: 8}
+  - {x: 15, y: 9}
+  - {x: 15, y: 10}
+  - {x: 15, y: 11}
   - {x: 15, y: 12}
   - {x: 16, y: 0}
+  - {x: 16, y: 1}
   - {x: 16, y: 12}
   - {x: 17, y: 0}
+  - {x: 17, y: 1}
   - {x: 17, y: 12}
   - {x: 18, y: 0}
   - {x: 18, y: 12}
@@ -95,25 +112,9 @@ MonoBehaviour:
   - {x: 27, y: 10}
   - {x: 27, y: 11}
   - {x: 27, y: 12}
-  - {x: 12, y: 0}
-  - {x: 13, y: 0}
-  - {x: 14, y: 0}
-  - {x: 16, y: 1}
-  - {x: 9, y: 1}
-  - {x: 10, y: 1}
-  - {x: 17, y: 1}
-  - {x: 15, y: 11}
-  - {x: 15, y: 10}
-  - {x: 15, y: 9}
-  - {x: 11, y: 11}
-  - {x: 11, y: 8}
-  - {x: 13, y: 8}
-  - {x: 12, y: 8}
-  - {x: 14, y: 8}
-  - {x: 15, y: 8}
   DoorTiles:
-  - {x: 11, y: 10}
   - {x: 11, y: 9}
+  - {x: 11, y: 10}
   WalckableTiles:
   - {x: 1, y: 1}
   - {x: 1, y: 2}
@@ -237,7 +238,6 @@ MonoBehaviour:
   - {x: 12, y: 5}
   - {x: 12, y: 6}
   - {x: 12, y: 7}
-  - {x: 12, y: 9}
   - {x: 12, y: 10}
   - {x: 12, y: 11}
   - {x: 13, y: 1}
@@ -381,3 +381,7 @@ MonoBehaviour:
   - {x: 12, y: 12}
   - {x: 13, y: 12}
   - {x: 14, y: 12}
+  DungeonEnterTiles: []
+  ChestTiles: []
+  ArchetypeSwitcherTiles:
+  - {x: 12, y: 9}

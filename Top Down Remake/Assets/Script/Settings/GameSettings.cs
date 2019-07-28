@@ -7,7 +7,7 @@ public class GameSettings
     [Space()]
     [Header("Player")]
     public PlayerController PlayerController;
-    public PlayerView PlayerView;
+    public PlayerCornerLifeView PlayerCornerLifeView;
     public float PlayerDiagonalSpeedLimiter = 0.7f;
 	public float PlayerRunSpeedHorizontal = 8f;
 	public float PlayerRunSpeedVertical = 8f;
@@ -19,9 +19,14 @@ public class GameSettings
     public int PlayerMaxHealth = 3;
 
     [Space()]
+    [Header("Player Classes")]
+    public PlayerArchetypeController PlayerArchetypeController;
+    public PlayerArchetype[] PlayerArchetypes;
+
+
+    [Space()]
     [Header("Projectiles")]
     public GameObject ProjectilePrefab;
-    public ShootingTemplate WarriorShooting;
     public float ProjectileSpeed;
     public float ProjectileShootingCooldown;
     public float DeathProjectorTime = 8f;
@@ -44,6 +49,7 @@ public class GameSettings
     public Sprite RoomSwitcherTexture;
     public Sprite DungeonEnterTexture;
     public Sprite ChestTileTexture;
+    public Sprite ArchetypeSwitcherTexture;
 
     [Space()]
     [Header("Camera")]

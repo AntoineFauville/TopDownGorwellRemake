@@ -15,7 +15,7 @@ MonoBehaviour:
   GameSettings:
     PlayerController: {fileID: 4648361613835895633, guid: 86eb4d35b7c3209469e41aab994fec52,
       type: 3}
-    PlayerView: {fileID: 1449065724550125131, guid: 9454d9f3c2a50aa4eac68927c24663ac,
+    PlayerCornerLifeView: {fileID: 1449065724550125131, guid: 9454d9f3c2a50aa4eac68927c24663ac,
       type: 3}
     PlayerDiagonalSpeedLimiter: 0.7
     PlayerRunSpeedHorizontal: 10
@@ -26,9 +26,13 @@ MonoBehaviour:
     InputAxisShootVertical: Fire2
     PlayerToEnemyCollisionDamage: -1
     PlayerMaxHealth: 3
-    ProjectilePrefab: {fileID: 7155763665149741019, guid: 580e5ebd825c2334bb95ae137767b4fe,
+    PlayerArchetypeController: {fileID: 3288221033179224982, guid: 9073f60d6679ea94c898c1b484584a15,
       type: 3}
-    WarriorShooting: {fileID: 4878653924690250021, guid: 081d8d351b6e2fc498e25cba86646583,
+    PlayerArchetypes:
+    - {fileID: 11400000, guid: df61963ad2f6f2149aac638253d1227c, type: 2}
+    - {fileID: 11400000, guid: 1d2186b8fb0791f44a415c05a73d8e05, type: 2}
+    - {fileID: 11400000, guid: 8d84b47fdb8bd054cad19c7edaf5cc62, type: 2}
+    ProjectilePrefab: {fileID: 7155763665149741019, guid: 580e5ebd825c2334bb95ae137767b4fe,
       type: 3}
     ProjectileSpeed: 0.3
     ProjectileShootingCooldown: 0.2
@@ -48,6 +52,8 @@ MonoBehaviour:
     DungeonEnterTexture: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458,
       type: 3}
     ChestTileTexture: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
+    ArchetypeSwitcherTexture: {fileID: 21300016, guid: 04170f682af0d99458f4fa3d94820458,
+      type: 3}
     Camera: {fileID: 1255091717544087294, guid: 7751b7dabc2f8434babfadc21ae675d0,
       type: 3}
     CameraSmoothSpeedInFreeMode: 10
@@ -98,6 +104,7 @@ MonoBehaviour:
     EnemyKey: b
     DungeonEnterKey: m
     ChestKey: l
+    ArchetypeSwitcherKey: k
     SaveMapInput: Jump
     EditModeKey: p
     RecreateRoomKey: o

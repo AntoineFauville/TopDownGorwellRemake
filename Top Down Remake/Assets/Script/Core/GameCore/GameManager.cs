@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
                 _timerController.Finish();
             }
 
-            OpenDoors();
+            StartCoroutine(SlowlyOpenDoor());
             RoomUnlockedState = true;
         }
     }
@@ -160,5 +160,12 @@ public class GameManager : MonoBehaviour
         CheckToOpenDoors();
 
         StartCoroutine(SlowerUpdate());
+    }
+
+    //added this because in some cases the doors didn't open proprelly... cause the game to soft block itself
+    public IEnumerator SlowlyOpenDoor()
+    {
+        yield return new WaitForSeconds(0.2f);
+        OpenDoors();
     }
 }

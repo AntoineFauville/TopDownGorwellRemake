@@ -6,36 +6,41 @@ public class Projectile: MonoBehaviour
 {
     public Rigidbody rigidBody;
 
-    private GameSettings _gameSettings;
+    private float _projectileSpeed;
+    private float _projectileLifeSpan;
 
-    public void Setup(GameSettings gameSettings)
+    public void Setup(float projectileSpeed, float projectileLifeSpan)
     {
-        _gameSettings = gameSettings;
-        StartCoroutine(waitToDie(_gameSettings.DeathProjectorTime));
+        _projectileLifeSpan = projectileLifeSpan;
+        _projectileSpeed = projectileSpeed;
+
+        StartCoroutine(waitToDie(_projectileLifeSpan));
     }
 
     void FixedUpdate()
     {
-        this.transform.Translate(Vector3.right * _gameSettings.ProjectileSpeed);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == Tags.Wall.ToString() || collision.gameObject.tag == Tags.Enemy.ToString())
-        {
-            StartCoroutine(waitToDie(0.05f));
-        }
+        this.transform.Translate(Vector3.right * _projectileSpeed);
     }
 
     void OnTriggerEnter(Collider collider)
     {
+        if (collider.gameObject.tag == Tags.Wall.ToString() || collider.gameObject.tag == Tags.Enemy.ToString())
+        {
+            Die();
+        }
+
         if (collider.gameObject.tag == Tags.RoomSwitch.ToString())
         {
-            StartCoroutine(waitToDie(0.05f));
+            Die();
         }
     }
 
-    IEnumerator waitToDie(float deathTime)
+    public void Die()
+    {
+        StartCoroutine(waitToDie(0.05f));
+    }
+
+    public IEnumerator waitToDie(float deathTime)
     {
         yield return new WaitForSeconds(deathTime);
         DestroyImmediate(this.gameObject);

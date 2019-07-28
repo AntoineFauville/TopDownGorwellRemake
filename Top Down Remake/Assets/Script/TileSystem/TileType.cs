@@ -6,5 +6,6 @@
     enemySpawner = 3,
     roomSwitcher = 4,
     dungeonEnter = 5,
-    chest = 6
+    chest = 6,
+    switchArchetype = 7
 }

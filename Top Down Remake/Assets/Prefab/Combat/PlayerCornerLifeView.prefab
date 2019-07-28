@@ -288,7 +288,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5492747738545455257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8151b671da23fe42b350858fe857576, type: 3}
+  m_Script: {fileID: 11500000, guid: 913e17a6a659d0d4a8edf51eb661d6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerLifeView: {fileID: 7730600686740355129}

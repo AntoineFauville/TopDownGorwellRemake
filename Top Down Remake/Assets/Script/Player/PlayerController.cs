@@ -6,10 +6,12 @@ using Zenject;
 public class PlayerController : MonoBehaviour
 {
     [Inject] private GameSettings _gameSettings;
-    [Inject] private PlayerView _playerView;
+    [Inject] private PlayerCornerLifeView _playerCornerLifeView;
     [Inject] private SceneController _sceneController;
 
     public Rigidbody Rigidbody;
+    [SerializeField] private PlayerView _playerView;
+    [SerializeField] private PlayerShootingManager _playerShootingManager;
 
     private float horizontal;
     private float vertical;
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
         Rigidbody.velocity = new Vector3(horizontal * runSpeedHorizontal,0, vertical * runSpeedVectical);
 
-        UpdateView();
+        UpdateCornerLifeView();
     }
 
     void OnTriggerEnter(Collider collider)
@@ -120,14 +122,20 @@ public class PlayerController : MonoBehaviour
         this.transform.position = _initialPosition;
     }
 
-    void UpdateView()
+    void UpdateCornerLifeView()
     {
         if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Dungeon)
         {
-            _playerView.IsEnable(true);
-            _playerView.PlayerLifeView.fillAmount = (float)_healthSystem.GetCurrentHealth() / (float)_gameSettings.PlayerMaxHealth;
+            _playerCornerLifeView.IsEnable(true);
+            _playerCornerLifeView.PlayerLifeView.fillAmount = (float)_healthSystem.GetCurrentHealth() / (float)_gameSettings.PlayerMaxHealth;
         }
         else if (_sceneController.GetActiveSceneIndex() == (int)SceneIndex.Village)
-            _playerView.IsEnable(false);
+            _playerCornerLifeView.IsEnable(false);
+    }
+
+    public void UpdateView(Sprite skin, ShootingTemplate shootingTemplate)
+    {
+        _playerView.PlayerSkin.sprite = skin;
+        _playerShootingManager.ShootingTemplate = shootingTemplate;
     }
 }

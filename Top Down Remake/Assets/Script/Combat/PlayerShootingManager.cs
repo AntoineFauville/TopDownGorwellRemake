@@ -16,7 +16,7 @@ public class PlayerShootingManager : MonoBehaviour
 
     private bool _canShootAgain;
 
-    private ShootingTemplate _shootingTemplate;
+    public ShootingTemplate ShootingTemplate;
 
     private ShootingTemplate STTop;
     private ShootingTemplate STDown;
@@ -27,24 +27,23 @@ public class PlayerShootingManager : MonoBehaviour
 
     void Start()
     {
-        _shootingTemplate = _gameSettings.WarriorShooting;
         SetupShootingTemplates();
     }
 
     void SetupShootingTemplates()
     {
         //create the shooting template
-        STTop = Object.Instantiate(_shootingTemplate, top.transform);
+        STTop = Object.Instantiate(ShootingTemplate, top.transform);
         //rotate the shooting template to allign it in the right direction
         STTop.transform.rotation = top.transform.rotation;
 
-        STDown = Object.Instantiate(_shootingTemplate, down.transform);
+        STDown = Object.Instantiate(ShootingTemplate, down.transform);
         STDown.transform.rotation = down.transform.rotation;
 
-        STLeft = Object.Instantiate(_shootingTemplate, left.transform);
+        STLeft = Object.Instantiate(ShootingTemplate, left.transform);
         STLeft.transform.rotation = left.transform.rotation;
 
-        STRight = Object.Instantiate(_shootingTemplate, right.transform);
+        STRight = Object.Instantiate(ShootingTemplate, right.transform);
         STRight.transform.rotation = right.transform.rotation;
 
     }

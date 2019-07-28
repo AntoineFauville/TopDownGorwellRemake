@@ -34,7 +34,8 @@ public class RoomBuilder : MonoBehaviour
     public List<Vector2> RoomSwitcherTiles = new List<Vector2>();
     public List<Vector2> DungeonEnterTiles = new List<Vector2>();
     public List<Vector2> ChestTiles = new List<Vector2>();
-    
+    public List<Vector2> ArchetypeSwitcherTiles = new List<Vector2>();
+
     private int _roomSizeX;
     private int _roomSizeY;
     private int _roomOffset;
@@ -119,6 +120,8 @@ public class RoomBuilder : MonoBehaviour
             tileTypeLocal = TileType.dungeonEnter;
         else if (roomToCreate.ChestTiles.Contains(currentPosition))
             tileTypeLocal = TileType.chest;
+        else if (roomToCreate.ArchetypeSwitcherTiles.Contains(currentPosition))
+            tileTypeLocal = TileType.switchArchetype;
         else
             tileTypeLocal = TileType.walkable;
 
@@ -215,6 +218,8 @@ public class RoomBuilder : MonoBehaviour
             DungeonEnterTiles.Add(tile.PositionInMap);
         if (tileTypeLocal == TileType.chest)
             ChestTiles.Add(tile.PositionInMap);
+        if (tileTypeLocal == TileType.switchArchetype)
+            ArchetypeSwitcherTiles.Add(tile.PositionInMap);
     }
     
     public void CreateNewRoom()

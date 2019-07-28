@@ -11,6 +11,7 @@ public class DebugSettings
     public string EnemyKey = "b";
     public string DungeonEnterKey = "m";
     public string ChestKey = "l";
+    public string ArchetypeSwitcherKey = "k";
 
     public string SaveMapInput = "Jump";
     public string EditModeKey = "p";

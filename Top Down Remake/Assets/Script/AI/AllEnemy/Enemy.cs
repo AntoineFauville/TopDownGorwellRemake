@@ -28,13 +28,17 @@ public class Enemy : MonoBehaviour
         NavMeshAgent.enabled = true;
     }
 
-    void OnCollisionStay(Collision Collision)
+    void OnTriggerStay(Collider collider)
     {
         // projectile damages
-        if (Collision.gameObject.tag == Tags.Projectile.ToString())
+        if (collider.gameObject.tag == Tags.Projectile.ToString())
         {
-            TakeDamage(_gameSettings.ProjectileDamage); 
+            TakeDamage(_gameSettings.ProjectileDamage);
         }
+    }
+
+    void OnCollisionStay(Collision Collision)
+    {
         //example to show that we can do different type of damages
         // playercollision damages
         if (Collision.gameObject.tag == Tags.Player.ToString())
