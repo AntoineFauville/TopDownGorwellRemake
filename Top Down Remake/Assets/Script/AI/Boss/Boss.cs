@@ -43,7 +43,7 @@ public class Boss : MonoBehaviour
         _movementPaternManager.AgentState = Patern.MoveToPlayer;
         yield return new WaitForSeconds(2f);
         _movementPaternManager.AgentState = Patern.StandingStill;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.6f);
         _aIShootingController.ShootStraight();
         yield return new WaitForSeconds(0.3f);
         StartCoroutine(Owl());

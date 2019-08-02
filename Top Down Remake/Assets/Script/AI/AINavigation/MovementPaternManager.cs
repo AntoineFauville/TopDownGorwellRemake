@@ -30,14 +30,17 @@ public class MovementPaternManager : MonoBehaviour
         {
             case Patern.StandingStill:
                 _needToMove = false;
+                _agent.isStopped = true;
                 break;
             case Patern.MoveToRandomLocation:
                 _agentDestination = _destination;
                 _needToMove = true;
+                _agent.isStopped = false;
                 break;
             case Patern.MoveToPlayer:
                 _needToMove = true;
                 _agentDestination = _playerController.transform.position;
+                _agent.isStopped = false;
                 break;
         }
 
