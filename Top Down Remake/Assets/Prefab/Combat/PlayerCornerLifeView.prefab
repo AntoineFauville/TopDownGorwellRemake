@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 311568528526078401}
   - component: {fileID: 1449065724550125131}
   m_Layer: 0
-  m_Name: PlayerView
+  m_Name: PlayerCornerLifeView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,18 +11,20 @@ public class Enemy : MonoBehaviour
     private GameSettings _gameSettings;
     private BossController _bossController;
 
+    public ProjectileFactory ProjectileFactory;
     public PlayerController PlayerController;
     public HealthSystem HealthSystem;
     public NavMeshAgent NavMeshAgent;
     public SpriteRenderer _spriteRenderer;
 
-    public void Setup(PlayerController playerController, GameManager gameManager, EnemyType enemyType, GameSettings gameSettings, BossController bossController)
+    public void Setup(PlayerController playerController, GameManager gameManager, EnemyType enemyType, GameSettings gameSettings, BossController bossController, ProjectileFactory projectileFactory)
     {
         PlayerController = playerController;
         _gameManager = gameManager;
         _enemyType = enemyType;
         _gameSettings = gameSettings;
         _bossController = bossController;
+        ProjectileFactory = projectileFactory;
 
         HealthSystem = this.gameObject.AddComponent<HealthSystem>();
 

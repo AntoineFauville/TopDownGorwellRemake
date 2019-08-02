@@ -11,24 +11,23 @@ public class Boss : MonoBehaviour
 
     private int BossShootingType;
 
-    private PaternManager _paternManager;
+    private MovementPaternManager _movementPaternManager;
+    private AIShootingController _aIShootingController;
 
     void Start()
     {
-        _paternManager = this.GetComponent<PaternManager>();
+        _movementPaternManager = this.GetComponent<MovementPaternManager>();
+        _aIShootingController = this.GetComponent<AIShootingController>();
 
-        _paternManager.AgentState = 0;
+        _movementPaternManager.AgentState = 0;
+        
+        //BossShootingType = Random.Range(0, 2);
+        BossShootingType = 0;
 
-        StartCoroutine(SlowUpdate());
-
-        BossShootingType = Random.Range(0, 2);
-    }
-
-    void Update()
-    {
         switch (BossShootingType)
         {
             case 0: // owl
+                StartCoroutine(Owl());
                 break;
 
             case 1: // chtulhu
@@ -39,11 +38,14 @@ public class Boss : MonoBehaviour
         }
     }
 
-    IEnumerator SlowUpdate()
+    IEnumerator Owl()
     {
-        yield return new WaitForSeconds(0.1f);
-        
-
-        StartCoroutine(SlowUpdate());
+        _movementPaternManager.AgentState = Patern.MoveToPlayer;
+        yield return new WaitForSeconds(2f);
+        _movementPaternManager.AgentState = Patern.StandingStill;
+        yield return new WaitForSeconds(0.3f);
+        _aIShootingController.ShootStraight();
+        yield return new WaitForSeconds(0.3f);
+        StartCoroutine(Owl());
     }
 }

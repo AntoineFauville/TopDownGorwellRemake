@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-public class PaternManager : MonoBehaviour
+public class MovementPaternManager : MonoBehaviour
 {
     private PlayerController _playerController;
 
