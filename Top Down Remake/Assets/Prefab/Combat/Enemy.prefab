@@ -389,6 +389,7 @@ MonoBehaviour:
   _projectileSpawnerHolder: {fileID: 3262353997415159644}
   _spawners:
   - {fileID: 8757224996236462234}
+  State: 2
 --- !u!1 &8757224996236462234
 GameObject:
   m_ObjectHideFlags: 0

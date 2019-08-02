@@ -35,6 +35,14 @@ public class PlayerShootingManager : MonoBehaviour
         //delete existing one if they are some
         if (STTop != null)
             DestroyImmediate(STTop);
+        else
+        {
+            //create the shooting template
+            STTop = Object.Instantiate(ShootingTemplate, top.transform);
+            //rotate the shooting template to allign it in the right direction
+            STTop.transform.rotation = top.transform.rotation;
+        }
+
         if (STDown != null)
             DestroyImmediate(STDown);
         if (STLeft != null)
@@ -42,11 +50,7 @@ public class PlayerShootingManager : MonoBehaviour
         if (STRight != null)
             DestroyImmediate(STRight);
 
-        //create the shooting template
-        STTop = Object.Instantiate(ShootingTemplate, top.transform);
-        //rotate the shooting template to allign it in the right direction
-        STTop.transform.rotation = top.transform.rotation;
-
+       
         STDown = Object.Instantiate(ShootingTemplate, down.transform);
         STDown.transform.rotation = down.transform.rotation;
 
@@ -110,4 +114,5 @@ public class PlayerShootingManager : MonoBehaviour
         ImageCoolDownFeedback.fillAmount = 0;
         _canShootAgain = false;
     }
+    
 }

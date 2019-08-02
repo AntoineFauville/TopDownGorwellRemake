@@ -137,6 +137,12 @@ public class PlayerController : MonoBehaviour
     {
         _playerView.PlayerSkin.sprite = skin;
         _playerShootingManager.ShootingTemplate = shootingTemplate;
+        StartCoroutine(waitToReplaceAfterColision());
+    }
+
+    IEnumerator waitToReplaceAfterColision()
+    {
+        yield return new WaitForSeconds(0.02f);
         _playerShootingManager.SetupShootingTemplates();
     }
 }

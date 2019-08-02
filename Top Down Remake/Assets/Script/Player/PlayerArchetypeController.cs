@@ -10,7 +10,7 @@ public class PlayerArchetypeController : MonoBehaviour
 
     public PlayerArchetype PlayerArchetype;
 
-    void Awake()
+    void Start()
     {
         //assign a default class for debug
         PlayerArchetype = _gameSettings.PlayerArchetypes[1];
