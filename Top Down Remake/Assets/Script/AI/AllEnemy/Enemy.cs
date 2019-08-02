@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public PlayerController PlayerController;
     public HealthSystem HealthSystem;
     public NavMeshAgent NavMeshAgent;
+    public SpriteRenderer _spriteRenderer;
 
     public void Setup(PlayerController playerController, GameManager gameManager, EnemyType enemyType, GameSettings gameSettings, BossController bossController)
     {

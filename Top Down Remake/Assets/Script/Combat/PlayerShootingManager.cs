@@ -33,13 +33,13 @@ public class PlayerShootingManager : MonoBehaviour
     public void SetupShootingTemplates()
     {
         //delete existing one if they are some
-        if (STTop == null)
+        if (STTop != null)
             DestroyImmediate(STTop);
-        if (STDown == null)
+        if (STDown != null)
             DestroyImmediate(STDown);
-        if (STLeft == null)
+        if (STLeft != null)
             DestroyImmediate(STLeft);
-        if (STRight == null)
+        if (STRight != null)
             DestroyImmediate(STRight);
 
         //create the shooting template

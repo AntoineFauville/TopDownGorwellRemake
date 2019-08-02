@@ -297,6 +297,7 @@ MonoBehaviour:
   RoomSwitcherTiles: []
   DungeonEnterTiles: []
   ChestTiles: []
+  ArchetypeSwitcherTiles: []
   doorX: 0c0000000d0000000e000000
 --- !u!4 &2058132807
 Transform:
