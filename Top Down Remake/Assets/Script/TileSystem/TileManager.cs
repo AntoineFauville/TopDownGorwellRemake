@@ -147,7 +147,18 @@ public class TileManager : MonoBehaviour
                 if (RoomBuilder.CurrentLoadedReadingMap.RoomType == RoomType.Boss)
                     enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Boss);
                 else
-                    enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Regular);
+                {
+                    int rand = Random.Range(0, 100);
+
+                    if (rand < 20)
+                    {
+                        enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Distance);
+                    }
+                    else 
+                    {
+                        enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Runner);
+                    }
+                }
 
                 TrashController.EnemiesInTheRoom.Add(enemy.gameObject);
             }

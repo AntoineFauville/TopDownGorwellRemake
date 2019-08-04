@@ -1,5 +1,6 @@
 ﻿public enum EnemyType
 {
-    Regular = 0,
-    Boss = 1
+    Distance = 0,
+    Boss = 1,
+    Runner = 2
 }

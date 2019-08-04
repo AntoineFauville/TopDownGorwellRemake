@@ -14,13 +14,31 @@ public class EnemyFactory
     {
         GameObject obj;
 
+        obj = Object.Instantiate(_gameSettings.Enemy);
+
         if (enemyType == EnemyType.Boss)
         {
-            obj = Object.Instantiate(_gameSettings.Enemy);
             obj.AddComponent<Boss>();
         }
         else
-            obj = Object.Instantiate(_gameSettings.Enemy);
+        {
+            EnemyArchetypes enemyArchetypes;
+
+            obj.AddComponent<EnemyArchetypes>();
+
+            enemyArchetypes = obj.GetComponent<EnemyArchetypes>();
+
+            int rand = Random.Range(0, 100);
+
+            if (rand < _gameSettings.percentOfRunner)
+            {
+                enemyArchetypes.EnemyTypeStyle = EnemyType.Runner;
+            }
+            else
+                enemyArchetypes.EnemyTypeStyle = EnemyType.Distance;
+
+
+        }
 
         obj.tag = Tags.Enemy.ToString();
 

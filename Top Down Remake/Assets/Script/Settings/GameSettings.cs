@@ -77,6 +77,11 @@ public class GameSettings
 
     [Space()]
     [Header("ChestSystem")]
+    public int percentOfRunner = 80;
+    public int percentOfDistance = 20;
+
+    [Space()]
+    [Header("ChestSystem")]
     public ChestController ChestController;
 
     [Space()]
