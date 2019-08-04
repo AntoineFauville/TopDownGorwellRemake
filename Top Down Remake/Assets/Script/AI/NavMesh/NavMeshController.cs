@@ -9,10 +9,15 @@ public class NavMeshController : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SlowUpdate());
+        ReGenerateNavMesh();
     }
 
-    IEnumerator SlowUpdate()
+    public void ReGenerateNavMesh()
+    {
+        StartCoroutine(BuildNavMeshEnsurer());
+    }
+
+    IEnumerator BuildNavMeshEnsurer()
     {
         _navMeshSurface.BuildNavMesh();
         yield return new WaitForSeconds(1);

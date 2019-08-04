@@ -9,6 +9,7 @@ public class RoomBuilder : MonoBehaviour
     [Inject] private TileFactory _tileFactory;
     [Inject] private GameSettings _gameSettings;
     [Inject] private SceneController _sceneController;
+    [Inject] private NavMeshController _navMeshController;
 
     [Space(5)]
     [Header("Map Data")]
@@ -99,6 +100,8 @@ public class RoomBuilder : MonoBehaviour
 
             position.x += _roomOffset;
         }
+
+        _navMeshController.ReGenerateNavMesh();
     }
 
     void CreateFromRoomDataTile(Vector3 position, RoomData roomToCreate)
@@ -130,6 +133,8 @@ public class RoomBuilder : MonoBehaviour
         TrashController.ObjInTheRoom.Add(tile.gameObject);
 
         AddInMap(tileTypeLocal, tile);
+
+       
     }
 
     void CreateTileFromAnEmptyTemplate(Vector3 position)
