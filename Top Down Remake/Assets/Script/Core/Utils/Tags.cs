@@ -4,7 +4,8 @@
     RoomSwitch = 1,
     Player = 2,
     Enemy = 3,
-    Projectile = 4,
+    ProjectileEnemy = 4,
     DungeonEnter = 5,
-    Chest = 6
+    Chest = 6,
+    ProjectilePlayer = 7
 }

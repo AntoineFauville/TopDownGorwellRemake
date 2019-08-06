@@ -6,13 +6,17 @@ public class Projectile: MonoBehaviour
 {
     public Rigidbody rigidBody;
 
+    public SpriteRenderer SpriteRenderer;
+
     private float _projectileSpeed;
     private float _projectileLifeSpan;
 
-    public void Setup(float projectileSpeed, float projectileLifeSpan)
+    public void Setup(float projectileSpeed, float projectileLifeSpan, Sprite sprite)
     {
         _projectileLifeSpan = projectileLifeSpan;
         _projectileSpeed = projectileSpeed;
+
+        SpriteRenderer.sprite = sprite;
 
         StartCoroutine(waitToDie(_projectileLifeSpan));
     }

@@ -7,9 +7,10 @@ TagManager:
   - Wall
   - RoomSwitch
   - Enemy
-  - Projectile
   - DungeonEnter
   - Chest
+  - ProjectileEnemy
+  - ProjectilePlayer
   layers:
   - Default
   - TransparentFX

@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 498028861766241536}
+  SpriteRenderer: {fileID: 4847651964324842859}
 --- !u!54 &498028861766241536
 Rigidbody:
   m_ObjectHideFlags: 0

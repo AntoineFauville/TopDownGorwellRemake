@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     void OnTriggerStay(Collider collider)
     {
         // projectile damages
-        if (collider.gameObject.tag == Tags.Projectile.ToString())
+        if (collider.gameObject.tag == Tags.ProjectilePlayer.ToString())
         {
             TakeDamage(_gameSettings.ProjectileDamage);
         }

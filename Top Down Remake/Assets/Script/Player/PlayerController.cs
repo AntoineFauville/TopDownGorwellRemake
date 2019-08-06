@@ -83,6 +83,12 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(_gameVillageManager.WaitToSwitch(0.01f));
         }
+
+        // projectile damages
+        if (collider.gameObject.tag == Tags.ProjectileEnemy.ToString())
+        {
+            TakeDamage(_gameSettings.ProjectileDamage);
+        }
     }
 
     void OnCollisionStay(Collision collision)

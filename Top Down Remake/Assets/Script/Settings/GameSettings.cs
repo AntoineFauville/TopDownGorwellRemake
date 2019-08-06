@@ -31,6 +31,8 @@ public class GameSettings
     public float ProjectileShootingCooldown;
     public float DeathProjectorTime = 8f;
     public int ProjectileDamage = 1;
+    public Sprite PlayerProjectile;
+    public Sprite EnemyProjectile;
 
     [Space()]
     [Header("Enemies")]
@@ -76,9 +78,12 @@ public class GameSettings
     public RoomData RewardRoom;
 
     [Space()]
-    [Header("ChestSystem")]
+    [Header("DungeonEnemyStats")]
     public int percentOfRunner = 80;
+    public Sprite RunnerSprite;
     public int percentOfDistance = 20;
+    public Sprite DistanceSprite;
+    public Sprite OwlSprite;
 
     [Space()]
     [Header("ChestSystem")]

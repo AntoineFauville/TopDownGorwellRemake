@@ -15,10 +15,20 @@ public class EnemyFactory
         GameObject obj;
 
         obj = Object.Instantiate(_gameSettings.Enemy);
+        
+        obj.tag = Tags.Enemy.ToString();
+
+        Enemy enemy = obj.GetComponent<Enemy>();
+        enemy.name = "Enemy" + position;
+        enemy.transform.position = new Vector3(position.x + _gameSettings.EnemySpawnOffsetX,0, position.y + _gameSettings.EnemySpawnOffsetY);
+        enemy.transform.rotation = Quaternion.Euler(0,0,0);
+
+        enemy.Setup(_playerController, gameManager, enemyType, _gameSettings, _bossController, _projectileFactory);
 
         if (enemyType == EnemyType.Boss)
         {
             obj.AddComponent<Boss>();
+            enemy._spriteRenderer.sprite = _gameSettings.OwlSprite;
         }
         else
         {
@@ -33,24 +43,18 @@ public class EnemyFactory
             if (rand < _gameSettings.percentOfRunner)
             {
                 enemyArchetypes.EnemyTypeStyle = EnemyType.Runner;
+                enemy._spriteRenderer.sprite = _gameSettings.RunnerSprite;
             }
             else
+            {
                 enemyArchetypes.EnemyTypeStyle = EnemyType.Distance;
-
-
+                enemy._spriteRenderer.sprite = _gameSettings.DistanceSprite;
+            }
         }
 
-        obj.tag = Tags.Enemy.ToString();
-
-        Enemy enemy = obj.GetComponent<Enemy>();
-        enemy.name = "Enemy" + position;
-        enemy.transform.position = new Vector3(position.x + _gameSettings.EnemySpawnOffsetX,0, position.y + _gameSettings.EnemySpawnOffsetY);
-        enemy.transform.rotation = Quaternion.Euler(0,0,0);
-
-        enemy.Setup(_playerController, gameManager, enemyType, _gameSettings, _bossController, _projectileFactory);
 
         //specify that this is a boss for the life health and inject the boss controller life to the boss
-        if(enemyType == EnemyType.Boss)
+        if (enemyType == EnemyType.Boss)
             enemy.HealthSystem.Setup(SetupBossLifeFromBossController(), _gameSettings);
         else
             enemy.HealthSystem.Setup(_gameSettings.EnemyMaxHealth, _gameSettings);

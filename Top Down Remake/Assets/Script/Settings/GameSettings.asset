@@ -38,6 +38,8 @@ MonoBehaviour:
     ProjectileShootingCooldown: 0.2
     DeathProjectorTime: 8
     ProjectileDamage: -1
+    PlayerProjectile: {fileID: 21300008, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
+    EnemyProjectile: {fileID: 21300014, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     Enemy: {fileID: 6939255856227203175, guid: a9605b312c2af8d4fb4ea7155db84980, type: 3}
     EnemySpawnOffsetX: 1
     EnemySpawnOffsetY: 0
@@ -77,6 +79,8 @@ MonoBehaviour:
     bossRoomDatas:
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
     RewardRoom: {fileID: 11400000, guid: 59834fede62b3be45892b6a167a802b6, type: 2}
+    percentOfRunner: 80
+    percentOfDistance: 20
     ChestController: {fileID: 0}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2

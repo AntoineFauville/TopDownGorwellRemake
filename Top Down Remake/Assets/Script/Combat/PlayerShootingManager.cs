@@ -92,7 +92,7 @@ public class PlayerShootingManager : MonoBehaviour
             //spawn projectile on each end of the shooting template
             for (int i = 0; i < shootingTemplate.ProjectileSpawnPoint.Length; i++)
             {
-                Projectile projectile = _projectileFactory.CreateProjectile(shootingTemplate.ProjectileSpawnPoint[i].transform);
+                Projectile projectile = _projectileFactory.CreateProjectile(shootingTemplate.ProjectileSpawnPoint[i].transform, ProjectileType.PlayerProjectile);
             }
             _canShootAgain = true;
             StartCoroutine(waitToShootAgain());
