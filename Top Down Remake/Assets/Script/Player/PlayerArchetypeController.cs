@@ -7,13 +7,14 @@ public class PlayerArchetypeController : MonoBehaviour
 {
     [Inject] private GameSettings _gameSettings;
     [Inject] private PlayerController _playerController;
+    [Inject] private SavingController _savingController;
 
     public PlayerArchetype PlayerArchetype;
 
     void Start()
     {
         //assign a default class for debug
-        PlayerArchetype = _gameSettings.PlayerArchetypes[1];
+        PlayerArchetype = _gameSettings.PlayerArchetypes[_savingController.GetPlayerPrefInt(_gameSettings.ArchetypeSavingString)];
         SwitchClass(PlayerArchetype);
 
         //load from previous game
@@ -30,5 +31,7 @@ public class PlayerArchetypeController : MonoBehaviour
     public void SwitchClass(PlayerArchetype playerArchetype)
     {
         _playerController.UpdateView(playerArchetype.PlayerSkin, playerArchetype.ShootingTemplate);
+
+        _savingController.SetPlayerPrefInt(_gameSettings.ArchetypeSavingString, (int)playerArchetype.PlayerArchetypes);
     }
 }

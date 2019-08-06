@@ -29,9 +29,10 @@ MonoBehaviour:
     PlayerArchetypeController: {fileID: 3288221033179224982, guid: 9073f60d6679ea94c898c1b484584a15,
       type: 3}
     PlayerArchetypes:
+    - {fileID: 11400000, guid: 8d84b47fdb8bd054cad19c7edaf5cc62, type: 2}
     - {fileID: 11400000, guid: df61963ad2f6f2149aac638253d1227c, type: 2}
     - {fileID: 11400000, guid: 1d2186b8fb0791f44a415c05a73d8e05, type: 2}
-    - {fileID: 11400000, guid: 8d84b47fdb8bd054cad19c7edaf5cc62, type: 2}
+    ArchetypeSavingString: ArchetypeSavingString
     ProjectilePrefab: {fileID: 7155763665149741019, guid: 580e5ebd825c2334bb95ae137767b4fe,
       type: 3}
     ProjectileSpeed: 0.3
@@ -80,7 +81,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
     RewardRoom: {fileID: 11400000, guid: 59834fede62b3be45892b6a167a802b6, type: 2}
     percentOfRunner: 80
+    RunnerSprite: {fileID: 21300000, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     percentOfDistance: 20
+    DistanceSprite: {fileID: 21300004, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
+    OwlSprite: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     ChestController: {fileID: 0}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2

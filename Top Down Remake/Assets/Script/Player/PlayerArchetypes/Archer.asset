@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe94b0b8f629b1f45a9a077f594b1533, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
-  Name: Archer
+  PlayerArchetypes: 1
   ShootingTemplate: {fileID: 4878653924690250021, guid: 081d8d351b6e2fc498e25cba86646583,
     type: 3}
   PlayerSkin: {fileID: 21300008, guid: 04170f682af0d99458f4fa3d94820458, type: 3}

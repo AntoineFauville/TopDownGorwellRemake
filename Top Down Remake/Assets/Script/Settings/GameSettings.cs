@@ -22,7 +22,7 @@ public class GameSettings
     [Header("Player Classes")]
     public PlayerArchetypeController PlayerArchetypeController;
     public PlayerArchetype[] PlayerArchetypes;
-
+    public string ArchetypeSavingString = "ArchetypeSavingString";
 
     [Space()]
     [Header("Projectiles")]

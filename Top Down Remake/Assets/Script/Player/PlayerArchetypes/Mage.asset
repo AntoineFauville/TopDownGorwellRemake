@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe94b0b8f629b1f45a9a077f594b1533, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
-  Name: Mage
+  PlayerArchetypes: 2
   ShootingTemplate: {fileID: 4878653924690250021, guid: d0cda2adc18d60e42b9555d1b0da49f6,
     type: 3}
   PlayerSkin: {fileID: 21300012, guid: 04170f682af0d99458f4fa3d94820458, type: 3}

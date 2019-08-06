@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Antoine/PlayerArchetype")]
 public class PlayerArchetype : ScriptableObject
 {
-    public string Name;
+    public PlayerArchetypes PlayerArchetypes;
     public ShootingTemplate ShootingTemplate;
     public Sprite PlayerSkin;
     public float ProjectileSpeed;
