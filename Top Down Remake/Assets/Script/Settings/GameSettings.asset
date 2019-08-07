@@ -35,7 +35,7 @@ MonoBehaviour:
     ArchetypeSavingString: ArchetypeSavingString
     ProjectilePrefab: {fileID: 7155763665149741019, guid: 580e5ebd825c2334bb95ae137767b4fe,
       type: 3}
-    ProjectileShootingCooldown: 0.2
+    ProjectileShootingCooldown: 0.8
     DeathProjectorTime: 8
     ProjectileDamage: -1
     PlayerProjectile: {fileID: 21300008, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
