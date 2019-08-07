@@ -152,11 +152,11 @@ public class TileManager : MonoBehaviour
 
                     if (rand < 20)
                     {
-                        enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Distance);
+                        enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Zombie);
                     }
                     else 
                     {
-                        enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Runner);
+                        enemy = _enemyFactory.CreateEnemy(position, GameManager, EnemyType.Mage);
                     }
                 }
 

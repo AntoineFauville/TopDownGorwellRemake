@@ -22,25 +22,38 @@ public class EnemyArchetypes : MonoBehaviour
 
         switch (EnemyTypeStyle)
         {
-            case EnemyType.Distance: // Distance
+            case EnemyType.Zombie: // Zombie
                 _movementPaternManager.AgentState = Patern.MoveToPlayer;
+                _aIShootingController.State = AIShootingPatern.FollowTarget;
                 break;
 
-            case EnemyType.Runner: // chtulhu
-                StartCoroutine(Runner());
+            case EnemyType.Mage: // Mage
+                StartCoroutine(Mage());
+                break;
+
+            case EnemyType.Ghost: // Mage
+                StartCoroutine(Ghost());
                 break;
         }
     }
 
-    IEnumerator Runner()
+    IEnumerator Mage()
     {
-        _movementPaternManager.AgentState = Patern.MoveToPlayer;
+        _movementPaternManager.AgentState = Patern.StandingStill;
         _aIShootingController.State = AIShootingPatern.FollowTarget;
         yield return new WaitForSeconds(1.5f);
-        _movementPaternManager.AgentState = Patern.StandingStill;
-        yield return new WaitForSeconds(0.6f);
-        _aIShootingController.ShootStraight();
+        _aIShootingController.ShootStraight(ProjectileType.MageProjectile);
+        _movementPaternManager.AgentState = Patern.MoveToPlayer;
         yield return new WaitForSeconds(0.3f);
-        StartCoroutine(Runner());
+        StartCoroutine(Mage());
+    }
+
+    IEnumerator Ghost()
+    {
+        _movementPaternManager.AgentState = Patern.MoveToRandomLocation;
+        _aIShootingController.State = AIShootingPatern.StayStill;
+        yield return new WaitForSeconds(1.5f);
+        _aIShootingController.ShootStraight(ProjectileType.GhostProjectile);
+        StartCoroutine(Ghost());
     }
 }

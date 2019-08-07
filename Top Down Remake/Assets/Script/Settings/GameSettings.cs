@@ -27,7 +27,6 @@ public class GameSettings
     [Space()]
     [Header("Projectiles")]
     public GameObject ProjectilePrefab;
-    public float ProjectileSpeed;
     public float ProjectileShootingCooldown;
     public float DeathProjectorTime = 8f;
     public int ProjectileDamage = 1;
@@ -79,15 +78,16 @@ public class GameSettings
 
     [Space()]
     [Header("DungeonEnemyStats")]
-    public int percentOfRunner = 80;
-    public Sprite RunnerSprite;
-    public int percentOfDistance = 20;
-    public Sprite DistanceSprite;
+    public int ChanceOfEnemySpawningOnTile = 75;
+    public int percentOfZombie = 60; //from range 100 - 60 is a zombie so 40%
+    public Sprite ZombieSprite;
+    public int percentOfMage = 30; // from range percentOfZombie to 30 = 30%
+    public float MageProjectileSpeed;
+    public Sprite MageSprite;
+    public int percentOfGhost = 0;
+    public float GhostProjectileSpeed;
+    public Sprite GhostSprite;
     public Sprite OwlSprite;
-
-    [Space()]
-    [Header("ChestSystem")]
-    public ChestController ChestController;
 
     [Space()]
     [Header("Gameplay")]

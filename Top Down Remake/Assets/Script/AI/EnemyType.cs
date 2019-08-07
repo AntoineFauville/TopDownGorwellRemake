@@ -1,6 +1,7 @@
 ﻿public enum EnemyType
 {
-    Distance = 0,
+    Zombie = 0,
     Boss = 1,
-    Runner = 2
+    Mage = 2,
+    Ghost = 3
 }

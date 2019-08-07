@@ -40,7 +40,7 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _movementPaternManager.AgentState = Patern.StandingStill;
         yield return new WaitForSeconds(0.6f);
-        _aIShootingController.ShootStraight();
+        _aIShootingController.ShootStraight(ProjectileType.OwlProjectile);
         yield return new WaitForSeconds(0.3f);
         StartCoroutine(Owl());
     }

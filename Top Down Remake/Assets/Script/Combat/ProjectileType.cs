@@ -1,6 +1,8 @@
 ﻿public enum ProjectileType
 {
     PlayerProjectile = 0,
-    EnemyProjectile = 1
+    MageProjectile = 1,
+    GhostProjectile = 2, //gaz behind them
+    OwlProjectile = 3
 }
 

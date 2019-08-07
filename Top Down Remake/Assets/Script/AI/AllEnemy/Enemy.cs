@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
         _gameManager.RoomBuilder.DeleteSpecificEnemy(this.gameObject);
     }
 
-    IEnumerator waitToDie()
+    public IEnumerator waitToDie()
     {
         yield return new WaitForSeconds(0.001f);
         Die();

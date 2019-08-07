@@ -35,7 +35,6 @@ MonoBehaviour:
     ArchetypeSavingString: ArchetypeSavingString
     ProjectilePrefab: {fileID: 7155763665149741019, guid: 580e5ebd825c2334bb95ae137767b4fe,
       type: 3}
-    ProjectileSpeed: 0.3
     ProjectileShootingCooldown: 0.2
     DeathProjectorTime: 8
     ProjectileDamage: -1
@@ -80,12 +79,16 @@ MonoBehaviour:
     bossRoomDatas:
     - {fileID: 11400000, guid: 08a2facbb5d955945b8968c79c222497, type: 2}
     RewardRoom: {fileID: 11400000, guid: 59834fede62b3be45892b6a167a802b6, type: 2}
-    percentOfRunner: 80
-    RunnerSprite: {fileID: 21300000, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
-    percentOfDistance: 20
-    DistanceSprite: {fileID: 21300004, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
+    ChanceOfEnemySpawningOnTile: 75
+    percentOfZombie: 60
+    ZombieSprite: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
+    percentOfMage: 30
+    MageProjectileSpeed: 0.15
+    MageSprite: {fileID: 21300014, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
+    percentOfGhost: 0
+    GhostProjectileSpeed: 0.001
+    GhostSprite: {fileID: 21300012, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     OwlSprite: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
-    ChestController: {fileID: 0}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2
     TimerController: {fileID: 8302258663015120375, guid: 4fd260a36fc6d02409f78e337ddd98ae,
