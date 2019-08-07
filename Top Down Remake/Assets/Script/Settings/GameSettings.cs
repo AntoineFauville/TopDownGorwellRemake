@@ -81,12 +81,19 @@ public class GameSettings
     public int ChanceOfEnemySpawningOnTile = 75;
     public int percentOfZombie = 60; //from range 100 - 60 is a zombie so 40%
     public Sprite ZombieSprite;
+    [Space()]
     public int percentOfMage = 30; // from range percentOfZombie to 30 = 30%
     public float MageProjectileSpeed;
+    public float MageProjectileLifeSpan;
     public Sprite MageSprite;
+    [Space()]
     public int percentOfGhost = 0;
     public float GhostProjectileSpeed;
+    public float GhostProjectileLifeSpan;
     public Sprite GhostSprite;
+    [Space()]
+    public float OwlProjectileSpeed;
+    public float OwlProjectileLifeSpan;
     public Sprite OwlSprite;
 
     [Space()]

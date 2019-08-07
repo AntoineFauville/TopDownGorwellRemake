@@ -84,10 +84,14 @@ MonoBehaviour:
     ZombieSprite: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     percentOfMage: 30
     MageProjectileSpeed: 0.15
+    MageProjectileLifeSpan: 1.5
     MageSprite: {fileID: 21300014, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     percentOfGhost: 0
     GhostProjectileSpeed: 0.001
+    GhostProjectileLifeSpan: 5
     GhostSprite: {fileID: 21300012, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
+    OwlProjectileSpeed: 0.15
+    OwlProjectileLifeSpan: 3
     OwlSprite: {fileID: 21300006, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
     InvincibilityFrameTime: 0.5
     bossLifeFillingSpeed: 2

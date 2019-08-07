@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using System.Linq;
 
 public class MovementPaternManager : MonoBehaviour
 {
@@ -17,11 +18,20 @@ public class MovementPaternManager : MonoBehaviour
 
     public Patern AgentState;
 
-    public Vector3 _destination = new Vector3(24,0,3);
+    public Vector3[] Destination;
+    //23,0,3
+    //23,0,9
+    //3,0,3
+    //3,0,9
+    //13,0,6
+    private int _randomDestination;
 
     private void Start()
     {
-        _playerController = _enemy.PlayerController;        
+        _playerController = _enemy.PlayerController;
+
+        //first take a random from the list from 0 to max of list
+        _randomDestination = Random.Range(0, Destination.Length);
     }
 
     private void Update()
@@ -32,11 +42,24 @@ public class MovementPaternManager : MonoBehaviour
                 _needToMove = false;
                 _agent.isStopped = true;
                 break;
+
             case Patern.MoveToRandomLocation:
-                _agentDestination = _destination;
+                //then check if the distance between destination and current enemy <= X
+                //if smaller than X then switch to next destination in list
+                float distance = Vector3.Distance(this.transform.position, Destination[_randomDestination]);
+                if (distance < 2)
+                {
+                    _randomDestination++;
+
+                    if (_randomDestination > Destination.Length - 1)
+                        _randomDestination = 0;
+                }
+                _agentDestination = Destination[_randomDestination];
+                
                 _needToMove = true;
                 _agent.isStopped = false;
                 break;
+
             case Patern.MoveToPlayer:
                 _needToMove = true;
                 _agentDestination = _playerController.transform.position;

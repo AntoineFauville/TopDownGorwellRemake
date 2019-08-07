@@ -373,7 +373,12 @@ MonoBehaviour:
   _agent: {fileID: 5696927490949208117}
   _enemy: {fileID: 6939255856227203174}
   AgentState: 2
-  _destination: {x: 24, y: 0, z: 3}
+  Destination:
+  - {x: 23, y: 0, z: 3}
+  - {x: 3, y: 0, z: 3}
+  - {x: 23, y: 0, z: 9}
+  - {x: 3, y: 0, z: 9}
+  - {x: 13, y: 0, z: 6}
 --- !u!114 &2146468924297743109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +395,7 @@ MonoBehaviour:
   _spawners:
   - {fileID: 8757224996236462234}
   State: 2
+  _rotateSpeed: 0
 --- !u!1 &8757224996236462234
 GameObject:
   m_ObjectHideFlags: 0
