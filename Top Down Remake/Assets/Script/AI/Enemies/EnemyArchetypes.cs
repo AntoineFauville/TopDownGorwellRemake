@@ -42,7 +42,7 @@ public class EnemyArchetypes : MonoBehaviour
         _movementPaternManager.AgentState = Patern.StandingStill;
         _aIShootingController.State = AIShootingPatern.FollowTarget;
         yield return new WaitForSeconds(1.5f);
-        _aIShootingController.ShootStraight(ProjectileType.MageProjectile);
+        _aIShootingController.ShootStraight(0, ProjectileType.MageProjectile);
         _movementPaternManager.AgentState = Patern.MoveToPlayer;
         yield return new WaitForSeconds(0.3f);
         StartCoroutine(Mage());
@@ -53,7 +53,7 @@ public class EnemyArchetypes : MonoBehaviour
         _movementPaternManager.AgentState = Patern.MoveToRandomLocation;
         _aIShootingController.State = AIShootingPatern.StayStill;
         yield return new WaitForSeconds(1.5f);
-        _aIShootingController.ShootStraight(ProjectileType.GhostProjectile);
+        _aIShootingController.ShootStraight(0, ProjectileType.GhostProjectile);
         StartCoroutine(Ghost());
     }
 }

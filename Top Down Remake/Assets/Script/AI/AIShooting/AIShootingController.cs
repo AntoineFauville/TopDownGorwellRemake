@@ -46,8 +46,8 @@ public class AIShootingController : MonoBehaviour
        
     }
 
-    public void ShootStraight(ProjectileType projectileType)
+    public void ShootStraight(int shootingSpawnerID, ProjectileType projectileType)
     {
-        _projectileFactory.CreateProjectile(_spawners[0].transform, projectileType);
+        _projectileFactory.CreateProjectile(_spawners[shootingSpawnerID].transform, projectileType);
     }
 }

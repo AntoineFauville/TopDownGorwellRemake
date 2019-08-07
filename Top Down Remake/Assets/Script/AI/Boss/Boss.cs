@@ -14,6 +14,8 @@ public class Boss : MonoBehaviour
     private MovementPaternManager _movementPaternManager;
     private AIShootingController _aIShootingController;
 
+    private float OwlTimingBetweenAttackCooldown = 0.8f;
+
     void Start()
     {
         _movementPaternManager = this.GetComponent<MovementPaternManager>();
@@ -22,7 +24,8 @@ public class Boss : MonoBehaviour
         switch (BossTypeStyle)
         {
             case 0: // owl
-                StartCoroutine(Owl());
+                int rotationLogic = Random.Range(0,2);
+                StartCoroutine(Owl(rotationLogic));
                 break;
 
             case 1: // chtulhu
@@ -33,15 +36,42 @@ public class Boss : MonoBehaviour
         }
     }
 
-    IEnumerator Owl()
+    void OwlIncrementing()
+    {
+        OwlTimingBetweenAttackCooldown -= 0.05f;
+        if (OwlTimingBetweenAttackCooldown <= 0.2f)
+        {
+            OwlTimingBetweenAttackCooldown = 0.2f;
+        }
+    }
+
+    IEnumerator Owl(int rotationLogic)
     {
         _movementPaternManager.AgentState = Patern.MoveToPlayer;
-        _aIShootingController.State = AIShootingPatern.FollowTarget;
-        yield return new WaitForSeconds(2f);
-        _movementPaternManager.AgentState = Patern.StandingStill;
-        yield return new WaitForSeconds(0.6f);
-        _aIShootingController.ShootStraight(ProjectileType.OwlProjectile);
-        yield return new WaitForSeconds(0.3f);
-        StartCoroutine(Owl());
+        _aIShootingController.State = AIShootingPatern.StayStill;
+        //waiting time for player to move around a bit for fairness
+
+        if (rotationLogic == 0)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                yield return new WaitForSeconds(OwlTimingBetweenAttackCooldown);
+                _aIShootingController.ShootStraight(i, ProjectileType.OwlProjectile);
+
+                OwlIncrementing();
+            }
+        }
+        else
+        {
+            for (int i = 7; i > -1; i--)
+            {
+                yield return new WaitForSeconds(OwlTimingBetweenAttackCooldown);
+                _aIShootingController.ShootStraight(i, ProjectileType.OwlProjectile);
+
+                OwlIncrementing();
+            }
+        }
+
+        StartCoroutine(Owl(rotationLogic));
     }
 }
