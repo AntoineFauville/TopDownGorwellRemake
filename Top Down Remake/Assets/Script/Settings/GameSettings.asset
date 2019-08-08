@@ -35,7 +35,7 @@ MonoBehaviour:
     ArchetypeSavingString: ArchetypeSavingString
     ProjectilePrefab: {fileID: 7155763665149741019, guid: 580e5ebd825c2334bb95ae137767b4fe,
       type: 3}
-    ProjectileShootingCooldown: 0.8
+    ProjectileShootingCooldown: 0.6
     DeathProjectorTime: 8
     ProjectileDamage: -1
     PlayerProjectile: {fileID: 21300008, guid: 04170f682af0d99458f4fa3d94820458, type: 3}
@@ -97,6 +97,10 @@ MonoBehaviour:
     bossLifeFillingSpeed: 2
     TimerController: {fileID: 8302258663015120375, guid: 4fd260a36fc6d02409f78e337ddd98ae,
       type: 3}
+    MaxTimingInDungeon: 120
+    MinimumScore: 5
+    ScoreCap: 15
+    GoldSaving: GoldSaving
     VillageSizeX: 50
     VillageSizeY: 50
     SceneController: {fileID: 2679521885632859452, guid: 2d64b4f6415f6784bba86ce00d2d68fa,

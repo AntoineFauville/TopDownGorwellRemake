@@ -16,11 +16,6 @@ public class ChestController : MonoBehaviour
 
     public void SetupChestContent()
     {
-        Debug.Log("Player will recieve " + _timerController.Timer);
-    }
-
-    public void OpenChest()
-    {
         if (CalculateTheScore() < _gameSettings.ScoreCap)
         {
             _chestRecieved = ChestType.Small;
@@ -41,11 +36,16 @@ public class ChestController : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Player recieves " + _goldRecieved + " gold");
+        Debug.Log("Player will recieve " + _goldRecieved + " gold");
 
         int totalPlayerGold = _savingController.GetPlayerPrefInt(_gameSettings.GoldSaving) + _goldRecieved;
 
         _savingController.SetPlayerPrefInt(_gameSettings.GoldSaving, totalPlayerGold);
+    }
+
+    public void OpenChest()
+    {
+        Debug.Log("Player recieves " + _goldRecieved + " gold");
     }
 
     public int CalculateTheScore()
