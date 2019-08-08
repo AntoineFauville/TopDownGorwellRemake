@@ -52,11 +52,7 @@ public class TimerController : MonoBehaviour
             _timerVillagerView.CharacterImage.gameObject.SetActive(false);
             _timerVillagerView.CanvasDescription.enabled = false;
 
-            if (finished)
-            {
-                SaveTimer((int)Time.timeSinceLevelLoad);
-                return;
-            }
+            
 
             //set the timer that will be read by the chest system to get the bonus gold etc
             Timer = (int)Time.timeSinceLevelLoad;
@@ -64,7 +60,16 @@ public class TimerController : MonoBehaviour
             string minutes = ((int)Time.timeSinceLevelLoad / 60).ToString();
             string seconds = (Time.timeSinceLevelLoad % 60).ToString("f0");
 
+            if (Timer > _gameSettings.MaxTimingInDungeon)
+                Timer = _gameSettings.MaxTimingInDungeon;
+
             TimerText.text = minutes + ":" + seconds;
+
+            if (finished)
+            {
+                SaveTimer(Timer);
+                return;
+            }
         }
     }
 

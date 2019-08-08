@@ -101,6 +101,10 @@ public class GameSettings
     public float InvincibilityFrameTime = 0.5f;
     public float bossLifeFillingSpeed = 0.01f;
     public TimerController TimerController;
+    public int MaxTimingInDungeon = 200;
+    public int MinimumScore = 5;
+    public int ScoreCap = 15;
+    public string GoldSaving;
 
     [Space()]
     [Header("Other Settings")]

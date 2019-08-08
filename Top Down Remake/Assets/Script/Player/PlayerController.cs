@@ -104,6 +104,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public int GetPlayerLife()
+    {
+        return _healthSystem.GetCurrentHealth();
+    }
+
     public void TakeDamage(int damageAmount)
     {
         if (!_healthSystem.CanTakeDamageAgain)
