@@ -185,7 +185,7 @@ InputManager:
     m_Name: Fire1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: joystick button 2
     positiveButton: joystick button 0
     altNegativeButton: 
     altPositiveButton: 
@@ -201,7 +201,7 @@ InputManager:
     m_Name: Fire2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: joystick button 3
     positiveButton: joystick button 1
     altNegativeButton: 
     altPositiveButton: 
@@ -218,7 +218,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 2
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -234,7 +234,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 3
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -252,7 +252,7 @@ InputManager:
     negativeButton: 
     positiveButton: return
     altNegativeButton: 
-    altPositiveButton: joystick button 0
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -284,7 +284,7 @@ InputManager:
     negativeButton: 
     positiveButton: escape
     altNegativeButton: 
-    altPositiveButton: joystick button 1
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
